@@ -1,154 +1,128 @@
-
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-
-# Path to your oh-my-zsh installation.
-export ZSH="/Users/nopestack/.oh-my-zsh"
-
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="robbyrussell"
-
-export UPDATE_ZSH_DAYS=7
-DISABLE_AUTO_TITLE="true"
-COMPLETION_WAITING_DOTS="true"
-
-DISABLE_UNTRACKED_FILES_DIRTY="true"
-plugins=(
-    git
-    zsh-autosuggestions
-    fast-syntax-highlighting
-    zsh-completions
-)
-
 fpath+=~/.zfunc
-autoload -U compinit && compinit
 
-source $ZSH/oh-my-zsh.sh
+setopt autocd
 
-# User configuration
+# autoload -U compinit && compinit
+autoload -Uz compinit 
+if [[ -n ${ZDOTDIR}/.zcompdump(#qN.mh+24) ]]; then
+	compinit;
+    touch ~/.zcompdump
+else
+	compinit -C;
+fi;
 
-# export MANPATH="/usr/local/man:$MANPATH"
+function take {
+    mkdir -p $1
+    cd $1
+}
 
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+source ~/.zsh/fsh/F-Sy-H.plugin.zsh
 
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+# force emacs mode on shell
+# TODO: figure how to make vim mode play nice with ^f
+bindkey -e
 
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
+eval "$(starship init zsh)"
 
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-#
-#
 # Preferred editor for local and remote sessions
  if [[ -n $SSH_CONNECTION ]]; then
-   export EDITOR='vim'
+   export EDITOR='nvim'
  else
    export EDITOR='nvim'
  fi
 
 # Compilation flags
-export ARCHFLAGS="-arch x86_64"
-
+if uname -a | grep -q "arm64"; then
+    # Apple Silicon
+  export ARCHFLAGS="-arch arm64"
+else
+    # Intel
+  export ARCHFLAGS="-arch x86_64"
+fi
 
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor regexp)
 
 # Aliases
 alias vim="$(which nvim)"
-
-alias k="kubectl"
-alias dps="docker ps"
+alias ls="$(which exa)"
+alias lsa="$(which exa) -lah"
+alias tree="$(which exa) --tree"
+alias ga="$(which git) add"
+alias gc="$(which git) commit"
 alias gst="$(which git) status"
-#alias code="$(which code-insiders)"
+alias cx="$(which exa) $1 && cd $1"
+alias pclean="$(which podman) container rm --all -v"
+alias nerd="$(which nerdctl)"
+alias tf="$(which terraform)"
 
-alias dcompose=docker-compose
+# [f]ind [w]ith fzf
+alias fw="fzf --preview 'bat --color \"always\" {}'"
+alias cargofix="cargo clippy --fix --allow-dirty --allow-staged"
+alias cargofmt="cargo fmt"
+alias docker="podman"
+alias dps="docker ps"
+alias \$=''
+alias rm="$(which trash)"
+alias k="kubectl"
+
+# autocd into previous directory
+alias -- -="cd -"
 
 # Exports
 export NCONF="$HOME/.config/nvim/"
+export NEOVIM_BIN="$(which nvim)"
 
-# Go
-GOVER=1.18beta1
-#GOVER=1.17
-export GOROOT="$HOME/.asdf/installs/golang/$GOVER/go"
-export GOPATH="$HOME/.go"
-export GOBIN="$GOPATH/bin"
-
-# alias rm="$(which trash)"
-
-BASE16_SHELL=$HOME/.config/base16-shell/
-[ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
-
-. $HOME/.asdf/asdf.sh
-
-#. $HOME/.asdf/completions/asdf.bash
-
-WORKSPACE="$HOME/Workspace"
-
-# Disabled per iTerm
-# Source https://jdhao.github.io/2018/10/19/tmux_nvim_true_color/
-#export TERM=xterm-256color
-
-
-#export PATH="$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-#export PATH="/usr/local/sbin:$PATH"
-
-YARN_BIN="$HOME/.yarn/bin"
-YARN_MODULES="$HOME/.config/yarn/global/node_modules/.bin"
 LOCAL_BIN="$HOME/.local/bin"
-PYENV_BIN="$PYENV_ROOT/bin"
+SBIN="/usr/local/sbin"
+DENO_BIN="$HOME/.deno/bin"
 
-export PATH="$YARN_BIN:$YARN_MODULES:$LOCAL_BIN:$PYENV_BIN:$PATH:$GOBIN"
+export PATH="$SBIN:$DENO_BIN:$LOCAL_BIN:$PATH"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-#export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
-export FZF_DEFAULT_COMMAND='rg --files'
+if [ "$TERM_PROGRAM" = tmux ]; then
+   bindkey -s ^f "tmux-sessionizer\n"
+fi
 
-export CFLAGS="-I$(brew --prefix openssl)/include"
-export LDFLAGS="-L$(brew --prefix openssl)/lib"
+load_kubectl_env() {
+    [[ /usr/local/bin/kubectl ]] && source <(kubectl completion zsh)
+}
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
-# helper to draw graphs with graphviz
-alias pygraph='find . -iname "*.py" | xargs pyan --dot --colored --no-defines --grouped | dot -Tpng -Granksep=1.5 | open -f -a /Applications/Preview.app'
+load_conda_env() {
+    export CONDA_DEFAULT_ENV="base"
 
-# Wasmer
-export WASMER_DIR="/Users/nopestack/.wasmer"
-[ -s "$WASMER_DIR/wasmer.sh" ] && source "$WASMER_DIR/wasmer.sh"
+    # >>> conda initialize >>>
+    # !! Contents within this block are managed by 'conda init' !!
+    __conda_setup="$('/opt/homebrew/Caskroom/miniconda/base/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+    if [ $? -eq 0 ]; then
+        eval "$__conda_setup"
+    else
+        if [ -f "/opt/homebrew/Caskroom/miniconda/base/etc/profile.d/conda.sh" ]; then
+            . "/opt/homebrew/Caskroom/miniconda/base/etc/profile.d/conda.sh"
+        else
+            export PATH="/opt/homebrew/Caskroom/miniconda/base/bin:$PATH"
+        fi
+    fi
+    unset __conda_setup
+    # <<< conda initialize <<<
+    
+    conda deactivate
+}
 
-eval "$(pyenv init -)"
+load_rancher_env() {
+    ### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
+    export PATH="/Users/nopestack/.rd/bin:$PATH"
+    ### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
+}
 
-export PATH="$HOME/.poetry/bin:$PATH"
+load_plugins_env() {
+    load_kubectl_env
+    echo "loaded kubectl"
+    load_conda_env
+    echo "loaded conda env"
+    load_rancher_env
+    echo "loaded rancher env"
+}
 
-export PATH="/Users/nopestack/.deno/bin:$PATH"
-
-[[ /usr/local/bin/kubectl ]] && source <(kubectl completion zsh)
-
-export PATH="/usr/local/sbin:$PATH"
-#
-#export PATH="/usr/local/opt/sqlite/bin:$PATH"
-export JAVA_HOME="/usr/local/Cellar/openjdk@11/11.0.10"
-export PATH="$PATH:/Users/nopestack/Library/Application Support/Coursier/bin"
-[ -f "/Users/nopestack/.ghcup/env" ] && source "/Users/nopestack/.ghcup/env" # ghcup-env
-export PATH="/var/folders/sk/tky7ly1s1l9cr5q13pdg5y1h0000gn/T/fnm_multishells/28149_1638569498914/bin":$PATH 
-
-export VOLTA_HOME="$HOME/.volta"
-export PATH="$VOLTA_HOME/bin:$PATH"
-
-bindkey -s ^f "tmux-sessionizer\n"

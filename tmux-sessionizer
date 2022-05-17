@@ -1,6 +1,13 @@
 #!/usr/bin/env bash
 
-session=$(find ~/work ~/Workspace/OIF ~/Workspace/projects ~/personal  ~ -mindepth 1 -maxdepth 1 -type d | fzf)
+preview () {
+    if ! command -v bat > /dev/null; then
+        echo "$1"
+    fi
+    bat --color "always" "$1"
+} 
+
+session=$(find ~/work ~/personal -mindepth 1 -maxdepth 2 -type d | fzf)
 
 session_name=$(basename "$session" | tr . _)
 

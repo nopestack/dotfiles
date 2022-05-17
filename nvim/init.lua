@@ -1,0 +1,28 @@
+-- vim.g.mapleader = ","
+vim.g.mapleader = " "
+
+-- load plugins
+require("user.options")
+require("user.plugin")
+--require("user.plugins")
+require("user.utils")
+require("user.copilot")
+require("user.keymaps")
+require("user.lsp")
+require("user.treesitter")
+require("user.ui")
+require("user.autocommands")
+require("user.autosession")
+require("user.lastplace")
+require("user.telescope")
+require("user.cokeline")
+require("user.lualine")
+require("user.nvim_tree")
+require("user.autopairs")
+require("user.trouble-diag")
+require("user.modes")
+require("user.symbols")
+require("user.dap")
+require("user.which_key")
+-- require("user.no-neck-pain")
+require("user.winbar")
