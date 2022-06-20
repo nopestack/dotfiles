@@ -2,8 +2,8 @@ vim.opt.exrc = true
 
 vim.opt.showmatch = true
 
--- highlight search
-vim.opt.hlsearch = true
+-- Set highlight on search
+vim.o.hlsearch = false
 
 -- incremental search
 vim.opt.incsearch = true
@@ -58,10 +58,10 @@ vim.opt.nu = true
 -- -- " set backupdir=~/.cache/vim " Directory to store backup files.
 
 vim.opt.list = true
-vim.opt.listchars = { eol = "↲", tab = "▸ ", trail = "·" }
+vim.opt.listchars = { space = "⋅", eol = "↲", tab = "▸ ", trail = "·" }
 vim.opt.hidden = true
 vim.opt.inccommand = "nosplit"
-vim.opt.wrap = false
+vim.opt.wrap = true
 vim.opt.laststatus = 2
 vim.opt.linebreak = true
 vim.opt.smarttab = true
@@ -109,3 +109,4 @@ vim.api.nvim_exec([[
   augroup end
 ]], false)
 
+-- vim.cmd [[autocmd! CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]

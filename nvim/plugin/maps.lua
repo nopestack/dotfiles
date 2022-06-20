@@ -38,6 +38,7 @@ require"mapx".setup { global = true }
 -- save file
 nnoremap("<leader>w", ":w<CR>", "silent")
 nnoremap("<M-s>", ":w<CR>", "silent")
+-- nnoremap("<leader>n", ":Ex<CR>", "silent")
 
 nnoremap("Y", "yy", "silent")
 
@@ -68,21 +69,17 @@ nnoremap("<S-Tab>", ":bprev<CR>", "silent")
 -- "Close buffer
 -- " Using command+w and ctrl+w respectively
 nnoremap("<C-w>", ":bd<CR>", "silent")
+-- TODO: debug M-w mapping to close windows
 -- nnoremap("<M-w>", ":bd<CR>", "silent")
-
--- nnoremap("<C-n>", ":NvimTreeToggle<CR>")
-nnoremap("<leader>r", ":NvimTreeRefresh<CR>")
-
--- "Open NvimTree
--- " Using command+p and ctrl+p respectively
--- nnoremap("<C-b>", ":NvimTreeToggle<CR>", "silent")
--- nnoremap("<M-b>", ":NvimTreeToggle<CR>", "silent")
 
 nnoremap("<C-b>", ":CHADopen<CR>", "silent")
 nnoremap("<M-b>", ":CHADopen<CR>", "silent")
 
 -- bind command + p to search
 nnoremap("<C-p>", "<cmd>lua require('telescope.builtin').find_files()<cr>",
+         "silent")
+
+nnoremap("<leader>p", "<cmd>lua require('telescope.builtin').find_files()<cr>",
          "silent")
 
 nnoremap("<M-p>", "<cmd>lua require('telescope.builtin').find_files()<cr>",
@@ -95,13 +92,19 @@ nnoremap("<C-f>", "<cmd>lua require('telescope.builtin').live_grep()<cr>",
 nnoremap("<M-f>", "<cmd>lua require('telescope.builtin').live_grep()<cr>",
          "silent")
 
+nnoremap("<leader>f", "<cmd>lua require('telescope.builtin').live_grep()<cr>",
+         "silent")
+
+nnoremap("<M-d>", "<cmd>lua require('telescope.builtin').buffers()<cr>",
+         "silent")
+
 -- nnoremap("<M-k>", "<cmd>lua require('telescope.builtin').keymaps()<cr>",
 -- "silent")
 
 nnoremap("<leader>t", "<cmd>lua require('telescope.builtin').colorscheme()<cr>",
          "silent")
 
-nnoremap("<leader>p", "<cmd>lua require('telescope.builtin').commands()<cr>",
+nnoremap("<leader>c", "<cmd>lua require('telescope.builtin').commands()<cr>",
          "silent")
 
 -- Show docs on hover
@@ -109,7 +112,11 @@ nnoremap("K",
          "<cmd>lua vim.lsp.buf.hover()<CR><cmd>lua vim.lsp.buf.hover()<CR>",
          "silent")
 
--- Show code actions 
+-- nnoremap("K", "vim.lsp.buf.hover", "silent")
+
+-- nnoremap("K", "<cmd>lua require('lspsaga.hover').render_hover_doc()<CR>","silent")
+
+-- Show code actions
 nnoremap("ga", "<cmd>lua vim.lsp.buf.code_action()<CR>", "silent")
 
 nnoremap("<M-i>", "<cmd>lua require('telescope.builtin').commands()<CR>",
@@ -118,3 +125,14 @@ nnoremap("<M-i>", "<cmd>lua require('telescope.builtin').commands()<CR>",
 -- nnoremap("<leader>v", "<cmd>CHADopen<cr>", "silent")
 -- nnoremap("<M-b>", "<cmd>CHADopen<cr>", "silent")
 
+nnoremap("gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", "silent")
+nnoremap("gd", "<cmd>lua vim.lsp.buf.definition()<CR>", "silent")
+nnoremap("gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", "silent")
+nnoremap("gr", "<cmd>lua vim.lsp.buf.references()<CR>", "silent")
+--
+--    buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+--    buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
+--    buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
+--    buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
+--    buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+--    buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)

@@ -152,3 +152,6 @@ export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
 
 bindkey -s ^f "tmux-sessionizer\n"
+
+alias cargofix="cargo clippy --fix --allow-dirty --allow-staged"
+alias cargofmt="cargo fmt"

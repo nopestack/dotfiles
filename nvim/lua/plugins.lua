@@ -17,14 +17,15 @@ return require("packer").startup(function()
                 auto_session_suppress_dirs = {
                     "~/",
                     "~/Workspace",
-                    -- "~/work",
-                    -- "~/personal",
+                    "~/work",
+                    "~/personal",
                 },
             }
         end,
     })
 
     -- Language Server plugins
+    use "williamboman/nvim-lsp-installer"
     use {
         "neovim/nvim-lspconfig",
         requires = { "simrat39/rust-tools.nvim", "ray-x/go.nvim" },
@@ -40,6 +41,8 @@ return require("packer").startup(function()
     }
 
     use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }
+    use "nvim-treesitter/nvim-treesitter-context"
+    use "jose-elias-alvarez/null-ls.nvim"
 
     --
     -- Completions
@@ -47,14 +50,9 @@ return require("packer").startup(function()
     use "hrsh7th/cmp-nvim-lsp"
     use "hrsh7th/cmp-buffer"
 
-    -- use {
-    --    "tzachar/cmp-tabnine",
-    --    run = "./install.sh",
-    --    requires = "hrsh7th/nvim-cmp",
-    -- }
     --
-    --    use "hrsh7th/vim-vsnip"
-    --    use "hrsh7th/cmp-vsnip"
+    use "hrsh7th/vim-vsnip"
+    use "hrsh7th/cmp-vsnip"
     --
     --
     -- git management
@@ -79,17 +77,33 @@ return require("packer").startup(function()
         requires = "kyazdani42/nvim-web-devicons",
         config = function() require("trouble").setup {} end,
     }
+    use "MunifTanjim/nui.nvim"
+    -- use {
+    --    "nvim-lua/popup.nvim",
+    --    config = function() require("popup").setup {} end,
+    -- }
     --
     --
     -- Misc utilities
     use "windwp/nvim-autopairs"
     use "tpope/vim-surround"
-    --    use "tpope/vim-commentary"
-    --    use "lukas-reineke/indent-blankline.nvim"
-    --    --  use({
-    --    --      "terrortylor/nvim-comment",
-    --    --      config = function() require("nvim_comment").setup({}) end,
-    --    --  })
+    use {
+        "numToStr/Comment.nvim",
+        config = function() require("Comment").setup() end,
+    }
+    use "github/copilot.vim"
+    use {
+        "lukas-reineke/indent-blankline.nvim",
+        config = function()
+            require("indent_blankline").setup({
+                space_char_blankline = " ",
+                show_current_context = true,
+                show_current_context_start = true,
+            })
+        end,
+
+    }
+
     --
     --
     --

@@ -7,6 +7,9 @@ local opts = {
             parameter_hints_prefix = "",
             other_hints_prefix = "",
             -- only_current_line_autocmd = "CursorHold",
+            -- whether to show variable name before type hints with the inlay hints or not
+            -- default: false
+            show_variable_name = true,
         },
     },
     hover_actions = {
@@ -30,11 +33,40 @@ local opts = {
         -- on_attach is a callback called when the language server attachs to the buffer
         -- on_attach = on_attach,
         settings = {
+            standalone = false,
             -- to enable rust-analyzer settings visit:
             -- https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
             ["rust-analyzer"] = {
                 -- enable clippy on save
+                --
+                lens = {
+                    references = true,
+                    enumVariantReferences = true,
+                    methodReferences = true,
+                },
+                assist = { importEnforceGranularity = true },
+                cargo = { loadOutDirsFromCheck = true },
                 checkOnSave = { command = "clippy" },
+                hoverActions = { references = true },
+                inlayHints = {
+                    closingBraceHints = { enable = true },
+                    closureReturnTypeHints = { enable = true },
+                    lifetimeElisionHints = { setParameterNames = true },
+                    parameterHints = { enable = true },
+                    hideNamedConstructorHints = { enable = true },
+
+                },
+
+                typing = { autoClosingAngleBrackets = { enable = true } },
+                --
+                -- procMacro = { enable = true },
+                -- inlayHints = {
+                --     closingBraceHints = { enable = true },
+                --     closureReturnTypeHints = { enable = true },
+                --     lifetimeElisionHints = { seParameterNames = true },
+                --     parameterHints = { enable = true },
+                -- },
+
             },
         },
     },

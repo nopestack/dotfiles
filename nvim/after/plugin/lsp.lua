@@ -4,13 +4,14 @@ local nvim_lsp = require("lspconfig")
 -- table.insert(runtime_path, "lua/?.lua")
 -- table.insert(runtime_path, "lua/?/init.lua")
 
--- nnoremap("<leader>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", "silent")
 -- add capabilities from nvim-cmp
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 
+-- TODO: figure out import paths
 -- local efm = require("/after/plugin/lsp/efm")
 -- local sumneko = require("/after/plugin/lsp/sumneko")
+
 local efm = {
     filetypes = { "lua", "python" },
     -- TODO: setup TS/JS, Go and Python formatting
@@ -48,6 +49,8 @@ local sumneko = {
     },
 }
 
+-- local on_attach = function(client) require"completion".on_attach(client) end
+
 local servers = {
     efm = efm,
     rust_analyzer = {},
@@ -78,12 +81,14 @@ for server, config in pairs(servers) do
     nvim_lsp[server].setup(config)
 end
 
-vim.cmd [[autocmd BufWritePre *.rs lua vim.lsp.buf.formatting_sync(nil, 1000)]]
+vim.cmd [[autocmd BufWritePre *.rs lua vim.lsp.buf.format()]]
+-- vim.cmd [[autocmd BufWritePre *.rs lua vim.lsp.buf.formatting_sync(nil, 1000)]]
 vim.cmd [[autocmd BufWritePre *.go lua vim.lsp.buf.formatting_sync(nil, 1000)]]
 vim.cmd [[autocmd BufWritePre *.ts lua vim.lsp.buf.formatting_sync(nil, 1000)]]
 vim.cmd [[autocmd BufWritePre *.py lua vim.lsp.buf.formatting_sync(nil, 1000)]]
 vim.cmd [[autocmd BufWritePre *.js lua vim.lsp.buf.formatting_sync(nil, 1000)]]
-vim.cmd [[autocmd BufWritePre *.lua lua vim.lsp.buf.formatting_sync(nil, 1000)]]
+-- vim.cmd [[autocmd BufWritePre *.lua lua vim.lsp.buf.formatting_sync(nil, 1000)]]
+vim.cmd [[autocmd BufWritePre *.lua lua vim.lsp.buf.format()]]
 vim.cmd [[autocmd BufWritePre *.sol lua vim.lsp.buf.formatting_sync(nil, 1000)]]
 vim.cmd [[autocmd BufWritePre *.solidity lua vim.lsp.buf.formatting_sync(nil, 1000)]]
 vim.cmd [[autocmd BufWritePre *.toml lua vim.lsp.buf.formatting_sync(nil, 1000)]]

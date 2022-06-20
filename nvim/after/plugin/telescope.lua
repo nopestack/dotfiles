@@ -6,6 +6,7 @@ require("telescope").setup {
                 ["<esc>"] = actions.close,
                 ["<Tab>"] = actions.move_selection_next,
                 ["<S-Tab>"] = actions.move_selection_previous,
+
             },
         },
     },
