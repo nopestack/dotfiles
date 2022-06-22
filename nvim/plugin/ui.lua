@@ -41,6 +41,13 @@ vim.cmd([[
     highlight Search guibg=peru guifg=white 
 ]])
 
+-- Neovide specific settings
+vim.cmd([[
+    set guifont=FiraMono\ Nerd\ Font:h15
+    let g:neovide_remember_window_size=v:true
+    let g:neovide_input_use_logo=v:true
+]])
+
 -- highlight Comment         guifg=#cccccc gui=italic
 -- hi DiagnosticError guifg=#88088F
 -- hi DiagnosticWarn guifg=DarkOrange

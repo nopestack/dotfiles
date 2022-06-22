@@ -1,8 +1,8 @@
 local nvim_lsp = require("lspconfig")
 
--- local runtime_path = vim.split(package.path, ";")
--- table.insert(runtime_path, "lua/?.lua")
--- table.insert(runtime_path, "lua/?/init.lua")
+local runtime_path = vim.split(package.path, ";")
+table.insert(runtime_path, "lua/?.lua")
+table.insert(runtime_path, "lua/?/init.lua")
 
 -- add capabilities from nvim-cmp
 local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -53,7 +53,10 @@ local sumneko = {
 
 local servers = {
     efm = efm,
-    rust_analyzer = {},
+    rust_analyzer = {
+        flags = { debounce_text_changes = 150 },
+        cargo = { allFeatures = true },
+    },
     tsserver = {},
     gopls = {},
     pyright = {},
@@ -72,7 +75,7 @@ local servers = {
 -- LSP settings (for overriding per client)
 local handlers = {
     ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover,
-                                          { focus = true }),
+        { focus = true }),
 }
 
 for server, config in pairs(servers) do
@@ -134,4 +137,3 @@ function M.setup()
 end
 
 return M
-

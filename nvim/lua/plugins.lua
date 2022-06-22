@@ -31,29 +31,39 @@ return require("packer").startup(function()
         requires = { "simrat39/rust-tools.nvim", "ray-x/go.nvim" },
         --    use "tomlion/vim-solidity"
     }
-    use "tami5/lspsaga.nvim"
 
+    use "rust-lang/rust.vim"
+    use {
+        "ray-x/lsp_signature.nvim",
+        config = function()
+            require("lsp_signature").on_attach({
+                doc_lines = 0,
+                handler_opts = { border = "none" },
+            })
+        end,
+    }
+    use "nvim-lua/lsp_extensions.nvim"
     use {
         "saecki/crates.nvim",
         event = { "BufRead Cargo.toml" },
         requires = { { "nvim-lua/plenary.nvim" } },
         config = function() require("crates").setup() end,
     }
-
+    -- use {
+    -- "tami5/lspsaga.nvim",
+    -- config = function() require("lspsaga").setup() end,
+    -- }
     use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }
     use "nvim-treesitter/nvim-treesitter-context"
     use "jose-elias-alvarez/null-ls.nvim"
 
-    --
     -- Completions
     use "hrsh7th/nvim-cmp"
     use "hrsh7th/cmp-nvim-lsp"
     use "hrsh7th/cmp-buffer"
 
-    --
     use "hrsh7th/vim-vsnip"
     use "hrsh7th/cmp-vsnip"
-    --
     --
     -- git management
     use {
@@ -78,12 +88,8 @@ return require("packer").startup(function()
         config = function() require("trouble").setup {} end,
     }
     use "MunifTanjim/nui.nvim"
-    -- use {
-    --    "nvim-lua/popup.nvim",
-    --    config = function() require("popup").setup {} end,
-    -- }
-    --
-    --
+    use "onsails/lspkind.nvim"
+
     -- Misc utilities
     use "windwp/nvim-autopairs"
     use "tpope/vim-surround"
@@ -104,9 +110,6 @@ return require("packer").startup(function()
 
     }
 
-    --
-    --
-    --
     -- Colorschemes
     --    use "folke/tokyonight.nvim"
     --    use "cocopon/iceberg.vim"
