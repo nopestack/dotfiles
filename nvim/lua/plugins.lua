@@ -49,10 +49,18 @@ return require("packer").startup(function()
         requires = { { "nvim-lua/plenary.nvim" } },
         config = function() require("crates").setup() end,
     }
-    -- use {
-    -- "tami5/lspsaga.nvim",
-    -- config = function() require("lspsaga").setup() end,
-    -- }
+
+    -- Lua
+    use {
+        "narutoxy/dim.lua",
+        requires = { "nvim-treesitter/nvim-treesitter", "neovim/nvim-lspconfig" },
+        config = function() require("dim").setup({}) end,
+    }
+
+    use {
+        "tami5/lspsaga.nvim",
+        config = function() require("lspsaga").setup() end,
+    }
     use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }
     use "nvim-treesitter/nvim-treesitter-context"
     use "jose-elias-alvarez/null-ls.nvim"
@@ -81,7 +89,11 @@ return require("packer").startup(function()
         requires = "kyazdani42/nvim-web-devicons",
     }
 
-    use "stevearc/dressing.nvim"
+    -- use {
+    --     "stevearc/dressing.nvim",
+    --     config = function() require("dressing").setup({}) end,
+    -- }
+
     use { "ms-jpq/chadtree", branch = "chad", run = "python3 -m chadtree deps" }
     use {
         "hoob3rt/lualine.nvim",
@@ -117,36 +129,36 @@ return require("packer").startup(function()
     }
 
     -- Colorschemes
-    --    use "folke/tokyonight.nvim"
-    --    use "cocopon/iceberg.vim"
-    --    use "rakr/vim-two-firewatch"
-    --    use "projekt0n/github-nvim-theme"
-    --    use "sainnhe/sonokai"
-    --    use "elvessousa/sobrio"
-    --    use "EdenEast/nightfox.nvim"
-    --    use "kvrohit/substrata.nvim"
-    --    use "rose-pine/neovim"
-    --    use "rebelot/kanagawa.nvim"
-    --    use "mangeshrex/uwu.vim"
-    --    use "rmehri01/onenord.nvim"
-    --    use "yashguptaz/calvera-dark.nvim"
-    --    use "frenzyexists/aquarium-vim"
-    --    use "RRethy/vim-illuminate"
-    --    use "jacoborus/tender.vim"
-    --    use "rafamadriz/neon"
-    --    use "MomePP/plastic-nvim"
-    --    use({ "catppuccin/nvim", as = "catppuccin" })
-    --    use({
-    --        "rose-pine/neovim",
-    --        as = "rose-pine",
-    --        tag = "v1.*",
-    --        -- config = function() vim.cmd("colorscheme rose-pine") end,
-    --    })
-    --    use "titanzero/zephyrium"
-    --    use "sainnhe/everforest"
-    --    use "nanotech/jellybeans.vim"
-    --    use "sainnhe/edge"
-    --    use "ChristianChiarulli/nvcode-color-schemes.vim"
-    --    use "tyrannicaltoucan/vim-deep-space"
+    use "folke/tokyonight.nvim"
+    use "cocopon/iceberg.vim"
+    use "rakr/vim-two-firewatch"
+    use "projekt0n/github-nvim-theme"
+    use "sainnhe/sonokai"
+    use "elvessousa/sobrio"
+    use "EdenEast/nightfox.nvim"
+    use "kvrohit/substrata.nvim"
+    use "rose-pine/neovim"
+    use "rebelot/kanagawa.nvim"
+    use "mangeshrex/uwu.vim"
+    use "rmehri01/onenord.nvim"
+    use "yashguptaz/calvera-dark.nvim"
+    use "frenzyexists/aquarium-vim"
+    use "RRethy/vim-illuminate"
+    use "jacoborus/tender.vim"
+    use "rafamadriz/neon"
+    use "MomePP/plastic-nvim"
+    use({ "catppuccin/nvim", as = "catppuccin" })
+    use({
+        "rose-pine/neovim",
+        as = "rose-pine",
+        tag = "v1.*",
+        -- config = function() vim.cmd("colorscheme rose-pine") end,
+    })
+    use "titanzero/zephyrium"
+    use "sainnhe/everforest"
+    use "nanotech/jellybeans.vim"
+    use "sainnhe/edge"
+    use "ChristianChiarulli/nvcode-color-schemes.vim"
+    use "tyrannicaltoucan/vim-deep-space"
 
 end)

@@ -16,14 +16,14 @@ local opts = {
         -- the border that is used for the hover window
         -- see vim.api.nvim_open_win()
         border = {
-            { "╭", "FloatBorder" },
-            { "─", "FloatBorder" },
-            { "╮", "FloatBorder" },
-            { "│", "FloatBorder" },
-            { "╯", "FloatBorder" },
-            { "─", "FloatBorder" },
-            { "╰", "FloatBorder" },
-            { "│", "FloatBorder" },
+            -- { "╭", "FloatBorder" },
+            -- { "─", "FloatBorder" },
+            -- { "╮", "FloatBorder" },
+            -- { "│", "FloatBorder" },
+            -- { "╯", "FloatBorder" },
+            -- { "─", "FloatBorder" },
+            -- { "╰", "FloatBorder" },
+            -- { "│", "FloatBorder" },
         },
 
         -- whether the hover action window gets automatically focused
@@ -35,21 +35,21 @@ local opts = {
     -- see https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#rust_analyzer
     server = {
         -- on_attach is a callback called when the language server attachs to the buffer
-        -- on_attach = on_attach,
         settings = {
-            standalone = false,
+            standalone = true,
             -- to enable rust-analyzer settings visit:
             -- https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
             ["rust-analyzer"] = {
                 -- enable clippy on save
                 --
+                flags = { debounce_text_changes = 150 },
                 lens = {
                     references = true,
                     enumVariantReferences = true,
                     methodReferences = true,
                 },
                 assist = { importEnforceGranularity = true },
-                cargo = { loadOutDirsFromCheck = true },
+                cargo = { allFeatures = true, loadOutDirsFromCheck = true },
                 checkOnSave = { command = "clippy" },
                 hoverActions = { references = true },
                 inlayHints = {

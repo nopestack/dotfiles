@@ -40,6 +40,8 @@ nnoremap("<leader>w", ":w<CR>", "silent")
 nnoremap("<M-s>", ":w<CR>", "silent")
 -- nnoremap("<leader>n", ":Ex<CR>", "silent")
 
+nnoremap("<C-q>", ":confirm qall<CR>", "silent")
+
 nnoremap("Y", "yy", "silent")
 
 -- To map <Esc> to exit terminal-mode:

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 #session=$(find ~/work ~/personal ~/ -mindepth 1 -maxdepth 1 -type d | fzf)
-session=$(find ~/work ~/personal -mindepth 1 -maxdepth 2 -type d | fzf)
+session=$(find ~/work ~/personal ~/blog -mindepth 1 -maxdepth 2 -type d | fzf)
 
 session_name=$(basename "$session" | tr . _)
 

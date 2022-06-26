@@ -62,7 +62,7 @@ vim.opt.listchars = { space = "⋅", eol = "↲", tab = "▸ ", trail = "·" }
 vim.opt.hidden = true
 vim.opt.inccommand = "nosplit"
 vim.opt.wrap = true
-vim.opt.laststatus = 2
+vim.opt.laststatus = 3
 vim.opt.linebreak = true
 vim.opt.smarttab = true
 vim.opt.autoindent = true
@@ -75,6 +75,7 @@ vim.opt.splitbelow = true
 vim.opt.splitright = true
 vim.opt.swapfile = false
 vim.opt.titlestring = "%<%F - nvim"
+vim.opt.title = true
 vim.opt.cmdheight = 2
 
 -- " set an 80 column border for good coding style
@@ -82,18 +83,23 @@ vim.opt.colorcolumn = "80"
 vim.opt.showtabline = 2
 vim.opt.updatetime = 50
 vim.opt.completeopt = "menuone,noinsert,noselect"
+--
+-- use filetype.lua instead of filetype.vim
+vim.g.did_load_filetypes = 0
+vim.g.do_filetype_lua = 1
+
+vim.g.transparency = true
+
+vim.opt.splitbelow = true
+vim.opt.splitright = true
+vim.opt.termguicolors = true
 
 -- "allow auto-indenting depending on file type
 -- vim.cmd("plugin indent on")
 vim.opt.filetype = "on"
--- vim.cmd([[
---    plugin indent on
--- ]])
-
--- vim.cmd("filetype plugin on")
 vim.cmd("filetype indent on")
 
--- vim.g.border_style = "rounded"
+vim.g.border_style = "rounded"
 vim.g.markdown_fenced_languages = {
     "bash=sh",
     "javascript",

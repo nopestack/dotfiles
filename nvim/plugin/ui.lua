@@ -21,14 +21,14 @@ end
 -- vim.g.sonokai_style = "andromeda"
 -- vim.g.sonokai_enable_italic = 1
 -- vim.g.sonokai_disable_italic_comment = 1
--- vim.cmd("colorscheme nightfox")
+vim.cmd("colorscheme nightfox")
 -- vim.cmd("colorscheme kanagawa")
 -- vim.cmd("colorscheme github_dark")
 -- vim.cmd("colorscheme github_dark")
 -- vim.cmd("colorscheme catppuccin")
 -- vim.cmd("colorscheme kanagawa")
 -- vim.cmd("colorscheme aurora")
-vim.cmd("colorscheme hybrid")
+-- vim.cmd("colorscheme lunar")
 
 -- :hi LineNr guibg=none guifg=#ffffff
 
