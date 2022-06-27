@@ -8,6 +8,20 @@ table.insert(runtime_path, "lua/?/init.lua")
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 
+vim.cmd [[autocmd! ColorScheme * highlight NormalFloat guibg=#1f2335]]
+vim.cmd [[autocmd! ColorScheme * highlight FloatBorder guifg=white guibg=#1f2335]]
+
+local border = {
+    { "🭽", "FloatBorder" },
+    { "▔", "FloatBorder" },
+    { "🭾", "FloatBorder" },
+    { "▕", "FloatBorder" },
+    { "🭿", "FloatBorder" },
+    { "▁", "FloatBorder" },
+    { "🭼", "FloatBorder" },
+    { "▏", "FloatBorder" },
+}
+
 -- TODO: figure out import paths
 -- local efm = require("/after/plugin/lsp/efm")
 -- local sumneko = require("/after/plugin/lsp/sumneko")
@@ -75,7 +89,11 @@ local servers = {
 -- LSP settings (for overriding per client)
 local handlers = {
     ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover,
-        { focus = true }),
+                                          { focus = true, border = border }),
+
+    ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers
+                                                      .signature_help,
+                                                  { border = border }),
 }
 
 for server, config in pairs(servers) do
@@ -104,6 +122,46 @@ vim.diagnostic.config({
         prefix = "●", -- Could be '●', '▎', 'x'
     },
 })
+
+vim.diagnostic.config({
+    virtual_text = true,
+    signs = true,
+    underline = true,
+    update_in_insert = false,
+    severity_sort = true,
+})
+
+local function goto_definition(split_cmd)
+    local util = vim.lsp.util
+    local log = require("vim.lsp.log")
+    local api = vim.api
+
+    -- note, this handler style is for neovim 0.5.1/0.6, if on 0.5, call with function(_, method, result)
+    local handler = function(_, result, ctx)
+        if result == nil or vim.tbl_isempty(result) then
+            local _ = log.info() and log.info(ctx.method, "No location found")
+            return nil
+        end
+
+        if split_cmd then vim.cmd(split_cmd) end
+
+        if vim.tbl_islist(result) then
+            util.jump_to_location(result[1])
+
+            if #result > 1 then
+                util.set_qflist(util.locations_to_items(result))
+                api.nvim_command("copen")
+                api.nvim_command("wincmd p")
+            end
+        else
+            util.jump_to_location(result)
+        end
+    end
+
+    return handler
+end
+
+vim.lsp.handlers["textDocument/definition"] = goto_definition("split")
 
 local M = {}
 

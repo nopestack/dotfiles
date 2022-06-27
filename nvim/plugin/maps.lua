@@ -1,4 +1,4 @@
-require"mapx".setup { global = true }
+require "mapx".setup { global = true }
 
 -- local map = vim.api.nvim_set_keymap
 
@@ -35,10 +35,14 @@ require"mapx".setup { global = true }
 -- cnoreabbrev Q q
 -- cnoreabbrev Qall qall
 
+-- Reload config
+nnoremap("<leader><CR>", ":so ~/.config/nvim/init.lua<CR>")
+
 -- save file
 nnoremap("<leader>w", ":w<CR>", "silent")
 nnoremap("<M-s>", ":w<CR>", "silent")
 -- nnoremap("<leader>n", ":Ex<CR>", "silent")
+-- nnoremap("<leader>b", ":Vex<CR>", "silent")
 
 nnoremap("<C-q>", ":confirm qall<CR>", "silent")
 
@@ -79,40 +83,40 @@ nnoremap("<M-b>", ":CHADopen<CR>", "silent")
 
 -- bind command + p to search
 nnoremap("<C-p>", "<cmd>lua require('telescope.builtin').find_files()<cr>",
-         "silent")
+    "silent")
 
 nnoremap("<leader>p", "<cmd>lua require('telescope.builtin').find_files()<cr>",
-         "silent")
+    "silent")
 
 nnoremap("<M-p>", "<cmd>lua require('telescope.builtin').find_files()<cr>",
-         "silent")
+    "silent")
 
 -- command+f to search
 nnoremap("<C-f>", "<cmd>lua require('telescope.builtin').live_grep()<cr>",
-         "silent")
+    "silent")
 
 nnoremap("<M-f>", "<cmd>lua require('telescope.builtin').live_grep()<cr>",
-         "silent")
+    "silent")
 
 nnoremap("<leader>f", "<cmd>lua require('telescope.builtin').live_grep()<cr>",
-         "silent")
+    "silent")
 
 nnoremap("<M-d>", "<cmd>lua require('telescope.builtin').buffers()<cr>",
-         "silent")
+    "silent")
 
 -- nnoremap("<M-k>", "<cmd>lua require('telescope.builtin').keymaps()<cr>",
 -- "silent")
 
 nnoremap("<leader>t", "<cmd>lua require('telescope.builtin').colorscheme()<cr>",
-         "silent")
+    "silent")
 
 nnoremap("<leader>c", "<cmd>lua require('telescope.builtin').commands()<cr>",
-         "silent")
+    "silent")
 
 -- Show docs on hover
 nnoremap("K",
-         "<cmd>lua vim.lsp.buf.hover()<CR><cmd>lua vim.lsp.buf.hover()<CR>",
-         "silent")
+    "<cmd>lua vim.lsp.buf.hover()<CR><cmd>lua vim.lsp.buf.hover()<CR>",
+    "silent")
 
 -- nnoremap("K", "vim.lsp.buf.hover", "silent")
 
@@ -122,7 +126,7 @@ nnoremap("K",
 nnoremap("ga", "<cmd>lua vim.lsp.buf.code_action()<CR>", "silent")
 
 nnoremap("<M-i>", "<cmd>lua require('telescope.builtin').commands()<CR>",
-         "silent")
+    "silent")
 
 -- nnoremap("<leader>v", "<cmd>CHADopen<cr>", "silent")
 -- nnoremap("<M-b>", "<cmd>CHADopen<cr>", "silent")

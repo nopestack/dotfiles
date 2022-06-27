@@ -28,11 +28,11 @@ return require("packer").startup(function()
     use "williamboman/nvim-lsp-installer"
     use {
         "neovim/nvim-lspconfig",
-        requires = { "simrat39/rust-tools.nvim", "ray-x/go.nvim" },
+        -- requires = { "simrat39/rust-tools.nvim", "ray-x/go.nvim" },
         --    use "tomlion/vim-solidity"
     }
 
-    use "rust-lang/rust.vim"
+    -- use "rust-lang/rust.vim"
     use {
         "ray-x/lsp_signature.nvim",
         config = function()
