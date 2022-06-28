@@ -1,7 +1,6 @@
 return require("packer").startup(function()
     use "wbthomason/packer.nvim"
     use "b0o/mapx.nvim"
-    use "w0ng/vim-hybrid"
     use {
         "nvim-telescope/telescope.nvim",
         requires = { { "nvim-lua/plenary.nvim" } },
@@ -43,6 +42,7 @@ return require("packer").startup(function()
         end,
     }
     use "nvim-lua/lsp_extensions.nvim"
+
     use {
         "saecki/crates.nvim",
         event = { "BufRead Cargo.toml" },
@@ -50,7 +50,6 @@ return require("packer").startup(function()
         config = function() require("crates").setup() end,
     }
 
-    -- Lua
     use {
         "narutoxy/dim.lua",
         requires = { "nvim-treesitter/nvim-treesitter", "neovim/nvim-lspconfig" },
@@ -61,6 +60,7 @@ return require("packer").startup(function()
         "tami5/lspsaga.nvim",
         config = function() require("lspsaga").setup() end,
     }
+
     use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }
     use "nvim-treesitter/nvim-treesitter-context"
     use "jose-elias-alvarez/null-ls.nvim"
@@ -95,11 +95,11 @@ return require("packer").startup(function()
     -- }
 
     use { "ms-jpq/chadtree", branch = "chad", run = "python3 -m chadtree deps" }
-    use {
-        "hoob3rt/lualine.nvim",
-        requires = { "kyazdani42/nvim-web-devicons", opt = true },
-    }
-    use "nvim-lua/lsp-status.nvim"
+    -- use {
+    --     "hoob3rt/lualine.nvim",
+    --     requires = { "kyazdani42/nvim-web-devicons", opt = true },
+    -- }
+    use 'beauwilliams/statusline.lua'
     use {
         "folke/trouble.nvim",
         requires = "kyazdani42/nvim-web-devicons",
@@ -115,7 +115,7 @@ return require("packer").startup(function()
         "numToStr/Comment.nvim",
         config = function() require("Comment").setup() end,
     }
-    use "github/copilot.vim"
+    -- use "github/copilot.vim"
     use {
         "lukas-reineke/indent-blankline.nvim",
         config = function()
@@ -160,5 +160,8 @@ return require("packer").startup(function()
     use "sainnhe/edge"
     use "ChristianChiarulli/nvcode-color-schemes.vim"
     use "tyrannicaltoucan/vim-deep-space"
+    use "w0ng/vim-hybrid"
+    use "metalelf0/jellybeans-nvim"
+    use "rktjmp/lush.nvim"
 
 end)

@@ -23,7 +23,7 @@ end
 -- vim.g.sonokai_disable_italic_comment = 1
 -- vim.cmd("colorscheme nightfox")
 -- vim.cmd("colorscheme kanagawa")
-vim.cmd("colorscheme iceberg")
+vim.cmd("colorscheme jellybeans-nvim")
 -- vim.cmd("colorscheme github_dark")
 -- vim.cmd("colorscheme github_dark")
 -- vim.cmd("colorscheme catppuccin")
