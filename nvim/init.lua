@@ -4,7 +4,11 @@
 vim.g.mapleader = " "
 
 -- load plugins
-require("plugins")
+require("user.plugins")
+require("user.options")
+require("user.utils")
+require("user.keymaps")
+require("user.ui")
 
 vim.cmd([[
     augroup packer_user_config
@@ -26,5 +30,3 @@ vim.cmd([[
     set runtimepath^=~/.vim runtimepath+=~/.vim/after
     let &packpath = &runtimepath
 ]])
---
--- source ~/.vimrc

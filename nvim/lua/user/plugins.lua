@@ -1,4 +1,28 @@
-return require("packer").startup(function()
+vim.cmd([[
+    augroup packer_user_config
+        autocmd!
+        autocmd BufWritePost plugins.lua source <afile> | PackerSync
+    augroup end
+]])
+
+
+local status_ok, packer = pcall(require, "packer")
+if not status_ok then
+    vim.notify("could not require packer")
+    return
+end
+
+packer.init({
+    display = {
+        open_fn = function()
+            return require("packer.util").float({
+                border = "rounded"
+            })
+        end,
+    },
+})
+
+return packer.startup(function()
     use "wbthomason/packer.nvim"
     use "b0o/mapx.nvim"
     use {
@@ -8,6 +32,7 @@ return require("packer").startup(function()
 
     -- Remember last buffer opened + line
     use "ethanholz/nvim-lastplace"
+
     use({
         "rmagatti/auto-session",
         config = function()
@@ -27,11 +52,10 @@ return require("packer").startup(function()
     use "williamboman/nvim-lsp-installer"
     use {
         "neovim/nvim-lspconfig",
-        -- requires = { "simrat39/rust-tools.nvim", "ray-x/go.nvim" },
+        requires = { "simrat39/rust-tools.nvim", "ray-x/go.nvim" },
         --    use "tomlion/vim-solidity"
     }
 
-    -- use "rust-lang/rust.vim"
     use {
         "ray-x/lsp_signature.nvim",
         config = function()
@@ -41,6 +65,7 @@ return require("packer").startup(function()
             })
         end,
     }
+
     use "nvim-lua/lsp_extensions.nvim"
 
     use {
@@ -72,7 +97,7 @@ return require("packer").startup(function()
 
     use "hrsh7th/vim-vsnip"
     use "hrsh7th/cmp-vsnip"
-    --
+
     -- git management
     use {
         "lewis6991/gitsigns.nvim",
@@ -82,7 +107,6 @@ return require("packer").startup(function()
     use { "tanvirtin/vgit.nvim", requires = { "nvim-lua/plenary.nvim" } }
     --
     -- UI & navigation
-    -- use { "romgrk/barbar.nvim", requires = { "kyazdani42/nvim-web-devicons" } }
     use {
         "akinsho/bufferline.nvim",
         tag = "v2.*",

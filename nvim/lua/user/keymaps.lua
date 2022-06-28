@@ -114,18 +114,18 @@ nnoremap("<leader>c", "<cmd>lua require('telescope.builtin').commands()<cr>",
     "silent")
 
 -- Show docs on hover
--- nnoremap("K",
---     "<cmd>lua vim.lsp.buf.hover()<CR><cmd>lua vim.lsp.buf.hover()<CR>",
---     "silent")
+nnoremap("K",
+    "<cmd>lua vim.lsp.buf.hover()<CR><cmd>lua vim.lsp.buf.hover()<CR>",
+    "silent")
 
 -- nnoremap("K", "vim.lsp.buf.hover", "silent")
--- nnoremap("K", "<cmd>lua require('lspsaga.hover').render_hover_doc()<CR>","silent")
+-- nnoremap("K", "<cmd>lua require('lspsaga.hover').render_hover_doc()<CR>", "silent")
 
 -- Show code actions
--- nnoremap("ga", "<cmd>lua vim.lsp.buf.code_action()<CR>", "silent")
+nnoremap("ga", "<cmd>lua vim.lsp.buf.code_action()<CR>", "silent")
 
-nnoremap("<M-i>", "<cmd>lua require('telescope.builtin').commands()<CR>",
-    "silent")
+-- nnoremap("<M-i>", "<cmd>lua require('telescope.builtin').commands()<CR>",
+-- "silent")
 
 -- nnoremap("<leader>v", "<cmd>CHADopen<cr>", "silent")
 -- nnoremap("<M-b>", "<cmd>CHADopen<cr>", "silent")
