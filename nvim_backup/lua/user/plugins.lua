@@ -32,9 +32,9 @@ return packer.startup(function()
         requires = { { "nvim-lua/plenary.nvim" } },
     }
 
-    -- -- Remember last buffer opened + line
+    -- Remember last buffer opened + line
     use "ethanholz/nvim-lastplace"
-    --
+
     use({
         "rmagatti/auto-session",
         config = function()
@@ -55,33 +55,35 @@ return packer.startup(function()
     use {
         "neovim/nvim-lspconfig",
         requires = {
+            -- "simrat39/rust-tools.nvim",
             "ray-x/go.nvim"
         },
         --    use "tomlion/vim-solidity"
     }
 
-    -- Rust
-    use "simrat39/rust-tools.nvim"
-    use "Saecki/crates.nvim"
-
     -- use {
-    --     "ray-x/lsp_signature.nvim",
-    --     config = function()
-    --         require("lsp_signature").on_attach({
-    --             doc_lines = 0,
-    --             handler_opts = { border = "none" },
-    --         })
-    --     end,
+    --     "simrat39/rust-tools.nvim",
+    --     branch = "modularize_and_inlay_rewrite",
     -- }
+
+    use {
+        "ray-x/lsp_signature.nvim",
+        config = function()
+            require("lsp_signature").on_attach({
+                doc_lines = 0,
+                handler_opts = { border = "none" },
+            })
+        end,
+    }
 
     use "nvim-lua/lsp_extensions.nvim"
 
-    -- use {
-    --     "saecki/crates.nvim",
-    --     event = { "BufRead Cargo.toml" },
-    --     requires = { { "nvim-lua/plenary.nvim" } },
-    --     config = function() require("crates").setup() end,
-    -- }
+    use {
+        "saecki/crates.nvim",
+        event = { "BufRead Cargo.toml" },
+        requires = { { "nvim-lua/plenary.nvim" } },
+        config = function() require("crates").setup() end,
+    }
 
     use {
         "narutoxy/dim.lua",
@@ -120,17 +122,15 @@ return packer.startup(function()
         tag = "v2.*",
         requires = "kyazdani42/nvim-web-devicons",
     }
-
     use { "ms-jpq/chadtree", branch = "chad", run = "python3 -m chadtree deps" }
-
     use 'beauwilliams/statusline.lua'
-
     use {
         "folke/trouble.nvim",
         requires = "kyazdani42/nvim-web-devicons",
         config = function() require("trouble").setup {} end,
     }
 
+    -- use "MunifTanjim/nui.nvim"
     use "onsails/lspkind.nvim"
 
     -- Misc utilities
@@ -141,17 +141,17 @@ return packer.startup(function()
         config = function() require("Comment").setup() end,
     }
     -- use "github/copilot.vim"
-    -- use {
-    --     "lukas-reineke/indent-blankline.nvim",
-    --     config = function()
-    --         require("indent_blankline").setup({
-    --             space_char_blankline = " ",
-    --             show_current_context = true,
-    --             show_current_context_start = true,
-    --         })
-    --     end,
-    --
-    -- }
+    use {
+        "lukas-reineke/indent-blankline.nvim",
+        config = function()
+            require("indent_blankline").setup({
+                space_char_blankline = " ",
+                show_current_context = true,
+                show_current_context_start = true,
+            })
+        end,
+
+    }
 
     -- Colorschemes
     use "folke/tokyonight.nvim"

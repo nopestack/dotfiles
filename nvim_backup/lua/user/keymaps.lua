@@ -114,9 +114,9 @@ nnoremap("<leader>t", "<cmd>lua require('telescope.builtin').colorscheme()<cr>",
 nnoremap("<leader>c", "<cmd>lua require('telescope.builtin').commands()<cr>",
     "silent")
 
--- noremap("K",
---     "<cmd>lua vim.lsp.buf.hover()<CR><cmd>lua vim.lsp.buf.hover()<CR>",
---     "silent")
+noremap("K",
+    "<cmd>lua vim.lsp.buf.hover()<CR><cmd>lua vim.lsp.buf.hover()<CR>",
+    "silent")
 
 -- nnoremap("K", "vim.lsp.buf.hover", "silent")
 -- nnoremap("K", "<cmd>lua require('lspsaga.hover').render_hover_doc()<CR>", "silent")

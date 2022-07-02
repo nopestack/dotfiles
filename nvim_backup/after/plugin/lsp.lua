@@ -99,26 +99,40 @@ local sumneko = {
 local servers = {
     efm = efm,
     rust_analyzer = {
-        -- flags = { debounce_text_changes = 150 },
-        -- cargo = { allFeatures = true },
-        -- settings = {
-        --     ["rust-analyzer"] = {
-        --         assist = {
-        --             importGranularity = "crate",
-        --         },
-        --         inlayHints = {
-        --             bindingModeHints = {
-        --                 enable = true
-        --             }
-        --         },
-        --         cargo = {
-        --             loadOutDirsFromCheck = true,
-        --             allFeatures = true,
-        --         },
-        --         procMacro = {
-        --             enable = true
-        --         },
-        --     }
+        -- checkOnSave = {
+        --     command = "clippy",
+        --     allTargets = false
+        -- },
+        -- procMacro = {
+        --     enable = true
+        -- },
+        -- flags = {
+        --     -- debounce_text_changes = 150,
+        -- },
+        -- cachePriming = {
+        --     numThreads = 4
+        -- },
+        -- cargo = {
+        --     buildScripts = {
+        --         useRustcWrapper = true
+        --     },
+        --     -- allFeatures = true,
+        --     loadOutDirsFromCheck = true
+        -- },
+        -- lens = {
+        --     enable = true
+        -- },
+        -- inlayHints = {
+        --     bindingModeHints = { enable = true },
+        --     chainingHints = { enable = true },
+        --     closingBraceHints = { enable = true },
+        --     closureReturnTypeHints = { enable = true },
+        --     lifetimeElisionHints = {
+        --         enable = true,
+        --         useParameterNames = true,
+        --     },
+        --
+        --     typeHints = { enable = true },
         -- }
     },
     tsserver = {},
@@ -176,10 +190,6 @@ vim.diagnostic.config({
     virtual_text = {
         prefix = "●", -- Could be '●', '▎', 'x'
     },
-})
-
-vim.diagnostic.config({
-    virtual_text = true,
     signs = true,
     underline = true,
     update_in_insert = false,
@@ -216,9 +226,54 @@ local function goto_definition(split_cmd)
     return handler
 end
 
-vim.lsp.handlers["textDocument/definition"] = goto_definition("split")
+-- vim.lsp.handlers["textDocument/definition"] = goto_definition("split")
+
+-- require("rust-tools").setup({
+--     tools = {
+--         autoSetHints = true,
+--         inlay_hints = {
+--             only_current_line = false,
+--             show_parameter_hints = true,
+--             --
+--             -- prefix for parameter hints
+--             -- default: "<-"
+--             parameter_hints_prefix = "",
+--
+--             -- prefix for all the other hints (type, chaining)
+--             -- default: "=>"
+--             other_hints_prefix = "",
+--         }
+--     }
+--
+-- })
 
 local M = {}
+
+-- local inlay_hints = require("lsp_extensions").inlay_hints
+--
+-- inlay_hints({
+--     highlight = "Comment",
+--     prefix = " > ",
+--     aligned = false,
+--     enabled = { "TypeHint", "ChainingHint", "ParameterHint" },
+--     only_current_line = false
+-- })
+
+-- Global function, so you can just call it on the lua side
+-- ShowInlineInlayHints = function()
+--     vim.lsp.buf_request(0, 'rust-analyzer/inlayHints', inlay_hints.get_params(), inlay_hints.get_callback {
+--         only_current_line = false
+--     })
+-- end
+--
+-- -- @rockerboo
+-- M.show_line_hints_on_cursor_events = function()
+--     vim.cmd [[augroup ShowLineHints]]
+--     vim.cmd [[  au!]]
+--     vim.cmd [[  autocmd CursorHold,CursorHoldI,CursorMoved *.rs :lua ShowInlineInlayHints()]]
+--     vim.cmd [[augroup END]]
+-- end
+
 
 M.icons = {
     Class = " ",
