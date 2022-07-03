@@ -91,13 +91,15 @@ M.on_attach = function(client, bufnr)
 
     lsp_keymaps(bufnr)
     lsp_highlight_document(client)
+    M.enable_format_on_save()
 end
 
+-- autocmd BufWritePre * lua vim.lsp.buf.format({ async = true })
 function M.enable_format_on_save()
     vim.cmd [[
     augroup format_on_save
       autocmd! 
-      autocmd BufWritePre * lua vim.lsp.buf.format({ async = true }) 
+      autocmd BufWritePre * lua vim.lsp.buf.formatting_sync(nil, 1000) 
     augroup end
   ]]
     vim.notify "Enabled format on save"
@@ -122,6 +124,8 @@ function M.remove_augroup(name)
     end
 end
 
-vim.cmd [[ command! LspToggleAutoFormat execute 'lua require("user.lsp.handlers").toggle_format_on_save()' ]]
+vim.cmd [[ 
+command! LspToggleAutoFormat execute 'lua require("user.lsp.handlers").toggle_format_on_save()' 
+]]
 
 return M

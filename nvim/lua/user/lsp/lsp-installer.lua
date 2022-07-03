@@ -73,7 +73,6 @@ for _, server in pairs(servers) do
     opts = {}
   end
 
-
   if server == "efm" then
     local efm_opts = require "user.lsp.settings.efm"
     opts = vim.tbl_deep_extend("force", efm_opts, opts)

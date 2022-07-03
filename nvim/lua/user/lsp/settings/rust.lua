@@ -1,16 +1,28 @@
 return {
     tools = {
-        on_initialized = function()
-            vim.api.nvim_create_autocmd({ "BufWritePost", "BufEnter", "CursorHold", "InsertLeave" }, {
-                pattern = { "*.rs" },
-                callback = function()
-                    vim.lsp.codelens.refresh()
-                end,
-            })
-        end,
+        -- on_initialized = function()
+        --     vim.api.nvim_create_autocmd({
+        --         "BufWritePost",
+        --         "BufEnter",
+        --         "CursorHold",
+        --         "InsertLeave"
+        --     }, {
+        --         pattern = { "*.rs" },
+        --         callback = function()
+        --             vim.lsp.codelens.refresh()
+        --         end,
+        --     })
+        -- end,
         inlay_hints = {
-            parameter_hints_prefix = " ",
-            other_hints_prefix = " ",
+            parameter_hints_prefix = "",
+            other_hints_prefix = "",
+            show_parameter_hints = true,
+        },
+
+        hover_actions = {
+            -- whether the hover action window gets automatically focused
+            -- default: false
+            auto_focus = true,
         },
     },
     server = {
@@ -24,6 +36,12 @@ return {
                 },
                 checkOnSave = {
                     command = "clippy",
+                },
+                cargo = {
+                  autoReload = true
+                },
+                primeCaches = {
+                    numThreads = 4,
                 },
             },
         },
