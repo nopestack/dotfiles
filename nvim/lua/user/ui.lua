@@ -18,6 +18,7 @@ else
     -- vim.cmd [[colorscheme morning]]
 end
 
+-- vim.cmd("colorscheme hybrid")
 -- vim.g.sonokai_style = "andromeda"
 -- vim.g.sonokai_enable_italic = 1
 -- vim.g.sonokai_disable_italic_comment = 1
@@ -43,7 +44,6 @@ vim.cmd([[
 ]])
 
 
--- set guifont=FiraMono\ Nerd\ Font:h15
 -- Neovide specific settings
 vim.cmd([[
     set guifont=Iosevka\ Nerd\ Font:h17

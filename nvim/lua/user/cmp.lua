@@ -1,5 +1,25 @@
-local lspkind = require("lspkind")
-local cmp = require("cmp")
+local cmp_status_ok, cmp = pcall(require, "cmp")
+if not cmp_status_ok then
+    return
+end
+
+
+local lspkind_status_ok, lspkind = pcall(require, "lspkind")
+if not cmp_status_ok then
+    return
+end
+
+-- local snip_status_ok, luasnip = pcall(require, "luasnip")
+-- if not snip_status_ok then
+--   return
+-- end
+--
+-- local tabnine_status_ok, tabnine = pcall(require, "user.tabnine")
+-- if not tabnine_status_ok then
+--   return
+-- end
+
+local compare = require "cmp.config.compare"
 
 cmp.setup({
     -- Enable LSP snippets
@@ -31,7 +51,7 @@ cmp.setup({
 
     formatting = {
         format = lspkind.cmp_format({
-            mode = "symbol", -- show only symbol annotations
+            mode = "symbol_text", -- show only symbol annotations
             maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
 
             -- The function below will be called before any actual modifications from lspkind

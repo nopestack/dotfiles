@@ -75,28 +75,10 @@ return packer.startup(function()
     -- }
 
     use "nvim-lua/lsp_extensions.nvim"
-
-    -- use {
-    --     "saecki/crates.nvim",
-    --     event = { "BufRead Cargo.toml" },
-    --     requires = { { "nvim-lua/plenary.nvim" } },
-    --     config = function() require("crates").setup() end,
-    -- }
-
-    use {
-        "narutoxy/dim.lua",
-        requires = { "nvim-treesitter/nvim-treesitter", "neovim/nvim-lspconfig" },
-        config = function() require("dim").setup({}) end,
-    }
-
-    -- use {
-    --     "tami5/lspsaga.nvim",
-    --     config = function() require("lspsaga").setup() end,
-    -- }
-
     use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }
     use "nvim-treesitter/nvim-treesitter-context"
     use "jose-elias-alvarez/null-ls.nvim"
+
 
     -- Completions
     use "hrsh7th/nvim-cmp"
@@ -121,7 +103,20 @@ return packer.startup(function()
         requires = "kyazdani42/nvim-web-devicons",
     }
 
-    use { "ms-jpq/chadtree", branch = "chad", run = "python3 -m chadtree deps" }
+    use {
+        "narutoxy/dim.lua",
+        requires = { "nvim-treesitter/nvim-treesitter", "neovim/nvim-lspconfig" },
+        config = function() require("dim").setup({}) end,
+    }
+
+    -- use { "ms-jpq/chadtree", branch = "chad", run = "python3 -m chadtree deps" }
+
+    use {
+        'kyazdani42/nvim-tree.lua',
+        requires = {
+            'kyazdani42/nvim-web-devicons', -- optional, for file icons
+        },
+    }
 
     use 'beauwilliams/statusline.lua'
 

@@ -1,7 +1,14 @@
-require "mapx".setup { global = true }
+require("mapx").setup({ global = true })
 
--- local map = vim.api.nvim_set_keymap
+local opts = {
+    noremap = true,
+    silent = true,
+}
 
+local term_opts = { silent = true }
+
+local keymap = vim.api.nvim_set_keymap
+--
 --          Mode  | Norm | Ins | Cmd | Vis | Sel | Opr | Term | Lang | ~
 -- Command        +------+-----+-----+-----+-----+-----+------+------+ ~
 -- [nore]map      | yes  |  -  |  -  | yes | yes | yes |  -   |  -   |
@@ -19,7 +26,11 @@ require "mapx".setup { global = true }
 -- ["<C-n>"] = actions.move_selection_next,
 -- ["<C-p>"] = actions.move_selection_previous,
 
---  ,w
+-- Move text up and down
+-- TODO: map option to mean Alt
+-- keymap("n", "<D-j>", "<Esc>:m .+1<CR>==gi", opts)
+-- keymap("n", "<D-k>", "<Esc>:m .-2<CR>==gi", opts)
+--
 -- "*****************************************************************************
 -- "" Abbreviations
 -- "*****************************************************************************
@@ -79,40 +90,31 @@ nnoremap("<C-w>", ":bd<CR>", "silent")
 -- TODO: debug M-w mapping to close windows
 -- nnoremap("<M-w>", ":bd<CR>", "silent")
 
-nnoremap("<C-b>", ":CHADopen<CR>", "silent")
-nnoremap("<M-b>", ":CHADopen<CR>", "silent")
+nnoremap("<C-b>", ":NvimTreeToggle<CR>", "silent")
+nnoremap("<M-b>", ":NvimTreeToggle<CR>", "silent")
 
 -- bind command + p to search
-nnoremap("<C-p>", "<cmd>lua require('telescope.builtin').find_files()<cr>",
-    "silent")
+nnoremap("<C-p>", "<cmd>lua require('telescope.builtin').find_files()<cr>", "silent")
 
-nnoremap("<leader>p", "<cmd>lua require('telescope.builtin').find_files()<cr>",
-    "silent")
+nnoremap("<leader>p", "<cmd>lua require('telescope.builtin').find_files()<cr>", "silent")
 
-nnoremap("<M-p>", "<cmd>lua require('telescope.builtin').find_files()<cr>",
-    "silent")
+nnoremap("<M-p>", "<cmd>lua require('telescope.builtin').find_files()<cr>", "silent")
 
 -- command+f to search
-nnoremap("<C-f>", "<cmd>lua require('telescope.builtin').live_grep()<cr>",
-    "silent")
+nnoremap("<C-f>", "<cmd>lua require('telescope.builtin').live_grep()<cr>", "silent")
 
-nnoremap("<M-f>", "<cmd>lua require('telescope.builtin').live_grep()<cr>",
-    "silent")
+nnoremap("<M-f>", "<cmd>lua require('telescope.builtin').live_grep()<cr>", "silent")
 
-nnoremap("<leader>f", "<cmd>lua require('telescope.builtin').live_grep()<cr>",
-    "silent")
+nnoremap("<leader>f", "<cmd>lua require('telescope.builtin').live_grep()<cr>", "silent")
 
-nnoremap("<M-d>", "<cmd>lua require('telescope.builtin').buffers()<cr>",
-    "silent")
+nnoremap("<M-d>", "<cmd>lua require('telescope.builtin').buffers()<cr>", "silent")
 
 -- nnoremap("<M-k>", "<cmd>lua require('telescope.builtin').keymaps()<cr>",
 -- "silent")
 
-nnoremap("<leader>t", "<cmd>lua require('telescope.builtin').colorscheme()<cr>",
-    "silent")
+nnoremap("<leader>t", "<cmd>lua require('telescope.builtin').colorscheme()<cr>", "silent")
 
-nnoremap("<leader>c", "<cmd>lua require('telescope.builtin').commands()<cr>",
-    "silent")
+nnoremap("<leader>c", "<cmd>lua require('telescope.builtin').commands()<cr>", "silent")
 
 -- noremap("K",
 --     "<cmd>lua vim.lsp.buf.hover()<CR><cmd>lua vim.lsp.buf.hover()<CR>",
@@ -130,7 +132,10 @@ nnoremap("ga", "<cmd>lua vim.lsp.buf.code_action()<CR>", "silent")
 -- nnoremap("<leader>v", "<cmd>CHADopen<cr>", "silent")
 -- nnoremap("<M-b>", "<cmd>CHADopen<cr>", "silent")
 
-nnoremap("gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", "silent")
+keymap("n", "gD", "vim.diagnostic.open_float(nil, {focus=false})<CR>", opts)
+
+-- nnoremap("gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", "silent")
+-- nnoremap("gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", "silent")
 nnoremap("gd", "<cmd>lua vim.lsp.buf.definition()<CR>", "silent")
 nnoremap("gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", "silent")
 nnoremap("gr", "<cmd>lua vim.lsp.buf.references()<CR>", "silent")

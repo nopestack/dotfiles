@@ -46,7 +46,7 @@ local options = {
     smarttab = true,
     autoindent = true,
     smartindent = true,
-    signcolumn = "yes",
+    signcolumn = "yes:1",
     scrolloff = 8,
     conceallevel = 0,
     splitbelow = true,
@@ -62,14 +62,13 @@ local options = {
     updatetime = 50,
     completeopt = "menuone,noinsert,noselect",
     termguicolors = true,
-    -- "allow auto-indenting depending on file type
+    -- allow auto-indenting depending on file type
     filetype = "on",
 }
 
 for k, v in pairs(options) do
     vim.opt[k] = v
 end
-
 
 vim.opt.shortmess:append "c"
 
@@ -88,21 +87,3 @@ vim.g.markdown_fenced_languages = {
 }
 
 vim.cmd("filetype indent on")
-
--- vim.cmd [[autocmd! CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
---
--- Highlight on yank (copy). It will do a nice highlight blink of the thing you just copied.
-vim.api.nvim_exec(
-    [[
-  augroup YankHighlight
-    autocmd!
-    autocmd TextYankPost * silent! lua vim.highlight.on_yank()
-  augroup end
-]]   ,
-    false
-)
-
--- -- set clipboard='unnamedplus' --   " using system clipboard
--- -- " set spell                 " enable spell check (may need to download language package)
--- -- " set noswapfile            " disable creating swap file
--- -- " set backupdir=~/.cache/vim " Directory to store backup files.

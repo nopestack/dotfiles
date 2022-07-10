@@ -116,8 +116,6 @@ require("user.lsp.null-ls")
 --
 -- })
 
-local M = {}
-
 -- local inlay_hints = require("lsp_extensions").inlay_hints
 --
 -- inlay_hints({
