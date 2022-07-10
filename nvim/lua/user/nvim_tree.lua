@@ -12,8 +12,6 @@ local icons = require "user.icons"
 
 local tree_cb = nvim_tree_config.nvim_tree_callback
 
--- vim.g.nvim_tree_highlight_opened_files = 1
-
 nvim_tree.setup({
     -- number = true,
     nvim_tree_highlight_opened_files = true,

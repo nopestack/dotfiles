@@ -24,9 +24,9 @@ end
 -- vim.g.sonokai_disable_italic_comment = 1
 -- vim.cmd("colorscheme nightfox")
 -- vim.cmd("colorscheme kanagawa")
-vim.cmd("colorscheme jellybeans-nvim")
+-- vim.cmd("colorscheme jellybeans-nvim")
 -- vim.cmd("colorscheme github_dark")
--- vim.cmd("colorscheme github_dark")
+vim.cmd("colorscheme github_dimmed")
 -- vim.cmd("colorscheme catppuccin")
 -- vim.cmd("colorscheme kanagawa")
 -- vim.cmd("colorscheme aurora")

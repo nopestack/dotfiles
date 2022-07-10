@@ -7,6 +7,8 @@ require("user.lsp.lsp-installer")
 require("user.lsp.handlers")
 require("user.lsp.null-ls")
 
+local M = {}
+
 -- add capabilities from nvim-cmp
 -- local capabilities = vim.lsp.protocol.make_client_capabilities()
 -- capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
@@ -116,7 +118,6 @@ require("user.lsp.null-ls")
 --
 -- })
 
-local M = {}
 
 -- local inlay_hints = require("lsp_extensions").inlay_hints
 --
@@ -172,4 +173,4 @@ local M = {}
 --     for i, kind in ipairs(kinds) do kinds[i] = M.icons[kind] or kind end
 -- end
 --
--- return M
+return M
