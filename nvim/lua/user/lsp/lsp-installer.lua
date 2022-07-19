@@ -85,9 +85,8 @@ for _, server in pairs(servers) do
 
     if server == "pyright" then
         -- TODO: add opts
-        -- local pyright_opts = require "user.lsp.settings.pyright"
-        -- opts = vim.tbl_deep_extend("force", pyright_opts, opts)
-        opts = {}
+        local pyright_opts = require "user.lsp.settings.pyright"
+        opts = vim.tbl_deep_extend("force", pyright_opts, opts)
     end
 
     if server == "solc" then

@@ -14,7 +14,7 @@ local tree_cb = nvim_tree_config.nvim_tree_callback
 
 nvim_tree.setup({
     -- number = true,
-    nvim_tree_highlight_opened_files = true,
+    -- nvim_tree_highlight_opened_files = true,
     filters = {
         custom = { ".git" },
         exclude = { ".gitignore" },

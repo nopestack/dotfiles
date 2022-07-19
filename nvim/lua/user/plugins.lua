@@ -148,6 +148,8 @@ return packer.startup(function()
     --
     -- }
 
+    use "lukas-reineke/indent-blankline.nvim"
+
     -- Colorschemes
     use "folke/tokyonight.nvim"
     use "cocopon/iceberg.vim"
@@ -182,5 +184,9 @@ return packer.startup(function()
     use "w0ng/vim-hybrid"
     use "metalelf0/jellybeans-nvim"
     use "rktjmp/lush.nvim"
+    use "Shatur/neovim-ayu"
+    use "katawful/kat.nvim"
+    use "kwsp/halcyon-neovim"
+    use "clpi/cyu.lua"
 
 end)

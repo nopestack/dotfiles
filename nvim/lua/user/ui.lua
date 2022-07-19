@@ -26,8 +26,11 @@ end
 -- vim.cmd("colorscheme kanagawa")
 -- vim.cmd("colorscheme jellybeans-nvim")
 -- vim.cmd("colorscheme github_dark")
-vim.cmd("colorscheme github_dimmed")
+-- vim.cmd("colorscheme github_dimmed")
+-- vim.cmd("colorscheme ayu-mirage")
+vim.cmd("colorscheme ayu")
 -- vim.cmd("colorscheme catppuccin")
+-- vim.cmd("colorscheme tokyonight")
 -- vim.cmd("colorscheme kanagawa")
 -- vim.cmd("colorscheme aurora")
 -- vim.cmd("colorscheme lunar")
@@ -41,6 +44,7 @@ vim.cmd([[
     highlight CursorLineNr    guifg=#cccccc    ctermbg=NONE
     highlight LineNr          guifg=#777777    ctermbg=NONE
     highlight Search guibg=peru guifg=white 
+    highlight Comment         guifg=#777777 gui=italic
 ]])
 
 
