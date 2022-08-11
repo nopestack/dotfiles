@@ -5,7 +5,6 @@ vim.cmd([[
     augroup end
 ]])
 
-
 local status_ok, packer = pcall(require, "packer")
 if not status_ok then
     vim.notify("could not require packer")
@@ -13,12 +12,11 @@ if not status_ok then
 end
 
 packer.init({
+    auto_clean = true,
     display = {
         open_fn = function()
-            return require("packer.util").float({
-                border = "rounded"
-            })
-        end,
+            return require('packer.util').float({ border = 'rounded' })
+        end
     },
 })
 
@@ -35,20 +33,24 @@ return packer.startup(function()
     -- -- Remember last buffer opened + line
     use "ethanholz/nvim-lastplace"
     --
-    use({
-        "rmagatti/auto-session",
-        config = function()
-            require("auto-session").setup {
-                log_level = "info",
-                auto_session_suppress_dirs = {
-                    "~/",
-                    "~/Workspace",
-                    "~/work",
-                    "~/personal",
-                },
-            }
-        end,
-    })
+    -- use({
+    --     "rmagatti/auto-session",
+    --     config = function()
+    --         require("auto-session").setup {
+    --             log_level = "info",
+    --             auto_session_suppress_dirs = {
+    --                 "~/",
+    --                 "~/Workspace",
+    --                 "~/work",
+    --                 "~/personal",
+    --             },
+    --         }
+    --     end,
+    -- })
+
+    -- Session
+    use { "rmagatti/auto-session", branch = "dir-changed-fixes" }
+    use "rmagatti/session-lens"
 
     -- Language Server plugins
     use "williamboman/nvim-lsp-installer"
@@ -136,19 +138,11 @@ return packer.startup(function()
         config = function() require("Comment").setup() end,
     }
     -- use "github/copilot.vim"
-    -- use {
-    --     "lukas-reineke/indent-blankline.nvim",
-    --     config = function()
-    --         require("indent_blankline").setup({
-    --             space_char_blankline = " ",
-    --             show_current_context = true,
-    --             show_current_context_start = true,
-    --         })
-    --     end,
-    --
-    -- }
-
     use "lukas-reineke/indent-blankline.nvim"
+    use 'andymass/vim-matchup'
+
+    -- Terminal
+    use "akinsho/toggleterm.nvim"
 
     -- Colorschemes
     use "folke/tokyonight.nvim"
@@ -164,7 +158,7 @@ return packer.startup(function()
     use "mangeshrex/uwu.vim"
     use "rmehri01/onenord.nvim"
     use "yashguptaz/calvera-dark.nvim"
-    use "frenzyexists/aquarium-vim"
+    -- use "frenzyexists/aquarium-vim"
     use "RRethy/vim-illuminate"
     use "jacoborus/tender.vim"
     use "rafamadriz/neon"
@@ -187,6 +181,13 @@ return packer.startup(function()
     use "Shatur/neovim-ayu"
     use "katawful/kat.nvim"
     use "kwsp/halcyon-neovim"
-    use "clpi/cyu.lua"
+    -- use 'Yazeed1s/minimal.nvim'
+    -- use "RRethy/nvim-base16"
+
+    use "mjlaufer/gruvbox-darker.nvim"
+    use "tyrannicaltoucan/vim-quantum"
+    use "cesarsl/neo-hybrid.nvim"
+    use "marko-cerovac/material.nvim"
+    use 'chriskempson/base16-vim'
 
 end)

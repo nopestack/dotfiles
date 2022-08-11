@@ -18,6 +18,8 @@ else
     -- vim.cmd [[colorscheme morning]]
 end
 
+vim.g.material_style = "darker"
+
 -- vim.cmd("colorscheme hybrid")
 -- vim.g.sonokai_style = "andromeda"
 -- vim.g.sonokai_enable_italic = 1
@@ -26,27 +28,49 @@ end
 -- vim.cmd("colorscheme kanagawa")
 -- vim.cmd("colorscheme jellybeans-nvim")
 -- vim.cmd("colorscheme github_dark")
+-- vim.cmd("colorscheme github_dark_default")
+-- vim.cmd("colorscheme minimal")
 -- vim.cmd("colorscheme github_dimmed")
 -- vim.cmd("colorscheme ayu-mirage")
-vim.cmd("colorscheme ayu")
--- vim.cmd("colorscheme catppuccin")
+-- vim.cmd("colorscheme ayu")
+-- vim.cmd("colorscheme ayu")
+-- vim.cmd("colorscheme onenord")
+-- vim.cmd("colorscheme hybrid")
+-- vim.cmd("colorscheme gruvbox")
+vim.cmd("colorscheme hybrid")
+-- vim.cmd("colorscheme base16-gruvbox-dark-hard")
+-- vim.cmd("colorscheme aurora")
+-- vim.cmd("colorscheme material")
+-- vim.cmd("colorscheme iceberg")
 -- vim.cmd("colorscheme tokyonight")
 -- vim.cmd("colorscheme kanagawa")
 -- vim.cmd("colorscheme aurora")
+-- vim.cmd("colorscheme base16-tokyo-city-terminal-dark")
+-- vim.cmd("colorscheme aquarium")
+--
+--" options: "light", "dark"
 -- vim.cmd("colorscheme lunar")
+-- vim.cmd("colorscheme deep-space")
 
 -- :hi LineNr guibg=none guifg=#ffffff
 
 -- vim.cmd(":hi LineNr guifg=#aaaaaa")
 -- vim.cmd("colorscheme iceberg")
 
+
+-- hi SignColumn ctermbg=280 guibg=#2c2c2c
+-- hi LineNr guibg=#2c2c2c guifg=#777777    ctermbg=NONE
+-- hi LineNr guifg=#777777    ctermbg=NONE
 vim.cmd([[
-    highlight CursorLineNr    guifg=#cccccc    ctermbg=NONE
-    highlight LineNr          guifg=#777777    ctermbg=NONE
-    highlight Search guibg=peru guifg=white 
-    highlight Comment         guifg=#777777 gui=italic
+    hi SignColumn ctermbg=280 guibg=#2c2c2c
+    hi LineNr guibg=#2c2c2c guifg=#777777    ctermbg=NONE
+    hi CursorLineNr    guifg=#cccccc    ctermbg=NONE
+    hi Search guibg=peru guifg=white 
+    hi Comment         guifg=#999999 gui=italic
 ]])
 
+-- hi Comment         guifg=#777777 gui=italic
+-- hi SignColumn ctermbg=230 guibg=#1c1c1c
 
 -- Neovide specific settings
 vim.cmd([[

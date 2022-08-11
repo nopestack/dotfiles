@@ -9,7 +9,8 @@ export ZSH="/Users/nopestack/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+# ZSH_THEME="robbyrussell"
+ZSH_THEME="lambda-gitster"
 
 export UPDATE_ZSH_DAYS=7
 DISABLE_AUTO_TITLE="true"
