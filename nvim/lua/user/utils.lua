@@ -38,4 +38,14 @@ function M.smart_quit()
     end
 end
 
+function M.get_os()
+    return vim.loop.os_uname().sysname
+end
+
+function M.is_macos()
+    if vim.loop.os_uname().sysname == "Darwin" then
+        return true
+    end
+end
+
 return M

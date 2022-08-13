@@ -29,6 +29,8 @@ return packer.startup(function()
         "nvim-telescope/telescope.nvim",
         requires = { { "nvim-lua/plenary.nvim" } },
     }
+    use "nvim-telescope/telescope-media-files.nvim"
+    use "tom-anders/telescope-vim-bookmarks.nvim"
 
     -- -- Remember last buffer opened + line
     use "ethanholz/nvim-lastplace"
@@ -120,7 +122,14 @@ return packer.startup(function()
         },
     }
 
-    use 'beauwilliams/statusline.lua'
+    -- use 'beauwilliams/statusline.lua'
+
+    use "nvim-lualine/lualine.nvim"
+
+    use {
+        "SmiteshP/nvim-navic",
+        requires = "neovim/nvim-lspconfig"
+    }
 
     use {
         "folke/trouble.nvim",
@@ -129,6 +138,8 @@ return packer.startup(function()
     }
 
     use "onsails/lspkind.nvim"
+
+
 
     -- Misc utilities
     use "windwp/nvim-autopairs"

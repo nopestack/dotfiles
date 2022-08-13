@@ -83,11 +83,11 @@ vim.cmd([[
 -- hi DiagnosticError guifg=#88088F
 -- hi DiagnosticWarn guifg=DarkOrange
 -- hi DiagnosticInfo guifg=Blue
---
+
 
 -- vim.opt.hybrid_custom_term_colors = 1
 -- vim.opt.hybrid_reduced_contrast = 1
---
+
 vim.cmd [[
   highlight! DiagnosticLineNrError guibg=#51202A guifg=#FF0000 gui=bold
   highlight! DiagnosticLineNrWarn guibg=#51412A guifg=#FFA500 gui=bold

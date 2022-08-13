@@ -2,6 +2,7 @@ local M = {}
 
 local keymap = require("user.utils").keymap
 local buf_keymap = require("user.utils").buf_keymap
+local navic = require("nvim-navic")
 
 M.capabilities = vim.lsp.protocol.make_client_capabilities()
 
@@ -109,6 +110,10 @@ M.on_attach = function(client, bufnr)
 
     lsp_keymaps(bufnr)
     lsp_highlight_document(client)
+
+    -- LSP breadcrumbs
+    navic.attach(client, bufnr)
+
     M.enable_format_on_save()
 end
 
