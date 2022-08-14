@@ -48,4 +48,80 @@ function M.is_macos()
     end
 end
 
+-- check if value in table
+function M.contains(t, value)
+    for _, v in pairs(t) do
+        if v == value then
+            return true
+        end
+    end
+    return false
+end
+
 return M
+
+-- local left_pad = {
+--     function()
+--         return " "
+--     end,
+--     padding = 0,
+--     color = function()
+--         return { fg = gray }
+--     end,
+-- }
+--
+-- local right_pad = {
+--     function()
+--         return " "
+--     end,
+--     padding = 0,
+--     color = function()
+--         return { fg = dark_gray }
+--     end,
+-- }
+--
+-- local left_pad_alt = {
+--     function()
+--         return " "
+--     end,
+--     padding = 0,
+--     color = function()
+--         return { fg = gray }
+--     end,
+-- }
+--
+-- local right_pad_alt = {
+--     function()
+--         return " "
+--     end,
+--     padding = 0,
+--     color = function()
+--         return { fg = gray }
+--     end,
+-- }
+--
+-- local mode = {
+--     -- mode component
+--     function()
+--         -- return "▊"
+--         return " "
+--         -- return "  "
+--     end,
+--     color = function()
+--         -- auto change color according to neovims mode
+--         return { fg = mode_color[vim.fn.mode()], bg = gray }
+--     end,
+--     padding = 0,
+-- }
+--
+-- local hide_in_width_60 = function()
+--     return vim.o.columns > 60
+-- end
+--
+-- local hide_in_width = function()
+--     return vim.o.columns > 80
+-- end
+--
+-- local hide_in_width_100 = function()
+--     return vim.o.columns > 100
+-- end

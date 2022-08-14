@@ -25,30 +25,12 @@ return packer.startup(function()
     use "nvim-lua/popup.nvim"
     use "nvim-lua/plenary.nvim"
     use "b0o/mapx.nvim"
-    use {
-        "nvim-telescope/telescope.nvim",
-        requires = { { "nvim-lua/plenary.nvim" } },
-    }
+    use "nvim-telescope/telescope.nvim"
     use "nvim-telescope/telescope-media-files.nvim"
     use "tom-anders/telescope-vim-bookmarks.nvim"
 
-    -- -- Remember last buffer opened + line
+    -- Remember last buffer opened + line
     use "ethanholz/nvim-lastplace"
-    --
-    -- use({
-    --     "rmagatti/auto-session",
-    --     config = function()
-    --         require("auto-session").setup {
-    --             log_level = "info",
-    --             auto_session_suppress_dirs = {
-    --                 "~/",
-    --                 "~/Workspace",
-    --                 "~/work",
-    --                 "~/personal",
-    --             },
-    --         }
-    --     end,
-    -- })
 
     -- Session
     use { "rmagatti/auto-session", branch = "dir-changed-fixes" }
@@ -61,27 +43,18 @@ return packer.startup(function()
         requires = {
             "ray-x/go.nvim"
         },
-        --    use "tomlion/vim-solidity"
     }
 
-    -- Rust
     use "simrat39/rust-tools.nvim"
     use "Saecki/crates.nvim"
-
-    -- use {
-    --     "ray-x/lsp_signature.nvim",
-    --     config = function()
-    --         require("lsp_signature").on_attach({
-    --             doc_lines = 0,
-    --             handler_opts = { border = "none" },
-    --         })
-    --     end,
-    -- }
 
     use "nvim-lua/lsp_extensions.nvim"
     use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }
     use "nvim-treesitter/nvim-treesitter-context"
     use "jose-elias-alvarez/null-ls.nvim"
+
+    use "nvim-lua/lsp-status.nvim"
+    use 'arkav/lualine-lsp-progress'
 
 
     -- Completions
@@ -98,48 +71,34 @@ return packer.startup(function()
         requires = { "nvim-lua/plenary.nvim" },
         config = function() require("gitsigns").setup {} end,
     }
+
     use { "tanvirtin/vgit.nvim", requires = { "nvim-lua/plenary.nvim" } }
-    --
+
     -- UI & navigation
+    use 'kyazdani42/nvim-web-devicons'
+    use 'kyazdani42/nvim-tree.lua'
     use {
         "akinsho/bufferline.nvim",
         tag = "v2.*",
-        requires = "kyazdani42/nvim-web-devicons",
     }
 
     use {
         "narutoxy/dim.lua",
-        requires = { "nvim-treesitter/nvim-treesitter", "neovim/nvim-lspconfig" },
         config = function() require("dim").setup({}) end,
     }
 
-    -- use { "ms-jpq/chadtree", branch = "chad", run = "python3 -m chadtree deps" }
-
-    use {
-        'kyazdani42/nvim-tree.lua',
-        requires = {
-            'kyazdani42/nvim-web-devicons', -- optional, for file icons
-        },
-    }
-
+    -- Statusline
     -- use 'beauwilliams/statusline.lua'
-
     use "nvim-lualine/lualine.nvim"
 
-    use {
-        "SmiteshP/nvim-navic",
-        requires = "neovim/nvim-lspconfig"
-    }
+    use "SmiteshP/nvim-navic"
 
     use {
         "folke/trouble.nvim",
-        requires = "kyazdani42/nvim-web-devicons",
         config = function() require("trouble").setup {} end,
     }
 
     use "onsails/lspkind.nvim"
-
-
 
     -- Misc utilities
     use "windwp/nvim-autopairs"
@@ -169,17 +128,10 @@ return packer.startup(function()
     use "mangeshrex/uwu.vim"
     use "rmehri01/onenord.nvim"
     use "yashguptaz/calvera-dark.nvim"
-    -- use "frenzyexists/aquarium-vim"
     use "RRethy/vim-illuminate"
     use "jacoborus/tender.vim"
     use "rafamadriz/neon"
     use "MomePP/plastic-nvim"
-    use({ "catppuccin/nvim", as = "catppuccin" })
-    use({
-        "rose-pine/neovim",
-        as = "rose-pine",
-        tag = "v1.*",
-    })
     use "titanzero/zephyrium"
     use "sainnhe/everforest"
     use "nanotech/jellybeans.vim"
@@ -192,9 +144,6 @@ return packer.startup(function()
     use "Shatur/neovim-ayu"
     use "katawful/kat.nvim"
     use "kwsp/halcyon-neovim"
-    -- use 'Yazeed1s/minimal.nvim'
-    -- use "RRethy/nvim-base16"
-
     use "mjlaufer/gruvbox-darker.nvim"
     use "tyrannicaltoucan/vim-quantum"
     use "cesarsl/neo-hybrid.nvim"
