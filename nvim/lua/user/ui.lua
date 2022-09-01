@@ -36,14 +36,14 @@ vim.g.material_style = "darker"
 -- vim.cmd("colorscheme ayu")
 -- vim.cmd("colorscheme onenord")
 -- vim.cmd("colorscheme gruvbox")
-vim.cmd("colorscheme hybrid")
+-- vim.cmd("colorscheme hybrid")
 -- vim.cmd("colorscheme halcyon")
 -- vim.cmd("colorscheme base16-gruvbox-dark-hard")
 -- vim.cmd("colorscheme aurora")
 -- vim.cmd("colorscheme material")
 -- vim.cmd("colorscheme iceberg")
 -- vim.cmd("colorscheme tokyonight")
--- vim.cmd("colorscheme kanagawa")
+vim.cmd("colorscheme kanagawa")
 -- vim.cmd("colorscheme aurora")
 -- vim.cmd("colorscheme base16-tokyo-city-terminal-dark")
 -- vim.cmd("colorscheme aquarium")
@@ -57,17 +57,26 @@ vim.cmd("colorscheme hybrid")
 -- vim.cmd(":hi LineNr guifg=#aaaaaa")
 -- vim.cmd("colorscheme iceberg")
 
-
 -- hi SignColumn ctermbg=280 guibg=#2c2c2c
 -- hi LineNr guibg=#2c2c2c guifg=#777777    ctermbg=NONE
 -- hi LineNr guifg=#777777    ctermbg=NONE
 vim.cmd([[
-    hi SignColumn ctermbg=280 guibg=#2c2c2c
-    hi LineNr guibg=#2c2c2c guifg=#777777    ctermbg=NONE
+    hi SignColumn ctermbg=280 
+    "guibg=#2c2c2c
+    hi LineNr guifg=#777777    ctermbg=NONE
+    "guibg=#2c2c2c 
     hi CursorLineNr    guifg=#cccccc    ctermbg=NONE
     hi Search guibg=peru guifg=white 
     hi Comment         guifg=#999999 gui=italic
 ]])
+
+-- vim.cmd([[
+--     hi SignColumn ctermbg=280 guibg=#2c2c2c
+--     hi LineNr guibg=#2c2c2c guifg=#777777    ctermbg=NONE
+--     hi CursorLineNr    guifg=#cccccc    ctermbg=NONE
+--     hi Search guibg=peru guifg=white
+--     hi Comment         guifg=#999999 gui=italic
+-- ]])
 
 -- hi Comment         guifg=#777777 gui=italic
 -- hi SignColumn ctermbg=230 guibg=#1c1c1c
@@ -88,14 +97,24 @@ vim.cmd([[
 -- vim.opt.hybrid_custom_term_colors = 1
 -- vim.opt.hybrid_reduced_contrast = 1
 
-vim.cmd [[
-  highlight! DiagnosticLineNrError guibg=#51202A guifg=#FF0000 gui=bold
-  highlight! DiagnosticLineNrWarn guibg=#51412A guifg=#FFA500 gui=bold
-  highlight! DiagnosticLineNrInfo guibg=#1E535D guifg=#00FFFF gui=bold
-  highlight! DiagnosticLineNrHint guibg=#1E205D guifg=#0000FF gui=bold
+-- Old config for hints && info
+-- highlight! DiagnosticLineNrInfo guibg=#1E535D guifg=#00FFFF gui=bold
+-- highlight! DiagnosticLineNrHint guibg=#1E205D guifg=#0000FF gui=bold
+
+-- Current config with bold text
+-- highlight! DiagnosticLineNrError guibg=#51202A guifg=#FF0000 gui=bold
+-- highlight! DiagnosticLineNrWarn guibg=#51412A guifg=#FFA500 gui=bold
+-- highlight! DiagnosticLineNrInfo guibg=#1E535D guifg=LightGray gui=bold
+-- highlight! DiagnosticLineNrHint guibg=#1E205D guifg=LightBlue gui=bold
+
+vim.cmd([[
+  highlight! DiagnosticLineNrError guibg=#51202A guifg=#FF0000
+  highlight! DiagnosticLineNrWarn guibg=#51412A guifg=#FFA500 
+  highlight! DiagnosticLineNrInfo guibg=#1E535D guifg=LightGray
+  highlight! DiagnosticLineNrHint guibg=#1E205D guifg=LightBlue
 
   sign define DiagnosticSignError text= texthl=DiagnosticSignError linehl= numhl=DiagnosticLineNrError
   sign define DiagnosticSignWarn text= texthl=DiagnosticSignWarn linehl= numhl=DiagnosticLineNrWarn
   sign define DiagnosticSignInfo text= texthl=DiagnosticSignInfo linehl= numhl=DiagnosticLineNrInfo
   sign define DiagnosticSignHint text= texthl=DiagnosticSignHint linehl= numhl=DiagnosticLineNrHint
-]]
+]])

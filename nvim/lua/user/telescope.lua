@@ -10,9 +10,11 @@ local icons = require("user.icons")
 telescope.setup {
     pickers = {
         live_grep = { theme = "dropdown" },
-        find_files = { theme = "dropdown" },
+        find_files = { theme = "dropdown", previewer = false },
         commands = { theme = "dropdown" },
         keymaps = { theme = "dropdown" },
+        colorscheme = { theme = "dropdown" },
+        buffers = { theme = "dropdown", previewer = false },
     },
 
     defaults = {

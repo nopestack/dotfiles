@@ -55,8 +55,11 @@ nnoremap("<leader><CR>", ":so ~/.config/nvim/init.lua<CR>")
 -- save file
 nnoremap("<leader>w", ":w<CR>", "silent")
 nnoremap("<M-s>", ":w<CR>", "silent")
+
+--
 -- nnoremap("<leader>n", ":Ex<CR>", "silent")
 -- nnoremap("<leader>b", ":Vex<CR>", "silent")
+--
 
 nnoremap("<C-q>", ":confirm qall<CR>", "silent")
 
@@ -96,34 +99,48 @@ nnoremap("<C-w>", ":bd<CR>", "silent")
 nnoremap("<C-b>", ":NvimTreeToggle<CR>", "silent")
 nnoremap("<M-b>", ":NvimTreeToggle<CR>", "silent")
 
--- bind command + p to search
-nnoremap("<C-p>", "<cmd>lua require('telescope.builtin').find_files()<cr>", "silent")
+-- nnoremap("<leader>ff", "<cmd>lua require('telescope.builtin').find_files()<cr>", "silent")
+keymap("n", "<leader>ff", "<cmd>lua require('telescope.builtin').find_files()<cr>", opts)
+keymap("n", "<leader>fb", "<cmd>lua require('telescope.builtin').buffers()<cr>", opts)
+-- nnoremap("<leader>fg", "<cmd>lua require('telescope.builtin').live_grep()<cr>", "silent")
+keymap("n", "<leader>fg", "<cmd>lua require('telescope.builtin').live_grep()<cr>", opts)
+-- nnoremap("<M-d>", "<cmd>lua require('telescope.builtin').buffers()<cr>", "silent")
+-- nnoremap("<leader>t", "<cmd>lua require('telescope.builtin').colorscheme()<cr>", "silent")
+keymap("n", "<leader>ft", "<cmd>lua require('telescope.builtin').colorscheme()<cr>", opts)
+nnoremap("<leader>c", "<cmd>lua require('telescope.builtin').commands()<cr>", "silent")
 
-nnoremap("<leader>f", "<cmd>lua require('telescope.builtin').find_files()<cr>", "silent")
 
-nnoremap("<M-p>", "<cmd>lua require('telescope.builtin').find_files()<cr>", "silent")
+-- -- command+f to open sessionizer
+-- if vim.loop.os_uname().sysname == "Darwin" then
+--     nnoremap("<M-f>", "<cmd>!tmux neww tmux-sessionizer<cr>", "silent")
+-- end
 
--- command+f to search
 if vim.loop.os_uname().sysname == "Darwin" then
     -- command+f to search
-    nnoremap("<M-f>", "<cmd>lua require('telescope.builtin').live_grep()<cr>", "silent")
+    -- nnoremap("<M-f>", "<cmd>lua require('telescope.builtin').live_grep()<cr>", "silent")
+    --
+    -- bind command + p to search
+    -- nnoremap("<M-p>", "<cmd>lua require('telescope.builtin').find_files()<cr>", "silent")
+    keymap("n", "<M-p>", "<cmd>lua require('telescope.builtin').find_files()<cr>", opts)
 end
 
 if vim.loop.os_uname().sysname ~= "Darwin" then
     -- ctrl+f to search
-    nnoremap("<C-f>", "<cmd>lua require('telescope.builtin').live_grep()<cr>", "silent")
+    -- nnoremap("<C-f>", "<cmd>lua require('telescope.builtin').live_grep()<cr>", "silent")
+
+    -- bind ctrl + p to search
+    nnoremap("<C-p>", "<cmd>lua require('telescope.builtin').find_files()<cr>", "silent")
+end
+
+-- ctrl+f to open sessionizer
+if vim.loop.os_uname().sysname == "Darwin" then
+    nnoremap("<C-f>", "<cmd>!tmux neww tmux-sessionizer<cr>", "silent")
 end
 
 
-nnoremap("<leader>g", "<cmd>lua require('telescope.builtin').live_grep()<cr>", "silent")
-
-nnoremap("<M-d>", "<cmd>lua require('telescope.builtin').buffers()<cr>", "silent")
 
 -- nnoremap("<M-k>", "<cmd>lua require('telescope.builtin').keymaps()<cr>",
 -- "silent")
-
-nnoremap("<leader>t", "<cmd>lua require('telescope.builtin').colorscheme()<cr>", "silent")
-nnoremap("<leader>c", "<cmd>lua require('telescope.builtin').commands()<cr>", "silent")
 
 -- Show code actions
 nnoremap("ga", "<cmd>lua vim.lsp.buf.code_action()<CR>", "silent")

@@ -82,6 +82,8 @@ return packer.startup(function()
         tag = "v2.*",
     }
 
+    use "folke/which-key.nvim"
+
     use {
         "narutoxy/dim.lua",
         config = function() require("dim").setup({}) end,

@@ -71,12 +71,13 @@ ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor regexp)
 
 # Aliases
 alias vim="$(which nvim)"
-alias vide="$(which neovide)"
+alias ls="$(which exa)"
+# alias lsa="$(which exa -lah)"
+alias tree="$(which exa) --tree"
 
 alias k="kubectl"
 alias dps="docker ps"
 alias gst="$(which git) status"
-#alias code="$(which code-insiders)"
 
 alias dcompose=docker-compose
 
