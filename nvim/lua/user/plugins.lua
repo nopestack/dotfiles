@@ -54,7 +54,7 @@ return packer.startup(function()
     use "jose-elias-alvarez/null-ls.nvim"
 
     use "nvim-lua/lsp-status.nvim"
-    use 'arkav/lualine-lsp-progress'
+    -- use 'arkav/lualine-lsp-progress'
 
 
     -- Completions
@@ -77,6 +77,18 @@ return packer.startup(function()
     -- UI & navigation
     use 'kyazdani42/nvim-web-devicons'
     use 'kyazdani42/nvim-tree.lua'
+    -- use {
+    --     "nvim-neo-tree/neo-tree.nvim",
+    --     branch = "v2.x",
+    --     requires = {
+    --         "nvim-lua/plenary.nvim",
+    --         "kyazdani42/nvim-web-devicons", -- not strictly required, but recommended
+    --         "MunifTanjim/nui.nvim",
+    --     }
+    -- }
+
+    use 'sunjon/shade.nvim'
+
     use {
         "akinsho/bufferline.nvim",
         tag = "v2.*",
@@ -90,8 +102,9 @@ return packer.startup(function()
     }
 
     -- Statusline
-    -- use 'beauwilliams/statusline.lua'
-    use "nvim-lualine/lualine.nvim"
+    use 'beauwilliams/statusline.lua'
+    -- use "nvim-lualine/lualine.nvim"
+    -- use 'feline-nvim/feline.nvim'
 
     use "SmiteshP/nvim-navic"
 
@@ -151,5 +164,16 @@ return packer.startup(function()
     use "cesarsl/neo-hybrid.nvim"
     use "marko-cerovac/material.nvim"
     use 'chriskempson/base16-vim'
+    use { "catppuccin/nvim", as = "catppuccin" }
+    use 'frenzyexists/aquarium-vim'
+    use 'kdheepak/monochrome.nvim'
+    use { "mangeshrex/everblush.vim" }
+    use 'andreypopp/vim-colors-plain'
+    use {
+        'mastertinner/nvim-quantum',
+    }
+    use {
+        'andersevenrud/nordic.nvim' 
+    }
 
 end)

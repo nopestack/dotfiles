@@ -14,12 +14,12 @@ local tree_cb = nvim_tree_config.nvim_tree_callback
 
 nvim_tree.setup({
     -- number = true,
-    -- nvim_tree_highlight_opened_files = true,
+--    nvim_tree_highlight_opened_files = true,
+    create_in_closed_folder = true,
     filters = {
         custom = { ".git" },
         exclude = { ".gitignore" },
     },
-
     diagnostics = {
         enable = true,
         icons = {
@@ -30,20 +30,19 @@ nvim_tree.setup({
         },
     },
     renderer = {
-        add_trailing = false,
+        add_trailing = true,
         group_empty = false,
         highlight_git = false,
         highlight_opened_files = "none",
         root_folder_modifier = ":t",
         indent_markers = {
-            enable = false,
+            enable = true,
             icons = {
                 corner = "└ ",
                 edge = "│ ",
                 none = "  ",
             },
         },
-
         icons = {
             webdev_colors = true,
             git_placement = "before",
@@ -79,7 +78,6 @@ nvim_tree.setup({
                 },
             },
         },
-
     },
     update_focused_file = {
         enable = true,
@@ -95,6 +93,7 @@ nvim_tree.setup({
         side = "right",
         width = 40,
         height = 30,
+        adaptive_size = true,
         hide_root_folder = false,
         -- auto_resize = true,
         mappings = {

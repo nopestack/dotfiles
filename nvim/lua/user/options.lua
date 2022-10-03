@@ -33,8 +33,8 @@ local options = {
     -- " Speed up scrolling in Vim,
     ttyfast = true,
     -- " Sets relative line number,
-    rnu = true,
     nu = true,
+    rnu = true,
     list = true,
     -- vim.opt.listchars = { space = "⋅", eol = "↲", tab = "▸ ", trail = "·" }
     listchars = { space = "⋅", tab = "▸ ", trail = "·" },

@@ -12,7 +12,7 @@ toggleterm.setup {
     hide_numbers = true,
     shade_filetypes = {},
     shade_terminals = true,
-    shading_factor = 2,
+    -- shading_factor = 1,
     start_in_insert = true,
     insert_mappings = true,
     persist_size = true,
@@ -23,9 +23,17 @@ toggleterm.setup {
         winblend = 0,
         highlights = {
             border = "Normal",
-            background = "Normal",
+            -- background = "Normal",
         },
     },
+    -- highlights = {
+    --     Normal = {
+    --         guibg = "Comment",
+    --     },
+    --     NormalFloat = {
+    --         link = 'Normal'
+    --     },
+    -- },
 }
 
 function _G.set_terminal_keymaps()

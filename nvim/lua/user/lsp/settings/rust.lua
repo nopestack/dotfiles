@@ -38,7 +38,7 @@ return {
                     command = "clippy",
                 },
                 cargo = {
-                  autoReload = true
+                    autoReload = true
                 },
                 primeCaches = {
                     numThreads = 4,

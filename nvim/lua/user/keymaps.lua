@@ -49,6 +49,12 @@ local keymap = utils.keymap
 -- cnoreabbrev Q q
 -- cnoreabbrev Qall qall
 
+-- Disable arrow keys
+-- keymap('n', '<up>', '<nop>', opts)
+-- keymap('n', '<down>', '<nop>', opts)
+-- keymap('n', '<left>', '<nop>', opts)
+-- keymap('n', '<right>', '<nop>', opts)
+
 -- Reload config
 nnoremap("<leader><CR>", ":so ~/.config/nvim/init.lua<CR>")
 
@@ -56,10 +62,8 @@ nnoremap("<leader><CR>", ":so ~/.config/nvim/init.lua<CR>")
 nnoremap("<leader>w", ":w<CR>", "silent")
 nnoremap("<M-s>", ":w<CR>", "silent")
 
---
 -- nnoremap("<leader>n", ":Ex<CR>", "silent")
 -- nnoremap("<leader>b", ":Vex<CR>", "silent")
---
 
 nnoremap("<C-q>", ":confirm qall<CR>", "silent")
 
@@ -85,7 +89,7 @@ nnoremap("<C-K>", "<C-W><C-K>")
 nnoremap("<C-L>", "<C-W><C-L>")
 nnoremap("<C-H>", "<C-W><C-H>")
 --
--- Tab traversal
+-- Buffer traversal
 nnoremap("<Tab>", ":bnext<CR>", "silent")
 nnoremap("<S-Tab>", ":bprev<CR>", "silent")
 --
@@ -96,8 +100,19 @@ nnoremap("<C-w>", ":bd<CR>", "silent")
 -- TODO: debug M-w mapping to close windows
 -- nnoremap("<M-w>", ":bd<CR>", "silent")
 
-nnoremap("<C-b>", ":NvimTreeToggle<CR>", "silent")
-nnoremap("<M-b>", ":NvimTreeToggle<CR>", "silent")
+
+if vim.loop.os_uname().sysname == "Darwin" then
+    -- command+b to open file explorer
+    -- keymap("n", "<M-b>", ":NeoTreeFocusToggle<CR>", opts)
+    keymap("n", "<M-b>", ":NvimTreeToggle<CR>", opts)
+end
+if vim.loop.os_uname().sysname ~= "Darwin" then
+    -- ctrl+b to open file explorer
+    keymap("n", "<C-b>", ":NvimTreeToggle<CR>", opts)
+    -- keymap("n", "<C-b>", ":NeoTreeFocusToggle<CR>", opts)
+end
+-- nnoremap("<C-b>", ":NvimTreeToggle<CR>", "silent")
+-- nnoremap("<M-b>", ":NvimTreeToggle<CR>", "silent")
 
 -- nnoremap("<leader>ff", "<cmd>lua require('telescope.builtin').find_files()<cr>", "silent")
 keymap("n", "<leader>ff", "<cmd>lua require('telescope.builtin').find_files()<cr>", opts)
