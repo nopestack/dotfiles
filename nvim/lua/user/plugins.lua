@@ -40,9 +40,9 @@ return packer.startup(function()
     use "williamboman/nvim-lsp-installer"
     use {
         "neovim/nvim-lspconfig",
-        requires = {
-            "ray-x/go.nvim"
-        },
+        --        requires = {
+        --            "ray-x/go.nvim"
+        --        },
     }
 
     use "simrat39/rust-tools.nvim"
@@ -96,10 +96,10 @@ return packer.startup(function()
 
     use "folke/which-key.nvim"
 
-    use {
-        "narutoxy/dim.lua",
-        config = function() require("dim").setup({}) end,
-    }
+    -- use {
+    --     "narutoxy/dim.lua",
+    --     config = function() require("dim").setup({}) end,
+    -- }
 
     -- Statusline
     use 'beauwilliams/statusline.lua'
@@ -140,7 +140,6 @@ return packer.startup(function()
     use "kvrohit/substrata.nvim"
     use "rose-pine/neovim"
     use "rebelot/kanagawa.nvim"
-    use "mangeshrex/uwu.vim"
     use "rmehri01/onenord.nvim"
     use "yashguptaz/calvera-dark.nvim"
     use "RRethy/vim-illuminate"
@@ -173,7 +172,8 @@ return packer.startup(function()
         'mastertinner/nvim-quantum',
     }
     use {
-        'andersevenrud/nordic.nvim' 
+        'andersevenrud/nordic.nvim'
     }
+    use { "williamboman/mason.nvim" }
 
 end)

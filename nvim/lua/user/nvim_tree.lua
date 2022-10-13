@@ -14,7 +14,7 @@ local tree_cb = nvim_tree_config.nvim_tree_callback
 
 nvim_tree.setup({
     -- number = true,
---    nvim_tree_highlight_opened_files = true,
+    --    nvim_tree_highlight_opened_files = true,
     create_in_closed_folder = true,
     filters = {
         custom = { ".git" },
@@ -92,7 +92,7 @@ nvim_tree.setup({
     view = {
         side = "right",
         width = 40,
-        height = 30,
+        -- height = 30,
         adaptive_size = true,
         hide_root_folder = false,
         -- auto_resize = true,

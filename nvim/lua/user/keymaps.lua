@@ -100,17 +100,22 @@ nnoremap("<C-w>", ":bd<CR>", "silent")
 -- TODO: debug M-w mapping to close windows
 -- nnoremap("<M-w>", ":bd<CR>", "silent")
 
+keymap("n", "<C-b>", ":NvimTreeToggle<CR>", opts)
+keymap("n", "<M-b>", ":NvimTreeToggle<CR>", opts)
 
-if vim.loop.os_uname().sysname == "Darwin" then
-    -- command+b to open file explorer
-    -- keymap("n", "<M-b>", ":NeoTreeFocusToggle<CR>", opts)
-    keymap("n", "<M-b>", ":NvimTreeToggle<CR>", opts)
-end
-if vim.loop.os_uname().sysname ~= "Darwin" then
-    -- ctrl+b to open file explorer
-    keymap("n", "<C-b>", ":NvimTreeToggle<CR>", opts)
-    -- keymap("n", "<C-b>", ":NeoTreeFocusToggle<CR>", opts)
-end
+-- Ctrl/Cmd + b to open fileexplorer
+-- if vim.loop.os_uname().sysname == "Darwin" then
+--     -- command+b to open file explorer
+--     -- keymap("n", "<M-b>", ":NeoTreeFocusToggle<CR>", opts)
+--     keymap("n", "<M-b>", ":NvimTreeToggle<CR>", opts)
+-- end
+-- if vim.loop.os_uname().sysname ~= "Darwin" then
+--     -- ctrl+b to open file explorer
+--     keymap("n", "<C-b>", ":NvimTreeToggle<CR>", opts)
+--     -- keymap("n", "<C-b>", ":NeoTreeFocusToggle<CR>", opts)
+--
+-- end
+--
 -- nnoremap("<C-b>", ":NvimTreeToggle<CR>", "silent")
 -- nnoremap("<M-b>", ":NvimTreeToggle<CR>", "silent")
 
@@ -118,10 +123,11 @@ end
 keymap("n", "<leader>ff", "<cmd>lua require('telescope.builtin').find_files()<cr>", opts)
 keymap("n", "<leader>fb", "<cmd>lua require('telescope.builtin').buffers()<cr>", opts)
 -- nnoremap("<leader>fg", "<cmd>lua require('telescope.builtin').live_grep()<cr>", "silent")
-keymap("n", "<leader>fg", "<cmd>lua require('telescope.builtin').live_grep()<cr>", opts)
+keymap("n", "<leader>fw", "<cmd>lua require('telescope.builtin').live_grep()<cr>", opts)
 -- nnoremap("<M-d>", "<cmd>lua require('telescope.builtin').buffers()<cr>", "silent")
 -- nnoremap("<leader>t", "<cmd>lua require('telescope.builtin').colorscheme()<cr>", "silent")
 keymap("n", "<leader>ft", "<cmd>lua require('telescope.builtin').colorscheme()<cr>", opts)
+keymap("n", "<leader>fc", "<cmd>lua require('telescope.builtin').commands()<cr>", opts)
 nnoremap("<leader>c", "<cmd>lua require('telescope.builtin').commands()<cr>", "silent")
 
 
@@ -130,41 +136,34 @@ nnoremap("<leader>c", "<cmd>lua require('telescope.builtin').commands()<cr>", "s
 --     nnoremap("<M-f>", "<cmd>!tmux neww tmux-sessionizer<cr>", "silent")
 -- end
 
-if vim.loop.os_uname().sysname == "Darwin" then
-    -- command+f to search
-    -- nnoremap("<M-f>", "<cmd>lua require('telescope.builtin').live_grep()<cr>", "silent")
-    --
-    -- bind command + p to search
-    -- nnoremap("<M-p>", "<cmd>lua require('telescope.builtin').find_files()<cr>", "silent")
-    keymap("n", "<M-p>", "<cmd>lua require('telescope.builtin').find_files()<cr>", opts)
-end
-
-if vim.loop.os_uname().sysname ~= "Darwin" then
-    -- ctrl+f to search
-    -- nnoremap("<C-f>", "<cmd>lua require('telescope.builtin').live_grep()<cr>", "silent")
-
-    -- bind ctrl + p to search
-    nnoremap("<C-p>", "<cmd>lua require('telescope.builtin').find_files()<cr>", "silent")
-end
+-- Ctrl/Cmd + p to search files
+-- if vim.loop.os_uname().sysname == "Darwin" then
+--     -- command+f to search
+--     -- nnoremap("<M-f>", "<cmd>lua require('telescope.builtin').live_grep()<cr>", "silent")
+--     --
+--     -- bind command + p to search
+--     -- nnoremap("<M-p>", "<cmd>lua require('telescope.builtin').find_files()<cr>", "silent")
+--     keymap("n", "<M-p>", "<cmd>lua require('telescope.builtin').find_files()<cr>", opts)
+-- end
+--
+-- if vim.loop.os_uname().sysname ~= "Darwin" then
+--     -- ctrl+f to search
+--     -- nnoremap("<C-f>", "<cmd>lua require('telescope.builtin').live_grep()<cr>", "silent")
+--
+--     -- bind ctrl + p to search
+--     nnoremap("<C-p>", "<cmd>lua require('telescope.builtin').find_files()<cr>", "silent")
+-- end
 
 -- ctrl+f to open sessionizer
 if vim.loop.os_uname().sysname == "Darwin" then
     nnoremap("<C-f>", "<cmd>!tmux neww tmux-sessionizer<cr>", "silent")
 end
 
-
-
 -- nnoremap("<M-k>", "<cmd>lua require('telescope.builtin').keymaps()<cr>",
 -- "silent")
 
 -- Show code actions
 nnoremap("ga", "<cmd>lua vim.lsp.buf.code_action()<CR>", "silent")
-
--- nnoremap("<M-i>", "<cmd>lua require('telescope.builtin').commands()<CR>",
--- "silent")
-
--- nnoremap("<leader>v", "<cmd>CHADopen<cr>", "silent")
--- nnoremap("<M-b>", "<cmd>CHADopen<cr>", "silent")
 
 keymap("n", "gD", "vim.diagnostic.open_float(nil, {focus=false})<CR>", opts)
 

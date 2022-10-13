@@ -69,8 +69,10 @@ export ARCHFLAGS="-arch x86_64"
 
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor regexp)
 
+
 # Aliases
 alias vim="$(which nvim)"
+alias vide="$(which neovide)"
 alias ls="$(which exa)"
 # alias lsa="$(which exa -lah)"
 alias tree="$(which exa) --tree"
@@ -83,6 +85,7 @@ alias dcompose=docker-compose
 
 # Exports
 export NCONF="$HOME/.config/nvim/"
+export NEOVIM_BIN="$(which nvim)"
 
 # Go
 GOVER=1.18beta1
@@ -151,8 +154,10 @@ export PATH="$PATH:/Users/nopestack/Library/Application Support/Coursier/bin"
 [ -f "/Users/nopestack/.ghcup/env" ] && source "/Users/nopestack/.ghcup/env" # ghcup-env
 export PATH="/var/folders/sk/tky7ly1s1l9cr5q13pdg5y1h0000gn/T/fnm_multishells/28149_1638569498914/bin":$PATH 
 
+# export NEOVIM_HOME="/Users/nopestack/Library/Application Support/neovim"
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
+# export PATH="$NEOVIM_HOME/bin:$PATH"
 
 bindkey -s ^f "tmux-sessionizer\n"
 
