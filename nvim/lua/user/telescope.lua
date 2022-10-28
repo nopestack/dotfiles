@@ -2,9 +2,12 @@ local status_ok, telescope = pcall(require, "telescope")
 if not status_ok then
     return
 end
+-- Enable telescope fzf native, if installed
+pcall(require('telescope').load_extension, 'fzf')
 
 local actions = require("telescope.actions")
 telescope.load_extension("media_files")
+
 local icons = require("user.icons")
 
 telescope.setup {
@@ -13,7 +16,9 @@ telescope.setup {
         find_files = { theme = "dropdown", previewer = false },
         commands = { theme = "dropdown" },
         keymaps = { theme = "dropdown" },
+        lsp_dynamic_workspace_symbols = { theme = "dropdown" },
         colorscheme = { theme = "dropdown" },
+        command_history = { theme = "dropdown" },
         buffers = { theme = "dropdown", previewer = false },
     },
 

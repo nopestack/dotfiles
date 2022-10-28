@@ -122,6 +122,8 @@ return packer.startup(function()
         "numToStr/Comment.nvim",
         config = function() require("Comment").setup() end,
     }
+    use "preservim/tagbar"
+    --
     -- use "github/copilot.vim"
     use "lukas-reineke/indent-blankline.nvim"
     use 'andymass/vim-matchup'
@@ -141,7 +143,7 @@ return packer.startup(function()
     use "rose-pine/neovim"
     use "rebelot/kanagawa.nvim"
     use "rmehri01/onenord.nvim"
-    use "yashguptaz/calvera-dark.nvim"
+    use "yashguptaz/calvera-dark.nvimq"
     use "RRethy/vim-illuminate"
     use "jacoborus/tender.vim"
     use "rafamadriz/neon"
@@ -175,5 +177,23 @@ return packer.startup(function()
         'andersevenrud/nordic.nvim'
     }
     use { "williamboman/mason.nvim" }
+    use "Abstract-IDE/Abstract-cs"
+    use "ray-x/starry.nvim"
+    use 'NTBBloodbath/doom-one.nvim'
+    use 'kvrohit/rasmus.nvim'
+    use 'tiagovla/tokyodark.nvim'
+    use "yazeed1s/minimal.nvim"
+    use "lewpoly/sherbet.nvim"
+    use "melkster/modicator.nvim"
+    use 'davidosomething/vim-colors-meh'
+    use 'santigo-zero/jetjbp.nvim' -- jetjbp.nvim
+    use "meliora-theme/neovim"
+    use {
+        "mcchrish/zenbones.nvim",
+        -- Optionally install Lush. Allows for more configuration or extending the colorscheme
+        -- If you don't want to install lush, make sure to set g:zenbones_compat = 1
+        -- In Vim, compat mode is turned on as Lush only works in Neovim.
+        requires = "rktjmp/lush.nvim"
+    }
 
 end)

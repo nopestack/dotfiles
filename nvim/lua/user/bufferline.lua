@@ -16,6 +16,7 @@ bufferline.setup({
         -- indicator_icon = "│",
         -- indicator_icon = "▎",
         indicator = {
+            icon = "│",
             -- icon = '▎', -- this should be omitted if indicator style is not 'icon'
             -- style = 'underline',
             style = 'icon',
@@ -31,11 +32,11 @@ bufferline.setup({
         --- Please note some names can/will break the
         --- bufferline so use this at your discretion knowing that it has
         --- some limitations that will *NOT* be fixed.
-        -- name_formatter = function(buf)  -- buf contains a "name", "path" and "bufnr"
+        -- name_formatter = function(buf) -- buf contains a "name", "path" and "bufnr"
         --   -- remove extension from markdown files for example
         --   if buf.name:match('%.md') then
         --     return vim.fn.fnamemodify(buf.name, ':t:r')
-        --   end
+        -- return vim.fn.fnamemodify(buf.name, ':t:r')
         -- end,
         max_name_length = 30,
         max_prefix_length = 30, -- prefix used when a buffer is de-duplicated
@@ -70,12 +71,16 @@ bufferline.setup({
         -- can also be a table containing 2 custom separators
         -- [focused and unfocused]. eg: { '|', '|' }
         -- separator_style = "thin", -- | "thick" | "thin" | { 'any', 'any' },
-        separator_style = "thick", -- | "thick" | "thin" | { 'any', 'any' },
+        -- separator_style = "thin", -- | "thick" | "thin" | { 'any', 'any' },
         enforce_regular_tabs = true,
         always_show_bufferline = true,
         -- sort_by = 'id' | 'extension' | 'relative_directory' | 'directory' | 'tabs' | function(buffer_a, buffer_b)
         --   -- add custom logic
         --   return buffer_a.modified > buffer_b.modified
+        -- end
+        -- sort_by = function(buffer_a, buffer_b)
+        --     -- add custom logic
+        --     return buffer_a.modified > buffer_b.modified
         -- end
     },
     highlights = {
@@ -88,11 +93,11 @@ bufferline.setup({
             bg = { attribute = "bg", highlight = "TabLine" },
         },
 
-        -- buffer_selected = {
-        --   fg = {attribute='fg',highlight='#ff0000'},
-        --   bg = {attribute='bg',highlight='#0000ff'},
-        --   gui = 'none'
-        --   },
+        buffer_selected = {
+            fg = { attribute = 'fg', highlight = '#ff0000' },
+            bg = { attribute = 'bg', highlight = '#0000ff' },
+            -- gui = 'none'
+        },
         buffer_visible = {
             fg = { attribute = "fg", highlight = "TabLine" },
             bg = { attribute = "bg", highlight = "TabLine" },

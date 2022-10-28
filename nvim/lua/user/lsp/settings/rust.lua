@@ -1,3 +1,18 @@
+local rust_tools_status_ok, rust_tools = pcall(require, "rust-tools")
+if not rust_tools_status_ok then
+    return
+end
+
+local keymap = require("user.utils").keymap
+
+local function on_attach(client, bufnr)
+    local on_attach_mod = require("user.lsp.handlers").on_attach
+
+    on_attach_mod(client, bufnr)
+
+    -- keymap("n", "K", rust_tools.hover_actions.hover_actions())
+end
+
 return {
     tools = {
         -- on_initialized = function()
@@ -26,7 +41,8 @@ return {
         },
     },
     server = {
-        on_attach = require("user.lsp.handlers").on_attach,
+        -- on_attach = require("user.lsp.handlers").on_attach,
+        on_attach = on_attach,
         capabilities = require("user.lsp.handlers").capabilities,
 
         settings = {

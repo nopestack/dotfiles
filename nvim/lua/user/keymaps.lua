@@ -69,6 +69,7 @@ nnoremap("<C-q>", ":confirm qall<CR>", "silent")
 
 nnoremap("Y", "yy", "silent")
 
+
 -- To map <Esc> to exit terminal-mode:
 tnoremap("<Esc>", "<C-\\><C-n>")
 
@@ -103,6 +104,10 @@ nnoremap("<C-w>", ":bd<CR>", "silent")
 keymap("n", "<C-b>", ":NvimTreeToggle<CR>", opts)
 keymap("n", "<M-b>", ":NvimTreeToggle<CR>", opts)
 
+-- Remap for dealing with word wrap
+keymap('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+keymap('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+
 -- Ctrl/Cmd + b to open fileexplorer
 -- if vim.loop.os_uname().sysname == "Darwin" then
 --     -- command+b to open file explorer
@@ -127,9 +132,11 @@ keymap("n", "<leader>fw", "<cmd>lua require('telescope.builtin').live_grep()<cr>
 -- nnoremap("<M-d>", "<cmd>lua require('telescope.builtin').buffers()<cr>", "silent")
 -- nnoremap("<leader>t", "<cmd>lua require('telescope.builtin').colorscheme()<cr>", "silent")
 keymap("n", "<leader>ft", "<cmd>lua require('telescope.builtin').colorscheme()<cr>", opts)
-keymap("n", "<leader>fc", "<cmd>lua require('telescope.builtin').commands()<cr>", opts)
+-- keymap("n", "<leader>fc", "<cmd>lua require('telescope.builtin').commands()<cr>", opts)
+-- keymap("n", "<leader>fs", "<cmd>lua require('telescope.builtin').lsp_workspace_symbols()<cr>", opts)
+keymap("n", "<leader>fs", "<cmd>lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<cr>", opts)
+keymap("n", "<leader>fh", "<cmd>lua require('telescope.builtin').command_history()<cr>", opts)
 nnoremap("<leader>c", "<cmd>lua require('telescope.builtin').commands()<cr>", "silent")
-
 
 -- -- command+f to open sessionizer
 -- if vim.loop.os_uname().sysname == "Darwin" then
@@ -164,12 +171,18 @@ end
 
 -- Show code actions
 nnoremap("ga", "<cmd>lua vim.lsp.buf.code_action()<CR>", "silent")
-
-keymap("n", "gD", "vim.diagnostic.open_float(nil, {focus=false})<CR>", opts)
+-- keymap("n", "gD", "vim.diagnostic.open_float(nil, {focus=false})<CR>", opts)
 
 -- nnoremap("gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", "silent")
 -- nnoremap("gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", "silent")
 nnoremap("gd", "<cmd>lua vim.lsp.buf.definition()<CR>", "silent")
 nnoremap("gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", "silent")
 nnoremap("gr", "<cmd>lua vim.lsp.buf.references()<CR>", "silent")
-nnoremap("<leader>T", "<cmd>lua require('lsp_extensions').inlay_hints()<CR>", "silent")
+keymap("n", "<leader>t", ":TagbarToggle<CR>", opts)
+
+
+-- Diagnostic keymaps
+-- keymap('n', '[d', vim.diagnostic.goto_prev, opts)
+-- keymap('n', ']d', vim.diagnostic.goto_next, opts)
+-- keymap('n', '<leader>e', vim.diagnostic.open_float, opts)
+-- keymap('n', '<leader>q', vim.diagnostic.setloclist, opts)
