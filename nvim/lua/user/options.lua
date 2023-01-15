@@ -62,7 +62,6 @@ local options = {
     updatetime = 50,
     completeopt = "menuone,noinsert,noselect",
     termguicolors = true,
-    -- allow auto-indenting depending on file type
     filetype = "on",
 }
 

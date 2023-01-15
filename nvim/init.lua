@@ -21,12 +21,13 @@ require("user.autopairs")
 require("user.lastplace")
 require("user.toggleterm")
 require("user.trouble")
+require("user.modes")
 require("user.neovide")
-require("user.tagbar")
-require("user.modificator")
-
+require("user.symbols")
 
 -- Plugin parking lot
+-- require("user.tagbar")
+-- require("user.modificator")
 -- require("user.navic")
 -- require("user.neo-tree")
 -- require("user.shade")

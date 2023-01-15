@@ -55,6 +55,7 @@ return packer.startup(function()
 
     use "nvim-lua/lsp-status.nvim"
     -- use 'arkav/lualine-lsp-progress'
+    use "lvimuser/lsp-inlayhints.nvim"
 
 
     -- Completions
@@ -75,6 +76,7 @@ return packer.startup(function()
     use { "tanvirtin/vgit.nvim", requires = { "nvim-lua/plenary.nvim" } }
 
     -- UI & navigation
+    use 'folke/lsp-colors.nvim'
     use 'kyazdani42/nvim-web-devicons'
     use 'kyazdani42/nvim-tree.lua'
     -- use {
@@ -122,11 +124,12 @@ return packer.startup(function()
         "numToStr/Comment.nvim",
         config = function() require("Comment").setup() end,
     }
-    use "preservim/tagbar"
-    --
+    -- use "preservim/tagbar"
+    use 'simrat39/symbols-outline.nvim'
     -- use "github/copilot.vim"
     use "lukas-reineke/indent-blankline.nvim"
     use 'andymass/vim-matchup'
+    use "mbbill/undotree"
 
     -- Terminal
     use "akinsho/toggleterm.nvim"
@@ -143,7 +146,6 @@ return packer.startup(function()
     use "rose-pine/neovim"
     use "rebelot/kanagawa.nvim"
     use "rmehri01/onenord.nvim"
-    use "yashguptaz/calvera-dark.nvimq"
     use "RRethy/vim-illuminate"
     use "jacoborus/tender.vim"
     use "rafamadriz/neon"
@@ -160,7 +162,6 @@ return packer.startup(function()
     use "Shatur/neovim-ayu"
     use "katawful/kat.nvim"
     use "kwsp/halcyon-neovim"
-    use "mjlaufer/gruvbox-darker.nvim"
     use "tyrannicaltoucan/vim-quantum"
     use "cesarsl/neo-hybrid.nvim"
     use "marko-cerovac/material.nvim"
@@ -173,6 +174,7 @@ return packer.startup(function()
     use {
         'mastertinner/nvim-quantum',
     }
+    use { 'shaunsingh/oxocarbon.nvim', run = './install.sh' }
     use {
         'andersevenrud/nordic.nvim'
     }
@@ -187,7 +189,6 @@ return packer.startup(function()
     use "melkster/modicator.nvim"
     use 'davidosomething/vim-colors-meh'
     use 'santigo-zero/jetjbp.nvim' -- jetjbp.nvim
-    use "meliora-theme/neovim"
     use {
         "mcchrish/zenbones.nvim",
         -- Optionally install Lush. Allows for more configuration or extending the colorscheme
@@ -196,4 +197,16 @@ return packer.startup(function()
         requires = "rktjmp/lush.nvim"
     }
 
+    use "ramojus/meliora.nvim"
+    use({
+        'mvllow/modes.nvim',
+        tag = 'v0.2.0',
+    })
+
+    use {
+        "jesseleite/nvim-noirbuddy",
+        requires = { "tjdevries/colorbuddy.nvim", branch = "dev" }
+    }
+
+    use 'adrian5/oceanic-next-vim'
 end)

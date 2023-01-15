@@ -78,6 +78,8 @@ local function lsp_keymaps(bufnr)
 
     vim.cmd([[ command! Format execute 'lua vim.lsp.buf.format({ async = true })' ]])
 
+    keymap("n", "<leader>s", ":SymbolsOutline<CR>", opts)
+
     -- update the window number here so that we can map escape to close even
     -- when there are no actions, update the rest of the state later
     -- M._state.winnr = winnr
@@ -114,6 +116,11 @@ M.on_attach = function(client, bufnr)
 
     -- LSP breadcrumbs
     navic.attach(client, bufnr)
+
+
+    if client.name == "tsserver" then
+        require("lsp-inlayhints").on_attach(client, bufnr)
+    end
 
     M.enable_format_on_save()
 end

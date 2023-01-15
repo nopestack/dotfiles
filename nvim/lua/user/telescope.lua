@@ -8,6 +8,8 @@ pcall(require('telescope').load_extension, 'fzf')
 local actions = require("telescope.actions")
 telescope.load_extension("media_files")
 
+local action_layout = require("telescope.actions.layout")
+
 local icons = require("user.icons")
 
 telescope.setup {
@@ -28,6 +30,12 @@ telescope.setup {
                 ["<esc>"] = actions.close,
                 ["<Tab>"] = actions.move_selection_next,
                 ["<S-Tab>"] = actions.move_selection_previous,
+                ["<M-p>"] = action_layout.toggle_preview,
+                ["<C-u>"] = false
+            },
+            n = {
+                -- ["<esc>"] = actions.close,
+                -- ["<M-p>"] = action_layout.toggle_preview
             },
         },
 

@@ -2,7 +2,13 @@ return {
     settings = {
         python = {
             analysis = {
-                typeCheckingMode = "off",
+                typeCheckingMode = "basic",
+                useLibraryCodeForTypes = true,
+                diagnosticMode = "workspace",
+                inlayHints = {
+                    variableTypes = true,
+                    functionReturnTypes = true,
+                },
             },
         },
     },

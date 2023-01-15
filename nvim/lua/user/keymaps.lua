@@ -11,6 +11,11 @@ local term_opts = { silent = true }
 
 -- local keymap = vim.api.nvim_set_keymap
 local keymap = utils.keymap
+
+local meta_key = "M"
+if vim.g.neovide then
+    meta_key = "D"
+end
 --
 --          Mode  | Norm | Ins | Cmd | Vis | Sel | Opr | Term | Lang | ~
 -- Command        +------+-----+-----+-----+-----+-----+------+------+ ~
@@ -89,20 +94,32 @@ nnoremap("<C-J>", "<C-W><C-J>")
 nnoremap("<C-K>", "<C-W><C-K>")
 nnoremap("<C-L>", "<C-W><C-L>")
 nnoremap("<C-H>", "<C-W><C-H>")
---
+
 -- Buffer traversal
-nnoremap("<Tab>", ":bnext<CR>", "silent")
-nnoremap("<S-Tab>", ":bprev<CR>", "silent")
---
+-- nnoremap("<Tab>", ":bnext<CR>", "silent")
+-- nnoremap("<S-Tab>", ":bprev<CR>", "silent")
+
+-- Alt + Tab and Alt + Shift + Tab
+nnoremap("<A-Tab>", ":bnext<CR>", "silent")
+-- nnoremap("<C-Tab>", ":bnext<CR>", "silent")
+nnoremap("<A-S-Tab>", ":bprev<CR>", "silent")
+
+-- Ctrl + Tab and Ctrl + Shift + Tab
+-- NOTE: doesnt work
+-- nnoremap("<C-Tab>", ":bnext<CR>", "silent")
+-- nnoremap("<C-S-Tab>", ":bprev<CR>", "silent")
+
 -- "Close buffer
 -- " Using command+w and ctrl+w respectively
 nnoremap("<C-w>", ":bd<CR>", "silent")
 --
--- TODO: debug M-w mapping to close windows
--- nnoremap("<M-w>", ":bd<CR>", "silent")
+-- TODO: debug M-w mapping to close windows on TUI
+if vim.g.neovide then
+    nnoremap("<" .. meta_key .. "-w>", ":bd<CR>", "silent")
+end
 
 keymap("n", "<C-b>", ":NvimTreeToggle<CR>", opts)
-keymap("n", "<M-b>", ":NvimTreeToggle<CR>", opts)
+keymap("n", "<" .. meta_key .. "-b>", ":NvimTreeToggle<CR>", opts)
 
 -- Remap for dealing with word wrap
 keymap('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
@@ -127,16 +144,16 @@ keymap('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 -- nnoremap("<leader>ff", "<cmd>lua require('telescope.builtin').find_files()<cr>", "silent")
 keymap("n", "<leader>ff", "<cmd>lua require('telescope.builtin').find_files()<cr>", opts)
 keymap("n", "<leader>fb", "<cmd>lua require('telescope.builtin').buffers()<cr>", opts)
--- nnoremap("<leader>fg", "<cmd>lua require('telescope.builtin').live_grep()<cr>", "silent")
 keymap("n", "<leader>fw", "<cmd>lua require('telescope.builtin').live_grep()<cr>", opts)
 -- nnoremap("<M-d>", "<cmd>lua require('telescope.builtin').buffers()<cr>", "silent")
--- nnoremap("<leader>t", "<cmd>lua require('telescope.builtin').colorscheme()<cr>", "silent")
-keymap("n", "<leader>ft", "<cmd>lua require('telescope.builtin').colorscheme()<cr>", opts)
+nnoremap("<leader>ft", "<cmd>lua require('telescope.builtin').colorscheme()<cr>", "silent")
 -- keymap("n", "<leader>fc", "<cmd>lua require('telescope.builtin').commands()<cr>", opts)
 -- keymap("n", "<leader>fs", "<cmd>lua require('telescope.builtin').lsp_workspace_symbols()<cr>", opts)
 keymap("n", "<leader>fs", "<cmd>lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<cr>", opts)
 keymap("n", "<leader>fh", "<cmd>lua require('telescope.builtin').command_history()<cr>", opts)
 nnoremap("<leader>c", "<cmd>lua require('telescope.builtin').commands()<cr>", "silent")
+
+nnoremap("<leader>b", ":Lex<CR>", "silent")
 
 -- -- command+f to open sessionizer
 -- if vim.loop.os_uname().sysname == "Darwin" then
@@ -178,7 +195,8 @@ nnoremap("ga", "<cmd>lua vim.lsp.buf.code_action()<CR>", "silent")
 nnoremap("gd", "<cmd>lua vim.lsp.buf.definition()<CR>", "silent")
 nnoremap("gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", "silent")
 nnoremap("gr", "<cmd>lua vim.lsp.buf.references()<CR>", "silent")
-keymap("n", "<leader>t", ":TagbarToggle<CR>", opts)
+-- keymap("n", "<leader>t", ":TagbarToggle<CR>", opts)
+keymap("n", "<leader>t", ":Telescope<CR>", opts)
 
 
 -- Diagnostic keymaps

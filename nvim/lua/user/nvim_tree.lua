@@ -17,7 +17,7 @@ nvim_tree.setup({
     --    nvim_tree_highlight_opened_files = true,
     create_in_closed_folder = true,
     filters = {
-        custom = { ".git" },
+        -- custom = { ".git" },
         exclude = { ".gitignore" },
     },
     diagnostics = {
@@ -91,6 +91,7 @@ nvim_tree.setup({
     },
     view = {
         side = "right",
+        -- side = "left",
         width = 40,
         -- height = 30,
         adaptive_size = true,

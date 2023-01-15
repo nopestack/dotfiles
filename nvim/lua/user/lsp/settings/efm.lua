@@ -1,4 +1,3 @@
-
 local efm = {
     -- filetypes = { "lua", "python" },
     filetypes = { "solidity" },
