@@ -103,12 +103,11 @@ require('rose-pine').setup({
 -- vim.cmd [[colorscheme sonokai]]
 -- vim.cmd [[colorscheme plain]]
 
-vim.g.sherbet_italic_keywords = true
-vim.g.sherbet_italic_functions = false
-vim.g.sherbet_italic_comments = true
-vim.g.sherbet_italic_loops = true
-vim.g.sherbet_italic_conditionals = true
-
+-- vim.g.sherbet_italic_keywords = true
+-- vim.g.sherbet_italic_functions = false
+-- vim.g.sherbet_italic_comments = true
+-- vim.g.sherbet_italic_loops = true
+-- vim.g.sherbet_italic_conditionals = true
 -- vim.cmd("colorscheme hybrid")
 -- vim.cmd("colorscheme nightfox")
 -- vim.cmd("colorscheme kanagawa")
@@ -185,12 +184,34 @@ vim.cmd([[
 ]])
 
 function ColorMyPencils(color)
-
-    color = color or "sherbet"
+    color = color or "hybrid"
     vim.cmd.colorscheme(color)
 
-    vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-    vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+    if vim.cmd.colorscheme == "plain" then
+        vim.api.nvim_set_hl(0, "Normal", { bg = "280" })
+        vim.api.nvim_set_hl(0, "NormalFloat", { bg = "280" })
+    end
+
+    if vim.cmd.colorscheme == "rose-pine" then
+        vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+        vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+    end
+
+    vim.api.nvim_set_hl(0, "LineNr", { fg = "#777777" })
+    vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#cccccc" })
 end
 
 ColorMyPencils()
+
+function ColorOverrides()
+    vim.api.nvim_set_hl(0, "SignColumn", { fg = "280" })
+    vim.api.nvim_set_hl(0, "Search", { fg = "peru" })
+    vim.api.nvim_set_hl(0, "Comment", { fg = "#999999" })
+    vim.api.nvim_set_hl(0, "ColorColumn", { bg = "#202020" })
+end
+
+-- vim.api.nvim_create_autocmd('ColorOverrides', {
+--     callback = function()
+--         ColorOverrides()
+--     end,
+-- })

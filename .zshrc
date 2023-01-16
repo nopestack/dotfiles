@@ -109,16 +109,11 @@ WORKSPACE="$HOME/Workspace"
 # Source https://jdhao.github.io/2018/10/19/tmux_nvim_true_color/
 #export TERM=xterm-256color
 
-
-#export PATH="$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-#export PATH="/usr/local/sbin:$PATH"
-
 YARN_BIN="$HOME/.yarn/bin"
 YARN_MODULES="$HOME/.config/yarn/global/node_modules/.bin"
 LOCAL_BIN="$HOME/.local/bin"
-PYENV_BIN="$PYENV_ROOT/bin"
 
-export PATH="$YARN_BIN:$YARN_MODULES:$LOCAL_BIN:$PYENV_BIN:$PATH:$GOBIN"
+export PATH="$YARN_BIN:$YARN_MODULES:$LOCAL_BIN:$PATH:$GOBIN"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -133,12 +128,6 @@ export NVM_DIR="$HOME/.nvm"
 
 # helper to draw graphs with graphviz
 alias pygraph='find . -iname "*.py" | xargs pyan --dot --colored --no-defines --grouped | dot -Tpng -Granksep=1.5 | open -f -a /Applications/Preview.app'
-
-# Wasmer
-export WASMER_DIR="/Users/nopestack/.wasmer"
-[ -s "$WASMER_DIR/wasmer.sh" ] && source "$WASMER_DIR/wasmer.sh"
-
-eval "$(pyenv init -)"
 
 export PATH="$HOME/.poetry/bin:$PATH"
 
@@ -178,4 +167,6 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
+
+conda deactivate
 

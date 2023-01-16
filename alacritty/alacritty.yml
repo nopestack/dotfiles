@@ -67,7 +67,7 @@ window:
   #
   # Window opacity as a floating point number from `0.0` to `1.0`.
   # The value `0.0` is completely transparent and `1.0` is opaque.
-  opacity: 1.0
+  opacity: 0.8
 
   # Startup Mode (changes require restart)
   #
@@ -99,13 +99,6 @@ window:
   # and `light`. Set this to `None` to use the default theme variant.
   #gtk_theme_variant: None
 
-scrolling:
-  # Maximum number of lines in the scrollback buffer.
-  # Specifying '0' will disable scrolling.
-  #history: 10000
-
-  # Scrolling distance multiplier.
-  multiplier: 3
 
 # Font configuration
 font:
@@ -117,8 +110,9 @@ font:
     #   - (macOS) Menlo
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
-    family: Iosevka Nerd Font
-    # family: FiraMono Nerd Font
+    # family: IBM Plex Mono Nerd Font
+    # family: Iosevka Nerd Font
+    family: FiraMono Nerd Font
 
     # The `style` can be specified to pick a specific face.
     style: Regular
@@ -157,7 +151,7 @@ font:
     #style: Bold Italic
 
   # Point size
-  size: 16.0
+  size: 15.4
 
   # Offset is the extra space around each character. `offset.y` can be thought
   # of as modifying the line spacing, and `offset.x` as modifying the letter
@@ -177,7 +171,7 @@ font:
   #
   # Thin strokes are suitable for retina displays, but for non-retina screens
   # it is recommended to set `use_thin_strokes` to `false`.
-  use_thin_strokes: true
+  # use_thin_strokes: true
 
   # Use built-in font for box drawing characters.
   #
@@ -187,7 +181,7 @@ font:
   #builtin_box_drawing: true
 
 # If `true`, bold text is drawn using the bright color variants.
-draw_bold_text_with_bright_colors: false
+# draw_bold_text_with_bright_colors: false
 
 # Colors (Tomorrow Night)
 colors:
@@ -384,7 +378,7 @@ colors:
 
 cursor:
   # Cursor style
-  #style:
+  style:
     # Cursor shape
     #
     # Values for `shape`:

@@ -61,7 +61,8 @@ end
 -- keymap('n', '<right>', '<nop>', opts)
 
 -- Reload config
-nnoremap("<leader><CR>", ":so ~/.config/nvim/init.lua<CR>")
+-- nnoremap("<leader><CR>", ":so ~/.config/nvim/init.lua<CR>")
+keymap("n", "<leader><CR>", ":so ~/.config/nvim/init.lua<CR>", opts)
 
 -- save file
 nnoremap("<leader>w", ":w<CR>", "silent")
@@ -69,14 +70,16 @@ nnoremap("<M-s>", ":w<CR>", "silent")
 
 -- nnoremap("<leader>n", ":Ex<CR>", "silent")
 -- nnoremap("<leader>b", ":Vex<CR>", "silent")
+-- nnoremap("<leader>b", ":Lex<CR>", "silent")
 
-nnoremap("<C-q>", ":confirm qall<CR>", "silent")
+-- nnoremap("<C-q>", ":confirm qall<CR>", "silent")
+keymap("n", "<C-q>", ":confirm qall<CR>", opts)
 
+-- Copy entire line with Y
 nnoremap("Y", "yy", "silent")
 
-
 -- To map <Esc> to exit terminal-mode:
-tnoremap("<Esc>", "<C-\\><C-n>")
+nnoremap("<Esc>", "<C-\\><C-n>")
 
 -- clear search
 nnoremap("<leader><space>", ":noh<CR>", "silent")
@@ -153,7 +156,6 @@ keymap("n", "<leader>fs", "<cmd>lua require('telescope.builtin').lsp_dynamic_wor
 keymap("n", "<leader>fh", "<cmd>lua require('telescope.builtin').command_history()<cr>", opts)
 nnoremap("<leader>c", "<cmd>lua require('telescope.builtin').commands()<cr>", "silent")
 
-nnoremap("<leader>b", ":Lex<CR>", "silent")
 
 -- -- command+f to open sessionizer
 -- if vim.loop.os_uname().sysname == "Darwin" then
@@ -195,9 +197,12 @@ nnoremap("ga", "<cmd>lua vim.lsp.buf.code_action()<CR>", "silent")
 nnoremap("gd", "<cmd>lua vim.lsp.buf.definition()<CR>", "silent")
 nnoremap("gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", "silent")
 nnoremap("gr", "<cmd>lua vim.lsp.buf.references()<CR>", "silent")
--- keymap("n", "<leader>t", ":TagbarToggle<CR>", opts)
+-- keymap("n", "<leader>t", ":TagbarTogge<CR>", opts)
 keymap("n", "<leader>t", ":Telescope<CR>", opts)
+keymap("n", "<leader>u", ":UndotreeToggle<CR>", opts)
 
+-- indeed the greatest remap ever
+keymap("x", "<leader>p", "\"_dP", opts)
 
 -- Diagnostic keymaps
 -- keymap('n', '[d', vim.diagnostic.goto_prev, opts)
