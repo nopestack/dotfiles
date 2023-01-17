@@ -74,6 +74,7 @@ vim.opt.shortmess:append "c"
 vim.g.transparency = true
 
 vim.g.border_style = "rounded"
+
 vim.g.markdown_fenced_languages = {
     "bash=sh",
     "javascript",

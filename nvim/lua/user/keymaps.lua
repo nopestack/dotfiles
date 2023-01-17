@@ -9,8 +9,7 @@ local opts = {
 
 local term_opts = { silent = true }
 
--- local keymap = vim.api.nvim_set_keymap
-local keymap = utils.keymap
+local keymap = vim.api.nvim_set_keymap
 
 local meta_key = "M"
 if vim.g.neovide then
@@ -198,11 +197,15 @@ nnoremap("gd", "<cmd>lua vim.lsp.buf.definition()<CR>", "silent")
 nnoremap("gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", "silent")
 nnoremap("gr", "<cmd>lua vim.lsp.buf.references()<CR>", "silent")
 -- keymap("n", "<leader>t", ":TagbarTogge<CR>", opts)
+
 keymap("n", "<leader>t", ":Telescope<CR>", opts)
 keymap("n", "<leader>u", ":UndotreeToggle<CR>", opts)
 
 -- indeed the greatest remap ever
+-- when pasting with <leader>p, it doesnt swap the clipboard with the replaced text
 keymap("x", "<leader>p", "\"_dP", opts)
+-- keymap("n", "<leader>b", vim.cmd.Ex)
+
 
 -- Diagnostic keymaps
 -- keymap('n', '[d', vim.diagnostic.goto_prev, opts)

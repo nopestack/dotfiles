@@ -8,7 +8,8 @@ local cmd = vim.cmd
 
 -- vim.cmd [[au BufNewFile,BufRead *.sol setfiletype solidity]]
 
-local keymap = vim.api.nvim_set_keymap
+-- local keymap = vim.api.nvim_set_keymap
+local keymap = vim.keymap.set
 
 M.keymap = keymap
 M.buf_keymap = vim.api.nvim_buf_set_keymap
