@@ -66,8 +66,6 @@ function AppyColorOverrides()
 
 end
 
--- vim.cmd [[let g:everforest_background = 'hard']]
-
 function ColorMyPencils(color)
     color = color or "everforest"
     vim.cmd.colorscheme(color)
@@ -76,6 +74,40 @@ function ColorMyPencils(color)
         vim.api.nvim_set_hl(0, "Normal", { bg = "280" })
         vim.api.nvim_set_hl(0, "NormalFloat", { bg = "280" })
         vim.api.nvim_set_hl(0, "ColorColumn", { bg = "#202020" })
+
+    elseif vim.cmd.colorscheme == "everforest" then
+        vim.g.everforest_diagnostic_line_highlight = 1
+        vim.g.everforest_background = 'hard'
+        vim.g.everforest_ui_contrast = 'high'
+        vim.g.everforest_diagnostic_text_highlight = 1
+        vim.g.everforest_diagnostic_virtual_text = "colored"
+
+        vim.fn.sign_define({
+            {
+                name = 'DiagnosticSignError',
+                text = '',
+                texthl = 'DiagnosticSignError',
+                linehl = 'ErrorLine',
+            },
+            {
+                name = 'DiagnosticSignWarn',
+                text = '',
+                texthl = 'DiagnosticSignWarn',
+                linehl = 'WarningLine',
+            },
+            {
+                name = 'DiagnosticSignInfo',
+                text = '',
+                texthl = 'DiagnosticSignInfo',
+                linehl = 'InfoLine',
+            },
+            {
+                name = 'DiagnosticSignHint',
+                text = '',
+                texthl = 'DiagnosticSignHint',
+                linehl = 'HintLine',
+            },
+        })
 
     elseif vim.cmd.colorscheme == "rose-pine" then
         vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
