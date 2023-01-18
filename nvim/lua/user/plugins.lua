@@ -37,12 +37,33 @@ return packer.startup(function()
     use "rmagatti/session-lens"
 
     -- Language Server plugins
-    use "williamboman/nvim-lsp-installer"
+    --
+    -- use "williamboman/nvim-lsp-installer"
+    -- use {
+    --     "neovim/nvim-lspconfig",
+    -- }
+
+
     use {
-        "neovim/nvim-lspconfig",
-        --        requires = {
-        --            "ray-x/go.nvim"
-        --        },
+        'VonHeikemen/lsp-zero.nvim',
+        requires = {
+            -- LSP Support
+            { 'neovim/nvim-lspconfig' }, -- Required
+            { 'williamboman/mason.nvim' }, -- Optional
+            { 'williamboman/mason-lspconfig.nvim' }, -- Optional
+
+            -- Autocompletion
+            { 'hrsh7th/nvim-cmp' }, -- Required
+            { 'hrsh7th/cmp-nvim-lsp' }, -- Required
+            { 'hrsh7th/cmp-buffer' }, -- Optional
+            { 'hrsh7th/cmp-path' }, -- Optional
+            { 'saadparwaiz1/cmp_luasnip' }, -- Optional
+            { 'hrsh7th/cmp-nvim-lua' }, -- Optional
+
+            -- Snippets
+            { 'L3MON4D3/LuaSnip' }, -- Required
+            { 'rafamadriz/friendly-snippets' }, -- Optional
+        }
     }
 
     use "simrat39/rust-tools.nvim"
@@ -60,55 +81,34 @@ return packer.startup(function()
 
     -- Completions
     use "hrsh7th/nvim-cmp"
-    use "hrsh7th/cmp-nvim-lsp"
-    use "hrsh7th/cmp-buffer"
-
-    use "hrsh7th/vim-vsnip"
-    use "hrsh7th/cmp-vsnip"
+    -- use "hrsh7th/cmp-nvim-lsp"
+    -- use "hrsh7th/cmp-buffer"
+    --
+    -- use "hrsh7th/vim-vsnip"
+    -- use "hrsh7th/cmp-vsnip"
 
     -- git management
     use {
         "lewis6991/gitsigns.nvim",
-        requires = { "nvim-lua/plenary.nvim" },
         config = function() require("gitsigns").setup {} end,
     }
 
-    use { "tanvirtin/vgit.nvim", requires = { "nvim-lua/plenary.nvim" } }
+    use { "tanvirtin/vgit.nvim" }
 
     -- UI & navigation
     use 'folke/lsp-colors.nvim'
     use 'kyazdani42/nvim-web-devicons'
     use 'kyazdani42/nvim-tree.lua'
-    -- use {
-    --     "nvim-neo-tree/neo-tree.nvim",
-    --     branch = "v2.x",
-    --     requires = {
-    --         "nvim-lua/plenary.nvim",
-    --         "kyazdani42/nvim-web-devicons", -- not strictly required, but recommended
-    --         "MunifTanjim/nui.nvim",
-    --     }
-    -- }
-
-    use 'sunjon/shade.nvim'
-
     use {
         "akinsho/bufferline.nvim",
         tag = "v2.*",
     }
-
-    use "folke/which-key.nvim"
-
-    -- use {
-    --     "narutoxy/dim.lua",
-    --     config = function() require("dim").setup({}) end,
-    -- }
-
+    --
     -- Statusline
     use 'beauwilliams/statusline.lua'
+    --
     -- use "nvim-lualine/lualine.nvim"
     -- use 'feline-nvim/feline.nvim'
-
-    use "SmiteshP/nvim-navic"
 
     use {
         "folke/trouble.nvim",
@@ -189,14 +189,6 @@ return packer.startup(function()
     use "melkster/modicator.nvim"
     use 'davidosomething/vim-colors-meh'
     use 'santigo-zero/jetjbp.nvim' -- jetjbp.nvim
-    use {
-        "mcchrish/zenbones.nvim",
-        -- Optionally install Lush. Allows for more configuration or extending the colorscheme
-        -- If you don't want to install lush, make sure to set g:zenbones_compat = 1
-        -- In Vim, compat mode is turned on as Lush only works in Neovim.
-        requires = "rktjmp/lush.nvim"
-    }
-
     use "ramojus/meliora.nvim"
     use({
         'mvllow/modes.nvim',

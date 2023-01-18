@@ -1,5 +1,7 @@
 require("mapx").setup({ global = true })
 
+-- TODO: eliminate dep on mapx
+
 local utils = require("user.utils")
 
 local opts = {
@@ -9,7 +11,12 @@ local opts = {
 
 local term_opts = { silent = true }
 
-local keymap = vim.api.nvim_set_keymap
+local keymap = vim.keymap.set
+
+local nmap = function(lhs, rhs)
+    keymap("n", lhs, rhs, opts)
+end
+
 
 local meta_key = "M"
 if vim.g.neovide then
@@ -61,50 +68,60 @@ end
 
 -- Reload config
 -- nnoremap("<leader><CR>", ":so ~/.config/nvim/init.lua<CR>")
-keymap("n", "<leader><CR>", ":so ~/.config/nvim/init.lua<CR>", opts)
+nmap("<leader><CR>", ":so ~/.config/nvim/init.lua<CR>")
 
 -- save file
-nnoremap("<leader>w", ":w<CR>", "silent")
-nnoremap("<M-s>", ":w<CR>", "silent")
+nmap("<leader>w", ":w<CR>")
+nmap("<M-s>", ":w<CR>")
 
 -- nnoremap("<leader>n", ":Ex<CR>", "silent")
 -- nnoremap("<leader>b", ":Vex<CR>", "silent")
 -- nnoremap("<leader>b", ":Lex<CR>", "silent")
 
 -- nnoremap("<C-q>", ":confirm qall<CR>", "silent")
-keymap("n", "<C-q>", ":confirm qall<CR>", opts)
+nmap("<C-q>", ":confirm qall<CR>")
 
 -- Copy entire line with Y
-nnoremap("Y", "yy", "silent")
+nmap("Y", "yy")
 
 -- To map <Esc> to exit terminal-mode:
-nnoremap("<Esc>", "<C-\\><C-n>")
+nmap("<Esc>", "<C-\\><C-n>")
+
+keymap("n", '<leader><space>', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })
+keymap("n", '<leader>/', function()
+    -- You can pass additional configuration to telescope to change theme, layout, etc.
+    require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
+        winblend = 10,
+        previewer = false,
+    })
+end, { desc = '[/] Fuzzily search in current buffer]' })
 
 -- clear search
-nnoremap("<leader><space>", ":noh<CR>", "silent")
+keymap("n", "<leader>n", ":noh<CR>", opts)
+keymap('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
 
 inoremap("<Tab>", [[pumvisible() ? "\<C-n>" : "\<Tab>"]], "silent", "expr")
 inoremap("<S-Tab>", [[pumvisible() ? "\<C-p>" : "\<S-Tab>"]], "silent", "expr")
 
 -- " Search mappings: These will make it so that going to the next one in a
 -- " search will center on the line it's found in.
-nnoremap("n", "nzzzv")
-nnoremap("N", "Nzzzv")
+nmap("n", "nzzzv")
+nmap("N", "Nzzzv")
 
 -- Split navigation
-nnoremap("<C-J>", "<C-W><C-J>")
-nnoremap("<C-K>", "<C-W><C-K>")
-nnoremap("<C-L>", "<C-W><C-L>")
-nnoremap("<C-H>", "<C-W><C-H>")
+nmap("<C-J>", "<C-W><C-J>")
+nmap("<C-K>", "<C-W><C-K>")
+nmap("<C-L>", "<C-W><C-L>")
+nmap("<C-H>", "<C-W><C-H>")
 
 -- Buffer traversal
 -- nnoremap("<Tab>", ":bnext<CR>", "silent")
 -- nnoremap("<S-Tab>", ":bprev<CR>", "silent")
 
 -- Alt + Tab and Alt + Shift + Tab
-nnoremap("<A-Tab>", ":bnext<CR>", "silent")
+nmap("<A-Tab>", ":bnext<CR>")
 -- nnoremap("<C-Tab>", ":bnext<CR>", "silent")
-nnoremap("<A-S-Tab>", ":bprev<CR>", "silent")
+nmap("<A-S-Tab>", ":bprev<CR>")
 
 -- Ctrl + Tab and Ctrl + Shift + Tab
 -- NOTE: doesnt work
@@ -113,11 +130,11 @@ nnoremap("<A-S-Tab>", ":bprev<CR>", "silent")
 
 -- "Close buffer
 -- " Using command+w and ctrl+w respectively
-nnoremap("<C-w>", ":bd<CR>", "silent")
+nmap("<C-w>", ":bd<CR>")
 --
 -- TODO: debug M-w mapping to close windows on TUI
 if vim.g.neovide then
-    nnoremap("<" .. meta_key .. "-w>", ":bd<CR>", "silent")
+    nmap("<" .. meta_key .. "-w>", ":bd<CR>")
 end
 
 keymap("n", "<C-b>", ":NvimTreeToggle<CR>", opts)
@@ -145,10 +162,11 @@ keymap('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
 -- nnoremap("<leader>ff", "<cmd>lua require('telescope.builtin').find_files()<cr>", "silent")
 keymap("n", "<leader>ff", "<cmd>lua require('telescope.builtin').find_files()<cr>", opts)
-keymap("n", "<leader>fb", "<cmd>lua require('telescope.builtin').buffers()<cr>", opts)
+-- keymap("n", "<leader>fb", "<cmd>lua require('telescope.builtin').buffers()<cr>", opts)
 keymap("n", "<leader>fw", "<cmd>lua require('telescope.builtin').live_grep()<cr>", opts)
 -- nnoremap("<M-d>", "<cmd>lua require('telescope.builtin').buffers()<cr>", "silent")
-nnoremap("<leader>ft", "<cmd>lua require('telescope.builtin').colorscheme()<cr>", "silent")
+
+nmap("<leader>ft", "<cmd>lua require('telescope.builtin').colorscheme()<cr>")
 -- keymap("n", "<leader>fc", "<cmd>lua require('telescope.builtin').commands()<cr>", opts)
 -- keymap("n", "<leader>fs", "<cmd>lua require('telescope.builtin').lsp_workspace_symbols()<cr>", opts)
 keymap("n", "<leader>fs", "<cmd>lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<cr>", opts)
@@ -193,9 +211,14 @@ nnoremap("ga", "<cmd>lua vim.lsp.buf.code_action()<CR>", "silent")
 
 -- nnoremap("gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", "silent")
 -- nnoremap("gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", "silent")
-nnoremap("gd", "<cmd>lua vim.lsp.buf.definition()<CR>", "silent")
-nnoremap("gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", "silent")
-nnoremap("gr", "<cmd>lua vim.lsp.buf.references()<CR>", "silent")
+-- nnoremap("gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", "silent")
+-- nnoremap("gd", "<cmd>lua vim.lsp.buf.definition()<CR>", "silent")
+-- nnoremap("gr", "<cmd>lua vim.lsp.buf.references()<CR>", "silent")
+
+keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
+keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
+keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
+
 -- keymap("n", "<leader>t", ":TagbarTogge<CR>", opts)
 
 keymap("n", "<leader>t", ":Telescope<CR>", opts)
@@ -204,8 +227,9 @@ keymap("n", "<leader>u", ":UndotreeToggle<CR>", opts)
 -- indeed the greatest remap ever
 -- when pasting with <leader>p, it doesnt swap the clipboard with the replaced text
 keymap("x", "<leader>p", "\"_dP", opts)
--- keymap("n", "<leader>b", vim.cmd.Ex)
 
+-- open netrw
+vim.keymap.set("n", "<leader>b", vim.cmd.Lex)
 
 -- Diagnostic keymaps
 -- keymap('n', '[d', vim.diagnostic.goto_prev, opts)
