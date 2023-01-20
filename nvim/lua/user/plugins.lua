@@ -1,9 +1,9 @@
-vim.cmd([[
-    augroup packer_user_config
-        autocmd!
-        autocmd BufWritePost plugins.lua source <afile> | PackerSync
-    augroup end
-]])
+-- vim.cmd([[
+--     augroup packer_user_config
+--         autocmd!
+--         autocmd BufWritePost plugins.lua source <afile> | PackerSync
+--     augroup end
+-- ]])
 
 local status_ok, packer = pcall(require, "packer")
 if not status_ok then
@@ -25,6 +25,8 @@ return packer.startup(function()
     use "nvim-lua/popup.nvim"
     use "nvim-lua/plenary.nvim"
     use "b0o/mapx.nvim"
+
+    -- Telescope
     use "nvim-telescope/telescope.nvim"
     use "nvim-telescope/telescope-media-files.nvim"
     use "tom-anders/telescope-vim-bookmarks.nvim"
@@ -34,8 +36,8 @@ return packer.startup(function()
 
     -- Session
     use { "rmagatti/auto-session", branch = "dir-changed-fixes" }
-    use "rmagatti/session-lens"
 
+    -- use "rmagatti/session-lens"
     -- Language Server plugins
     --
     -- use "williamboman/nvim-lsp-installer"
@@ -44,6 +46,7 @@ return packer.startup(function()
     -- }
 
 
+    -- LSP Setup
     use {
         'VonHeikemen/lsp-zero.nvim',
         requires = {
@@ -69,34 +72,23 @@ return packer.startup(function()
     use "simrat39/rust-tools.nvim"
     use "Saecki/crates.nvim"
 
-    use "nvim-lua/lsp_extensions.nvim"
     use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }
     use "nvim-treesitter/nvim-treesitter-context"
-    use "jose-elias-alvarez/null-ls.nvim"
 
-    use "nvim-lua/lsp-status.nvim"
-    -- use 'arkav/lualine-lsp-progress'
-    use "lvimuser/lsp-inlayhints.nvim"
+    -- use "nvim-lua/lsp_extensions.nvim"
 
-
-    -- Completions
-    use "hrsh7th/nvim-cmp"
-    -- use "hrsh7th/cmp-nvim-lsp"
-    -- use "hrsh7th/cmp-buffer"
-    --
-    -- use "hrsh7th/vim-vsnip"
-    -- use "hrsh7th/cmp-vsnip"
+    -- use "jose-elias-alvarez/null-ls.nvim"
+    -- use "nvim-lua/lsp-status.nvim"
 
     -- git management
     use {
         "lewis6991/gitsigns.nvim",
         config = function() require("gitsigns").setup {} end,
     }
-
     use { "tanvirtin/vgit.nvim" }
 
     -- UI & navigation
-    use 'folke/lsp-colors.nvim'
+    -- use 'folke/lsp-colors.nvim'
     use 'kyazdani42/nvim-web-devicons'
     use 'kyazdani42/nvim-tree.lua'
     use {
@@ -115,7 +107,9 @@ return packer.startup(function()
         config = function() require("trouble").setup {} end,
     }
 
-    use "onsails/lspkind.nvim"
+    use "github/copilot.vim"
+
+    -- use "onsails/lspkind.nvim"
 
     -- Misc utilities
     use "windwp/nvim-autopairs"
@@ -124,15 +118,17 @@ return packer.startup(function()
         "numToStr/Comment.nvim",
         config = function() require("Comment").setup() end,
     }
-    -- use "preservim/tagbar"
+
+    use({
+        "luukvbaal/statuscol.nvim",
+        config = function() require("statuscol").setup() end
+    })
+
     use 'simrat39/symbols-outline.nvim'
-    -- use "github/copilot.vim"
+
     use "lukas-reineke/indent-blankline.nvim"
     use 'andymass/vim-matchup'
     use "mbbill/undotree"
-
-    -- Terminal
-    use "akinsho/toggleterm.nvim"
 
     -- Colorschemes
     use "folke/tokyonight.nvim"
@@ -165,7 +161,6 @@ return packer.startup(function()
     use "tyrannicaltoucan/vim-quantum"
     use "cesarsl/neo-hybrid.nvim"
     use "marko-cerovac/material.nvim"
-    use 'chriskempson/base16-vim'
     use { "catppuccin/nvim", as = "catppuccin" }
     use 'frenzyexists/aquarium-vim'
     use 'kdheepak/monochrome.nvim'

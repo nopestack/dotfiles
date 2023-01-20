@@ -1,7 +1,8 @@
 if vim.g.neovide then
     print("Neovide up and running")
     -- vim.o.guifont="Fira Mono:h17"
-    vim.o.guifont = "IBM Plex Mono:h16"
+    -- vim.o.guifont = "IBM Plex Mono:h16"
+    vim.o.guifont = "Inconsolata:h17"
     vim.g.neovide_input_use_logo = true
     -- vim.g.neovide_input_macos_alt_is_meta = false
     -- vim.g.neovide_scale_factor = 1.4

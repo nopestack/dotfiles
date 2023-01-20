@@ -68,10 +68,17 @@ lsp.configure('sumneko_lua', {
             },
             -- Do not send telemetry data containing a randomized but unique identifier
             telemetry = { enable = false },
+            completion = {
+                autoRequire = true,
+            }
         }
     }
 })
 
+
+local py_opts = require("user.lsp.servers.rust")
+
+lsp.configure("pyright", py_opts)
 
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
 
@@ -207,6 +214,13 @@ local lsp_rust = lsp.build_options("rust_analyzer", {
             primeCaches = {
                 numThreads = 4,
             },
+            diagnostics = {
+                enable = true,
+                experimental = {
+                    enable = true,
+                },
+            },
+
         },
     },
 })

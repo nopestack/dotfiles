@@ -1,4 +1,5 @@
-vim.g.nvcode_termcolors = 256
+local utils = require("user.utils")
+
 
 -- checks if your terminal has 24-bit color support
 vim.cmd([[
@@ -19,6 +20,7 @@ end
 require('noirbuddy').setup {
     preset = 'kiwi',
 }
+
 
 require('rose-pine').setup({
     dark_variant = 'moon',
@@ -45,13 +47,13 @@ require('rose-pine').setup({
     },
 })
 
-function AppyColorOverrides()
+local function apply_color_overrides()
     vim.cmd([[
-    hi SignColumn ctermbg=280 
-    hi LineNr guifg=#777777    ctermbg=NONE
-    hi CursorLineNr    guifg=#cccccc    ctermbg=NONE
-    hi Search guibg=peru guifg=peru 
-    hi Comment         guifg=#999999 gui=italic
+    " hi SignColumn ctermbg=280 
+    " hi LineNr guifg=#777777    ctermbg=NONE
+    " hi CursorLineNr    guifg=#cccccc    ctermbg=NONE
+    " hi Search guibg=peru guifg=peru 
+    " hi Comment         guifg=#999999 gui=italic
 
     highlight! DiagnosticLineNrError guibg=#51202A guifg=#FF0000
     highlight! DiagnosticLineNrWarn guibg=#51412A guifg=#FFA500 
@@ -64,20 +66,33 @@ function AppyColorOverrides()
     sign define DiagnosticSignHint text= texthl=DiagnosticSignHint linehl= numhl=DiagnosticLineNrHint
 ]]   )
 
+    vim.api.nvim_set_hl(0, "Search", { fg = "peru" })
+    vim.api.nvim_set_hl(0, "Comment", { fg = "#999999" })
+    vim.api.nvim_set_hl(0, "LineNr", { fg = "#777777" })
+    vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#cccccc" })
 end
 
-function ColorMyPencils(color)
-    color = color or "everforest"
+local function set_transparent_bg()
+    vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+    vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+end
+
+vim.g.substrata_italic_functions = true
+vim.g.substrata_variant = "brighter"
+
+local function apply_colors(color)
+    color = color or "rose-pine"
     vim.cmd.colorscheme(color)
 
-    if vim.cmd.colorscheme == "plain" then
-        vim.api.nvim_set_hl(0, "Normal", { bg = "280" })
-        vim.api.nvim_set_hl(0, "NormalFloat", { bg = "280" })
-        vim.api.nvim_set_hl(0, "ColorColumn", { bg = "#202020" })
+    if color == "nordfox" then
+        vim.api.nvim_set_hl(0, "Normal", { bg = "#1e1e1e" })
 
-    elseif vim.cmd.colorscheme == "everforest" then
+    elseif color == "sherbet" then
+        vim.api.nvim_set_hl(0, "Normal", { bg = "#1e1e1e" })
+
+    elseif color == "everforest" then
         vim.g.everforest_diagnostic_line_highlight = 1
-        vim.g.everforest_background = 'hard'
+        -- vim.g.everforest_background = 'hard'
         vim.g.everforest_ui_contrast = 'high'
         vim.g.everforest_diagnostic_text_highlight = 1
         vim.g.everforest_diagnostic_virtual_text = "colored"
@@ -109,22 +124,26 @@ function ColorMyPencils(color)
             },
         })
 
-    elseif vim.cmd.colorscheme == "rose-pine" then
-        vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-        vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+        set_transparent_bg()
 
+    elseif color == "rose-pine" then
+        set_transparent_bg()
+        -- vim.api.nvim_set_hl(0, "Normal", { bg = "#1e1e1e" })
     else
         vim.api.nvim_set_hl(0, "LineNr", { fg = "#777777" })
         vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#cccccc" })
     end
+
 end
 
-ColorMyPencils()
-AppyColorOverrides()
+apply_colors("hybrid")
+apply_color_overrides()
 
--- function ColorOverrides()
---     vim.api.nvim_set_hl(0, "SignColumn", { fg = "280" })
---     vim.api.nvim_set_hl(0, "Search", { fg = "peru" })
---     vim.api.nvim_set_hl(0, "Comment", { fg = "#999999" })
---     vim.api.nvim_set_hl(0, "ColorColumn", { bg = "#202020" })
--- end
+-- vim.cmd([[
+--     autocmd ColorScheme * lua require("user.ui").apply_color_overrides()
+-- ]])
+--
+-- autocmd TextYankPost * silent! lua vim.highlight.on_yank()
+
+-- utils.create_augroup({
+-- }, "ReApplyOverrides")

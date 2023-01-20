@@ -1,11 +1,13 @@
 return {
     tools = {
         inlay_hints = {
+            auto = true,
+            only_current_line = false,
             parameter_hints_prefix = "",
             other_hints_prefix = "",
             show_parameter_hints = true,
+            highlight = "Comment",
         },
-
         hover_actions = {
             auto_focus = true,
         },
