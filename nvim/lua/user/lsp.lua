@@ -9,6 +9,7 @@
 --
 -- LEGACY SETUP ABOVE
 
+
 local M = {}
 
 -- Learn the keybindings, see :help lsp-zero-keybindings
@@ -22,13 +23,15 @@ end
 
 local cmp_status_ok, cmp = pcall(require, "cmp")
 if not cmp_status_ok then
+    print("cannot load cmp")
     return
 end
 
-local lspkind_status_ok, lspkind = pcall(require, "lspkind")
-if not lspkind_status_ok then
-    return
-end
+-- local lspkind_status_ok, lspkind = pcall(require, "lspkind")
+-- if not lspkind_status_ok then
+--     print("cannot load lspkind")
+--     return
+-- end
 
 local keymap = require("user.utils").keymap
 local buf_keymap = require("user.utils").buf_keymap
@@ -44,7 +47,7 @@ lsp.ensure_installed({
     "pyright",
     "yamlls",
     "taplo",
-    "efm",
+    -- "efm",
     "gopls",
 })
 
@@ -129,7 +132,7 @@ local function lsp_keymaps(bufnr)
     buf_keymap(bufnr, "n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
     buf_keymap(bufnr, "n", "<M-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
 
-    vim.cmd([[ command! Format execute 'lua vim.lsp.buf.format({ async = true })' ]])
+    -- vim.cmd([[ command! Format execute 'lua vim.lsp.buf.format({ async = true })' ]])
 
     keymap("n", "<leader>s", ":SymbolsOutline<CR>", opts)
 
@@ -192,6 +195,8 @@ lsp.skip_server_setup({ "rust_analyzer" })
 
 lsp.setup()
 
+print("running lsp")
+
 
 -- setup rust by using rust-tools
 
@@ -241,8 +246,8 @@ vim.diagnostic.config({
     virtual_text = true,
 })
 
-vim.cmd([[ 
-    command! LspToggleAutoFormat execute 'lua require("user.lsp.lsp").toggle_format_on_save()' 
-]])
+-- vim.cmd([[
+--     command! LspToggleAutoFormat execute 'lua require("user.lsp").toggle_format_on_save()'
+-- ]])
 
 return M

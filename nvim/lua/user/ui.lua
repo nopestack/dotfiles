@@ -128,15 +128,13 @@ local function apply_colors(color)
 
     elseif color == "rose-pine" then
         set_transparent_bg()
-        -- vim.api.nvim_set_hl(0, "Normal", { bg = "#1e1e1e" })
     else
         vim.api.nvim_set_hl(0, "LineNr", { fg = "#777777" })
         vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#cccccc" })
     end
-
 end
 
-apply_colors("hybrid")
+apply_colors("tokyonight-night")
 apply_color_overrides()
 
 -- vim.cmd([[

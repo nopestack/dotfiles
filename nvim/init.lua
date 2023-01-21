@@ -1,5 +1,3 @@
--- " TODO: figure out how to refactor this autocommand to lua
--- " recompile plugins wehenever config/plugins.lua is udpated
 -- vim.g.mapleader = ","
 vim.g.mapleader = " "
 
@@ -8,9 +6,9 @@ require("user.plugins")
 require("user.options")
 require("user.utils")
 require("user.copilot")
+require("user.lsp")
 require("user.keymaps")
 require("user.ui")
-require("user.lsp.lsp")
 require("user.treesitter")
 require("user.autocommands")
 require("user.telescope")
@@ -22,4 +20,3 @@ require("user.lastplace")
 require("user.trouble")
 require("user.modes")
 require("user.symbols")
-require("user.neovide")

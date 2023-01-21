@@ -63,6 +63,8 @@ local options = {
     completeopt = "menuone,noinsert,noselect",
     termguicolors = true,
     filetype = "on",
+    undodir = os.getenv("HOME") .. "/.vim/undodir",
+    undofile = true,
 }
 
 for k, v in pairs(options) do
@@ -82,4 +84,6 @@ vim.g.markdown_fenced_languages = {
     "json=javascript",
 }
 
+vim.cmd("filetype indent on")
+vim.cmd("filetype indent on")
 vim.cmd("filetype indent on")

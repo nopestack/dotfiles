@@ -37,18 +37,10 @@ return packer.startup(function()
     -- Session
     use { "rmagatti/auto-session", branch = "dir-changed-fixes" }
 
-    -- use "rmagatti/session-lens"
-    -- Language Server plugins
-    --
-    -- use "williamboman/nvim-lsp-installer"
-    -- use {
-    --     "neovim/nvim-lspconfig",
-    -- }
-
-
     -- LSP Setup
     use {
         'VonHeikemen/lsp-zero.nvim',
+        branch = 'v1.x',
         requires = {
             -- LSP Support
             { 'neovim/nvim-lspconfig' }, -- Required
@@ -73,19 +65,14 @@ return packer.startup(function()
     use "Saecki/crates.nvim"
 
     use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }
-    use "nvim-treesitter/nvim-treesitter-context"
+    -- use "nvim-treesitter/nvim-treesitter-context"
 
-    -- use "nvim-lua/lsp_extensions.nvim"
-
-    -- use "jose-elias-alvarez/null-ls.nvim"
-    -- use "nvim-lua/lsp-status.nvim"
 
     -- git management
     use {
         "lewis6991/gitsigns.nvim",
         config = function() require("gitsigns").setup {} end,
     }
-    use { "tanvirtin/vgit.nvim" }
 
     -- UI & navigation
     -- use 'folke/lsp-colors.nvim'
@@ -98,9 +85,6 @@ return packer.startup(function()
     --
     -- Statusline
     use 'beauwilliams/statusline.lua'
-    --
-    -- use "nvim-lualine/lualine.nvim"
-    -- use 'feline-nvim/feline.nvim'
 
     use {
         "folke/trouble.nvim",
@@ -108,8 +92,6 @@ return packer.startup(function()
     }
 
     use "github/copilot.vim"
-
-    -- use "onsails/lspkind.nvim"
 
     -- Misc utilities
     use "windwp/nvim-autopairs"
@@ -173,7 +155,6 @@ return packer.startup(function()
     use {
         'andersevenrud/nordic.nvim'
     }
-    use { "williamboman/mason.nvim" }
     use "Abstract-IDE/Abstract-cs"
     use "ray-x/starry.nvim"
     use 'NTBBloodbath/doom-one.nvim'
