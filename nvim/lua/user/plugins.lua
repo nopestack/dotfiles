@@ -59,6 +59,9 @@ return packer.startup(function()
         }
     }
 
+    -- Useful status updates for LSP
+    use 'j-hui/fidget.nvim'
+
     use "simrat39/rust-tools.nvim"
     use "Saecki/crates.nvim"
 
@@ -80,9 +83,10 @@ return packer.startup(function()
         "akinsho/bufferline.nvim",
         tag = "v2.*",
     }
-    --
+
     -- Statusline
-    use 'beauwilliams/statusline.lua'
+    -- use 'beauwilliams/statusline.lua'
+    use 'nvim-lualine/lualine.nvim'
 
     use {
         "folke/trouble.nvim",

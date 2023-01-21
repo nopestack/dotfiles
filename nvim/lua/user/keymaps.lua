@@ -152,9 +152,9 @@ keymap("n", "<leader>ff", "<cmd>lua require('telescope.builtin').find_files()<cr
 keymap("n", "<leader>fw", "<cmd>lua require('telescope.builtin').live_grep()<cr>", opts)
 
 nmap("<leader>ft", "<cmd>lua require('telescope.builtin').colorscheme()<cr>")
-keymap("n", "<leader>fs", "<cmd>lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<cr>", opts)
-keymap("n", "<leader>fh", "<cmd>lua require('telescope.builtin').command_history()<cr>", opts)
-keymap("n", "<leader>c", "<cmd>lua require('telescope.builtin').commands()<cr>", opts)
+nmap("<leader>fs", "<cmd>lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<cr>")
+nmap("<leader>fh", "<cmd>lua require('telescope.builtin').command_history()<cr>")
+nmap("<leader>c", "<cmd>lua require('telescope.builtin').commands()<cr>")
 
 -- ctrl+f to open sessionizer
 if vim.loop.os_uname().sysname == "Darwin" then

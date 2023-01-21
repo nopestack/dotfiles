@@ -27,6 +27,16 @@ if not cmp_status_ok then
     return
 end
 
+
+-- Turn on lsp status information
+local fidget_status_ok, fidget = pcall(require, "fidget")
+if not fidget_status_ok then
+    print("cannot load fidget")
+    return
+end
+
+fidget.setup()
+
 -- local lspkind_status_ok, lspkind = pcall(require, "lspkind")
 -- if not lspkind_status_ok then
 --     print("cannot load lspkind")
@@ -73,9 +83,11 @@ lsp.configure('sumneko_lua', {
 })
 
 
-local py_opts = require("user.lsp.servers.rust")
+local py_opts = require("user.lsp.servers.pyright")
+local efm_opts = require("user.lsp.servers.efm")
 
 lsp.configure("pyright", py_opts)
+lsp.configure("efm", efm_opts)
 
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
 

@@ -20,13 +20,7 @@ end
 
 
 require('rose-pine').setup({
-    dark_variant = 'moon',
     bold_vert_split = false,
-    -- dim_nc_background = true,
-    -- disable_background = true,
-    -- disable_background = true,
-    -- disable_float_background = true,
-    -- disable_italics = false,
 
     --- @usage string hex value or named color from rosepinetheme.com/palette
     groups = {
@@ -87,51 +81,18 @@ local function apply_colors(color)
     elseif color == "sherbet" then
         vim.api.nvim_set_hl(0, "Normal", { bg = "#1e1e1e" })
 
-    elseif color == "everforest" then
-        vim.g.everforest_diagnostic_line_highlight = 1
-        -- vim.g.everforest_background = 'hard'
-        vim.g.everforest_ui_contrast = 'high'
-        vim.g.everforest_diagnostic_text_highlight = 1
-        vim.g.everforest_diagnostic_virtual_text = "colored"
-
-        vim.fn.sign_define({
-            {
-                name = 'DiagnosticSignError',
-                text = '',
-                texthl = 'DiagnosticSignError',
-                linehl = 'ErrorLine',
-            },
-            {
-                name = 'DiagnosticSignWarn',
-                text = '',
-                texthl = 'DiagnosticSignWarn',
-                linehl = 'WarningLine',
-            },
-            {
-                name = 'DiagnosticSignInfo',
-                text = '',
-                texthl = 'DiagnosticSignInfo',
-                linehl = 'InfoLine',
-            },
-            {
-                name = 'DiagnosticSignHint',
-                text = '',
-                texthl = 'DiagnosticSignHint',
-                linehl = 'HintLine',
-            },
-        })
-
-        set_transparent_bg()
+    elseif color == "onedark" then
+        vim.api.nvim_set_hl(0, "Normal", { bg = "#1e1e1e" })
 
     elseif color == "rose-pine" then
-        set_transparent_bg()
+        -- set_transparent_bg()
     else
         vim.api.nvim_set_hl(0, "LineNr", { fg = "#777777" })
         vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#cccccc" })
     end
 end
 
-apply_colors("tokyonight-night")
+apply_colors("rose-pine")
 apply_color_overrides()
 
 -- vim.cmd([[
