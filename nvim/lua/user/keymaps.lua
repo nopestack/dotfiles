@@ -1,4 +1,4 @@
-require("mapx").setup({ global = true })
+-- require("mapx").setup({ global = true })
 
 -- TODO: eliminate dep on mapx
 
@@ -100,8 +100,9 @@ end, { desc = '[/] Fuzzily search in current buffer]' })
 keymap("n", "<leader>n", ":noh<CR>", opts)
 keymap('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
 
-inoremap("<Tab>", [[pumvisible() ? "\<C-n>" : "\<Tab>"]], "silent", "expr")
-inoremap("<S-Tab>", [[pumvisible() ? "\<C-p>" : "\<S-Tab>"]], "silent", "expr")
+local expr_opts = { expr = true, silent = true }
+keymap("i", "<Tab>", [[pumvisible() ? "\<C-n>" : "\<Tab>"]], expr_opts)
+keymap("i", "<S-Tab>", [[pumvisible() ? "\<C-p>" : "\<S-Tab>"]], expr_opts)
 
 -- " Search mappings: These will make it so that going to the next one in a
 -- " search will center on the line it's found in.
@@ -114,13 +115,12 @@ nmap("<C-K>", "<C-W><C-K>")
 nmap("<C-L>", "<C-W><C-L>")
 nmap("<C-H>", "<C-W><C-H>")
 
--- Buffer traversal
+-- Buffer traversal with Tab
 -- nnoremap("<Tab>", ":bnext<CR>", "silent")
 -- nnoremap("<S-Tab>", ":bprev<CR>", "silent")
 
 -- Alt + Tab and Alt + Shift + Tab
 nmap("<A-Tab>", ":bnext<CR>")
--- nnoremap("<C-Tab>", ":bnext<CR>", "silent")
 nmap("<A-S-Tab>", ":bprev<CR>")
 
 -- Ctrl + Tab and Ctrl + Shift + Tab
@@ -137,102 +137,38 @@ if vim.g.neovide then
     nmap("<" .. meta_key .. "-w>", ":bd<CR>")
 end
 
+-- Open NvimTree
 keymap("n", "<C-b>", ":NvimTreeToggle<CR>", opts)
 keymap("n", "<" .. meta_key .. "-b>", ":NvimTreeToggle<CR>", opts)
+
+-- open netrw
+vim.keymap.set("n", "<leader>b", vim.cmd.Lex)
 
 -- Remap for dealing with word wrap
 keymap('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 keymap('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
--- Ctrl/Cmd + b to open fileexplorer
--- if vim.loop.os_uname().sysname == "Darwin" then
---     -- command+b to open file explorer
---     -- keymap("n", "<M-b>", ":NeoTreeFocusToggle<CR>", opts)
---     keymap("n", "<M-b>", ":NvimTreeToggle<CR>", opts)
--- end
--- if vim.loop.os_uname().sysname ~= "Darwin" then
---     -- ctrl+b to open file explorer
---     keymap("n", "<C-b>", ":NvimTreeToggle<CR>", opts)
---     -- keymap("n", "<C-b>", ":NeoTreeFocusToggle<CR>", opts)
---
--- end
---
--- nnoremap("<C-b>", ":NvimTreeToggle<CR>", "silent")
--- nnoremap("<M-b>", ":NvimTreeToggle<CR>", "silent")
-
--- nnoremap("<leader>ff", "<cmd>lua require('telescope.builtin').find_files()<cr>", "silent")
 keymap("n", "<leader>ff", "<cmd>lua require('telescope.builtin').find_files()<cr>", opts)
--- keymap("n", "<leader>fb", "<cmd>lua require('telescope.builtin').buffers()<cr>", opts)
 keymap("n", "<leader>fw", "<cmd>lua require('telescope.builtin').live_grep()<cr>", opts)
--- nnoremap("<M-d>", "<cmd>lua require('telescope.builtin').buffers()<cr>", "silent")
 
 nmap("<leader>ft", "<cmd>lua require('telescope.builtin').colorscheme()<cr>")
--- keymap("n", "<leader>fc", "<cmd>lua require('telescope.builtin').commands()<cr>", opts)
--- keymap("n", "<leader>fs", "<cmd>lua require('telescope.builtin').lsp_workspace_symbols()<cr>", opts)
 keymap("n", "<leader>fs", "<cmd>lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<cr>", opts)
 keymap("n", "<leader>fh", "<cmd>lua require('telescope.builtin').command_history()<cr>", opts)
-nnoremap("<leader>c", "<cmd>lua require('telescope.builtin').commands()<cr>", "silent")
-
-
--- -- command+f to open sessionizer
--- if vim.loop.os_uname().sysname == "Darwin" then
---     nnoremap("<M-f>", "<cmd>!tmux neww tmux-sessionizer<cr>", "silent")
--- end
-
--- Ctrl/Cmd + p to search files
--- if vim.loop.os_uname().sysname == "Darwin" then
---     -- command+f to search
---     -- nnoremap("<M-f>", "<cmd>lua require('telescope.builtin').live_grep()<cr>", "silent")
---     --
---     -- bind command + p to search
---     -- nnoremap("<M-p>", "<cmd>lua require('telescope.builtin').find_files()<cr>", "silent")
---     keymap("n", "<M-p>", "<cmd>lua require('telescope.builtin').find_files()<cr>", opts)
--- end
---
--- if vim.loop.os_uname().sysname ~= "Darwin" then
---     -- ctrl+f to search
---     -- nnoremap("<C-f>", "<cmd>lua require('telescope.builtin').live_grep()<cr>", "silent")
---
---     -- bind ctrl + p to search
---     nnoremap("<C-p>", "<cmd>lua require('telescope.builtin').find_files()<cr>", "silent")
--- end
+keymap("n", "<leader>c", "<cmd>lua require('telescope.builtin').commands()<cr>", opts)
 
 -- ctrl+f to open sessionizer
 if vim.loop.os_uname().sysname == "Darwin" then
-    nnoremap("<C-f>", "<cmd>!tmux neww tmux-sessionizer<cr>", "silent")
+    keymap("n", "<C-f>", "<cmd>!tmux neww tmux-sessionizer<cr>", opts)
 end
 
--- nnoremap("<M-k>", "<cmd>lua require('telescope.builtin').keymaps()<cr>",
--- "silent")
-
 -- Show code actions
-nnoremap("ga", "<cmd>lua vim.lsp.buf.code_action()<CR>", "silent")
--- keymap("n", "gD", "vim.diagnostic.open_float(nil, {focus=false})<CR>", opts)
-
--- nnoremap("gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", "silent")
--- nnoremap("gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", "silent")
--- nnoremap("gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", "silent")
--- nnoremap("gd", "<cmd>lua vim.lsp.buf.definition()<CR>", "silent")
--- nnoremap("gr", "<cmd>lua vim.lsp.buf.references()<CR>", "silent")
-
+keymap("n", "ga", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
 keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
 keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
 keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
-
--- keymap("n", "<leader>t", ":TagbarTogge<CR>", opts)
-
 keymap("n", "<leader>t", ":Telescope<CR>", opts)
 keymap("n", "<leader>u", ":UndotreeToggle<CR>", opts)
 
 -- indeed the greatest remap ever
 -- when pasting with <leader>p, it doesnt swap the clipboard with the replaced text
 keymap("x", "<leader>p", "\"_dP", opts)
-
--- open netrw
-vim.keymap.set("n", "<leader>b", vim.cmd.Lex)
-
--- Diagnostic keymaps
--- keymap('n', '[d', vim.diagnostic.goto_prev, opts)
--- keymap('n', ']d', vim.diagnostic.goto_next, opts)
--- keymap('n', '<leader>e', vim.diagnostic.open_float, opts)
--- keymap('n', '<leader>q', vim.diagnostic.setloclist, opts)

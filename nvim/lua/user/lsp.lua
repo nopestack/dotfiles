@@ -47,7 +47,8 @@ lsp.ensure_installed({
     "pyright",
     "yamlls",
     "taplo",
-    -- "efm",
+
+    "efm",
     "gopls",
 })
 
@@ -55,25 +56,18 @@ lsp.ensure_installed({
 lsp.configure('sumneko_lua', {
     settings = {
         Lua = {
-            format = {
-                enable = true,
-                defaultConfig = {
-                    indent_style = "space",
-                    indent_size = 4,
-                },
-            },
+            -- format = {
+            --     enable = true,
+            --     defaultConfig = {
+            --         indent_style = "space",
+            --         indent_size = 4,
+            --     },
+            -- },
             diagnostics = {
                 globals = { 'vim' }
             },
-            workspace = {
-                -- Make the server aware of Neovim runtime files
-                library = vim.api.nvim_get_runtime_file("", true),
-            },
             -- Do not send telemetry data containing a randomized but unique identifier
             telemetry = { enable = false },
-            completion = {
-                autoRequire = true,
-            }
         }
     }
 })
@@ -245,6 +239,7 @@ print("rust-tools setup complete")
 vim.diagnostic.config({
     virtual_text = true,
 })
+
 
 -- vim.cmd([[
 --     command! LspToggleAutoFormat execute 'lua require("user.lsp").toggle_format_on_save()'

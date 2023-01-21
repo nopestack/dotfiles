@@ -17,9 +17,6 @@ else
     vim.o.background = "light"
 end
 
-require('noirbuddy').setup {
-    preset = 'kiwi',
-}
 
 
 require('rose-pine').setup({

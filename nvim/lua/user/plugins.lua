@@ -22,9 +22,7 @@ packer.init({
 
 return packer.startup(function()
     use "wbthomason/packer.nvim"
-    use "nvim-lua/popup.nvim"
     use "nvim-lua/plenary.nvim"
-    use "b0o/mapx.nvim"
 
     -- Telescope
     use "nvim-telescope/telescope.nvim"
@@ -117,7 +115,6 @@ return packer.startup(function()
     use "cocopon/iceberg.vim"
     use "rakr/vim-two-firewatch"
     use "projekt0n/github-nvim-theme"
-    use "sainnhe/sonokai"
     use "elvessousa/sobrio"
     use "EdenEast/nightfox.nvim"
     use "kvrohit/substrata.nvim"
@@ -128,53 +125,22 @@ return packer.startup(function()
     use "jacoborus/tender.vim"
     use "rafamadriz/neon"
     use "MomePP/plastic-nvim"
-    use "titanzero/zephyrium"
     use "sainnhe/everforest"
     use "nanotech/jellybeans.vim"
     use "sainnhe/edge"
     use "ChristianChiarulli/nvcode-color-schemes.vim"
-    use "tyrannicaltoucan/vim-deep-space"
     use "w0ng/vim-hybrid"
     use "metalelf0/jellybeans-nvim"
     use "rktjmp/lush.nvim"
     use "Shatur/neovim-ayu"
-    use "katawful/kat.nvim"
-    use "kwsp/halcyon-neovim"
-    use "tyrannicaltoucan/vim-quantum"
     use "cesarsl/neo-hybrid.nvim"
-    use "marko-cerovac/material.nvim"
-    use { "catppuccin/nvim", as = "catppuccin" }
-    use 'frenzyexists/aquarium-vim'
-    use 'kdheepak/monochrome.nvim'
-    use { "mangeshrex/everblush.vim" }
-    use 'andreypopp/vim-colors-plain'
-    use {
-        'mastertinner/nvim-quantum',
-    }
-    use { 'shaunsingh/oxocarbon.nvim', run = './install.sh' }
-    use {
-        'andersevenrud/nordic.nvim'
-    }
-    use "Abstract-IDE/Abstract-cs"
-    use "ray-x/starry.nvim"
-    use 'NTBBloodbath/doom-one.nvim'
     use 'kvrohit/rasmus.nvim'
     use 'tiagovla/tokyodark.nvim'
     use "yazeed1s/minimal.nvim"
     use "lewpoly/sherbet.nvim"
-    use "melkster/modicator.nvim"
-    use 'davidosomething/vim-colors-meh'
-    use 'santigo-zero/jetjbp.nvim' -- jetjbp.nvim
     use "ramojus/meliora.nvim"
     use({
         'mvllow/modes.nvim',
         tag = 'v0.2.0',
     })
-
-    use {
-        "jesseleite/nvim-noirbuddy",
-        requires = { "tjdevries/colorbuddy.nvim", branch = "dev" }
-    }
-
-    use 'adrian5/oceanic-next-vim'
 end)
