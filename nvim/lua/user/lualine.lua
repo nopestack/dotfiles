@@ -9,10 +9,18 @@ end
 lualine.setup({
     options = {
         globalstatus = true,
-        icons_enabled = false,
+        icons_enabled = true,
         component_separators = "|",
         section_separators = "",
         disabled_filetypes = { "alpha", "dashboard" },
         always_divide_middle = true,
+        inactive_sections = {
+            lualine_a = {},
+            lualine_b = { "diff" },
+            lualine_c = {},
+            lualine_x = {},
+            lualine_y = {},
+            lualine_z = {}
+        },
     },
 })
