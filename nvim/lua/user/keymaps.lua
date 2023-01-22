@@ -1,27 +1,17 @@
 -- require("mapx").setup({ global = true })
-
 -- TODO: eliminate dep on mapx
-
 local utils = require("user.utils")
 
-local opts = {
-    noremap = true,
-    silent = true,
-}
+local opts = { noremap = true, silent = true }
 
 local term_opts = { silent = true }
 
 local keymap = vim.keymap.set
 
-local nmap = function(lhs, rhs)
-    keymap("n", lhs, rhs, opts)
-end
-
+local nmap = function(lhs, rhs) keymap("n", lhs, rhs, opts) end
 
 local meta_key = "M"
-if vim.g.neovide then
-    meta_key = "D"
-end
+if vim.g.neovide then meta_key = "D" end
 --
 --          Mode  | Norm | Ins | Cmd | Vis | Sel | Opr | Term | Lang | ~
 -- Command        +------+-----+-----+-----+-----+-----+------+------+ ~
@@ -87,18 +77,21 @@ nmap("Y", "yy")
 -- To map <Esc> to exit terminal-mode:
 nmap("<Esc>", "<C-\\><C-n>")
 
-keymap("n", '<leader><space>', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })
-keymap("n", '<leader>/', function()
+keymap("n", "<leader><space>", require("telescope.builtin").buffers,
+    { desc = "[ ] Find existing buffers" })
+keymap("n", "<leader>/", function()
     -- You can pass additional configuration to telescope to change theme, layout, etc.
-    require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
+    require("telescope.builtin").current_buffer_fuzzy_find(require(
+        "telescope.themes").get_dropdown {
         winblend = 10,
         previewer = false,
     })
-end, { desc = '[/] Fuzzily search in current buffer]' })
+end, { desc = "[/] Fuzzily search in current buffer]" })
 
 -- clear search
 keymap("n", "<leader>n", ":noh<CR>", opts)
-keymap('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
+keymap("n", "<leader>?", require("telescope.builtin").oldfiles,
+    { desc = "[?] Find recently opened files" })
 
 local expr_opts = { expr = true, silent = true }
 keymap("i", "<Tab>", [[pumvisible() ? "\<C-n>" : "\<Tab>"]], expr_opts)
@@ -133,26 +126,28 @@ nmap("<A-S-Tab>", ":bprev<CR>")
 nmap("<C-w>", ":bd<CR>")
 --
 -- TODO: debug M-w mapping to close windows on TUI
-if vim.g.neovide then
-    nmap("<" .. meta_key .. "-w>", ":bd<CR>")
-end
+if vim.g.neovide then nmap("<" .. meta_key .. "-w>", ":bd<CR>") end
 
 -- Open NvimTree
 keymap("n", "<C-b>", ":NvimTreeToggle<CR>", opts)
 keymap("n", "<" .. meta_key .. "-b>", ":NvimTreeToggle<CR>", opts)
 
 -- open netrw
-vim.keymap.set("n", "<leader>b", vim.cmd.Lex)
+--  TODO: revisit netrw later
+-- vim.keymap.set("n", "<leader>b", vim.cmd.Lex)
 
 -- Remap for dealing with word wrap
-keymap('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
-keymap('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+keymap("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+keymap("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
-keymap("n", "<leader>ff", "<cmd>lua require('telescope.builtin').find_files()<cr>", opts)
-keymap("n", "<leader>fw", "<cmd>lua require('telescope.builtin').live_grep()<cr>", opts)
+keymap("n", "<leader>ff",
+    "<cmd>lua require('telescope.builtin').find_files()<cr>", opts)
+keymap("n", "<leader>fw",
+    "<cmd>lua require('telescope.builtin').live_grep()<cr>", opts)
 
 nmap("<leader>ft", "<cmd>lua require('telescope.builtin').colorscheme()<cr>")
-nmap("<leader>fs", "<cmd>lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<cr>")
+nmap("<leader>fs",
+    "<cmd>lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<cr>")
 nmap("<leader>fh", "<cmd>lua require('telescope.builtin').command_history()<cr>")
 nmap("<leader>c", "<cmd>lua require('telescope.builtin').commands()<cr>")
 

@@ -4,7 +4,6 @@
 --         autocmd BufWritePost plugins.lua source <afile> | PackerSync
 --     augroup end
 -- ]])
-
 local status_ok, packer = pcall(require, "packer")
 if not status_ok then
     vim.notify("could not require packer")
@@ -15,8 +14,8 @@ packer.init({
     auto_clean = true,
     display = {
         open_fn = function()
-            return require('packer.util').float({ border = 'rounded' })
-        end
+            return require("packer.util").float({ border = "rounded" })
+        end,
     },
 })
 
@@ -37,30 +36,30 @@ return packer.startup(function()
 
     -- LSP Setup
     use {
-        'VonHeikemen/lsp-zero.nvim',
-        branch = 'v1.x',
+        "VonHeikemen/lsp-zero.nvim",
+        branch = "v1.x",
         requires = {
             -- LSP Support
-            { 'neovim/nvim-lspconfig' }, -- Required
-            { 'williamboman/mason.nvim' }, -- Optional
-            { 'williamboman/mason-lspconfig.nvim' }, -- Optional
+            { "neovim/nvim-lspconfig" }, -- Required
+            { "williamboman/mason.nvim" }, -- Optional
+            { "williamboman/mason-lspconfig.nvim" }, -- Optional
 
             -- Autocompletion
-            { 'hrsh7th/nvim-cmp' }, -- Required
-            { 'hrsh7th/cmp-nvim-lsp' }, -- Required
-            { 'hrsh7th/cmp-buffer' }, -- Optional
-            { 'hrsh7th/cmp-path' }, -- Optional
-            { 'saadparwaiz1/cmp_luasnip' }, -- Optional
-            { 'hrsh7th/cmp-nvim-lua' }, -- Optional
+            { "hrsh7th/nvim-cmp" }, -- Required
+            { "hrsh7th/cmp-nvim-lsp" }, -- Required
+            { "hrsh7th/cmp-buffer" }, -- Optional
+            { "hrsh7th/cmp-path" }, -- Optional
+            { "saadparwaiz1/cmp_luasnip" }, -- Optional
+            { "hrsh7th/cmp-nvim-lua" }, -- Optional
 
             -- Snippets
-            { 'L3MON4D3/LuaSnip' }, -- Required
-            { 'rafamadriz/friendly-snippets' }, -- Optional
-        }
+            { "L3MON4D3/LuaSnip" }, -- Required
+            { "rafamadriz/friendly-snippets" }, -- Optional
+        },
     }
 
     -- Useful status updates for LSP
-    use 'j-hui/fidget.nvim'
+    use "j-hui/fidget.nvim"
 
     use "simrat39/rust-tools.nvim"
     use "Saecki/crates.nvim"
@@ -68,18 +67,8 @@ return packer.startup(function()
     use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }
     -- use "nvim-treesitter/nvim-treesitter-context"
 
-    use {
-        "ahmedkhalf/jupyter-nvim",
-        run = ":UpdateRemotePlugins",
-        config = function()
-            require("jupyter-nvim").setup {
-                -- your configuration comes here
-                -- or leave it empty to use the default settings
-                -- refer to the configuration section below
-            }
-        end
-    }
-
+    -- data science
+    -- use { 'dccsillag/magma-nvim', run = ':UpdateRemotePlugins' }
 
     -- git management
     use {
@@ -89,16 +78,13 @@ return packer.startup(function()
 
     -- UI & navigation
     -- use 'folke/lsp-colors.nvim'
-    use 'kyazdani42/nvim-web-devicons'
-    use 'kyazdani42/nvim-tree.lua'
-    use {
-        "akinsho/bufferline.nvim",
-        tag = "v2.*",
-    }
+    use "kyazdani42/nvim-web-devicons"
+    use "kyazdani42/nvim-tree.lua"
+    use { "akinsho/bufferline.nvim", tag = "v2.*" }
 
     -- Statusline
     -- use 'beauwilliams/statusline.lua'
-    use 'nvim-lualine/lualine.nvim'
+    use "nvim-lualine/lualine.nvim"
 
     use {
         "folke/trouble.nvim",
@@ -117,13 +103,13 @@ return packer.startup(function()
 
     use({
         "luukvbaal/statuscol.nvim",
-        config = function() require("statuscol").setup() end
+        config = function() require("statuscol").setup() end,
     })
 
-    use 'simrat39/symbols-outline.nvim'
+    use "simrat39/symbols-outline.nvim"
 
     use "lukas-reineke/indent-blankline.nvim"
-    use 'andymass/vim-matchup'
+    use "andymass/vim-matchup"
     use "mbbill/undotree"
 
     -- Colorschemes
@@ -150,13 +136,10 @@ return packer.startup(function()
     use "rktjmp/lush.nvim"
     use "Shatur/neovim-ayu"
     use "cesarsl/neo-hybrid.nvim"
-    use 'kvrohit/rasmus.nvim'
-    use 'tiagovla/tokyodark.nvim'
+    use "kvrohit/rasmus.nvim"
+    use "tiagovla/tokyodark.nvim"
     use "yazeed1s/minimal.nvim"
     use "lewpoly/sherbet.nvim"
     use "ramojus/meliora.nvim"
-    use({
-        'mvllow/modes.nvim',
-        tag = 'v0.2.0',
-    })
+    use({ "mvllow/modes.nvim", tag = "v0.2.0" })
 end)

@@ -1,6 +1,5 @@
 local utils = require("user.utils")
 
-
 -- checks if your terminal has 24-bit color support
 vim.cmd([[
 if (has("termguicolors"))
@@ -17,24 +16,22 @@ else
     vim.o.background = "light"
 end
 
-
-
-require('rose-pine').setup({
+require("rose-pine").setup({
     bold_vert_split = false,
 
     --- @usage string hex value or named color from rosepinetheme.com/palette
     groups = {
-        background = 'base',
-        panel = 'surface',
-        border = 'highlight_med',
-        comment = '#999999',
-        link = 'iris',
-        punctuation = 'subtle',
-        error = 'love',
-        hint = 'iris',
-        info = 'foam',
-        warn = 'gold',
-        headings = 'subtle'
+        background = "base",
+        panel = "surface",
+        border = "highlight_med",
+        comment = "#999999",
+        link = "iris",
+        punctuation = "subtle",
+        error = "love",
+        hint = "iris",
+        info = "foam",
+        warn = "gold",
+        headings = "subtle",
     },
 })
 
@@ -92,7 +89,7 @@ local function apply_colors(color)
     end
 end
 
-apply_colors("rose-pine")
+apply_colors("sherbet")
 apply_color_overrides()
 
 -- vim.cmd([[
