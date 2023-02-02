@@ -1,4 +1,11 @@
 local utils = require("user.utils")
+-- local ui_colors = require("user.ui.colors")
+
+local tint = utils.must_require("tint")
+
+-- utils.must_require("colorbuddy")
+
+tint.setup()
 
 -- checks if your terminal has 24-bit color support
 vim.cmd([[
@@ -81,15 +88,23 @@ local function apply_colors(color)
     elseif color == "onedark" then
         vim.api.nvim_set_hl(0, "Normal", { bg = "#1e1e1e" })
 
+    elseif color == "metanoia" then
+        -- vim.api.nvim_set_hl(0, "Normal", { bg = "#1e1e1e" })
+        -- vim.api.nvim_set_hl(0, "ColorColumn", { bg = "#1e1e1e" })
+
     elseif color == "rose-pine" then
         -- set_transparent_bg()
+
+    elseif color == "komau" then
+        vim.api.nvim_set_hl(0, "Comment", { fg = "#cccccc" })
+
     else
         vim.api.nvim_set_hl(0, "LineNr", { fg = "#777777" })
         vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#cccccc" })
     end
 end
 
-apply_colors("sherbet")
+apply_colors("no-clown-fiesta")
 apply_color_overrides()
 
 -- vim.cmd([[

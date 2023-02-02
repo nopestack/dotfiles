@@ -1,9 +1,7 @@
 local status_ok, telescope = pcall(require, "telescope")
-if not status_ok then
-    return
-end
+if not status_ok then return end
 -- Enable telescope fzf native, if installed
-pcall(require('telescope').load_extension, 'fzf')
+pcall(require("telescope").load_extension, "fzf")
 
 local actions = require("telescope.actions")
 telescope.load_extension("media_files")
@@ -19,6 +17,7 @@ telescope.setup {
         commands = { theme = "dropdown" },
         keymaps = { theme = "dropdown" },
         lsp_dynamic_workspace_symbols = { theme = "dropdown" },
+        lsp_document_symbols = { theme = "dropdown" },
         colorscheme = { theme = "dropdown" },
         command_history = { theme = "dropdown" },
         buffers = { theme = "dropdown", previewer = false },
@@ -31,7 +30,7 @@ telescope.setup {
                 ["<Tab>"] = actions.move_selection_next,
                 ["<S-Tab>"] = actions.move_selection_previous,
                 ["<M-p>"] = action_layout.toggle_preview,
-                ["<C-u>"] = false
+                ["<C-u>"] = false,
             },
             n = {
                 -- ["<esc>"] = actions.close,
@@ -94,6 +93,6 @@ telescope.setup {
             "%.epub",
             "%.flac",
             "%.tar.gz",
-        }
-    }
+        },
+    },
 }

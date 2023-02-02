@@ -10,6 +10,8 @@ local keymap = vim.keymap.set
 
 local nmap = function(lhs, rhs) keymap("n", lhs, rhs, opts) end
 
+local buf_keymap = require("user.utils").buf_keymap
+
 local meta_key = "M"
 if vim.g.neovide then meta_key = "D" end
 --
@@ -60,7 +62,6 @@ if vim.g.neovide then meta_key = "D" end
 -- nnoremap("<leader><CR>", ":so ~/.config/nvim/init.lua<CR>")
 nmap("<leader><CR>", ":so ~/.config/nvim/init.lua<CR>")
 
--- save file
 nmap("<leader>w", ":w<CR>")
 nmap("<M-s>", ":w<CR>")
 
@@ -79,6 +80,7 @@ nmap("<Esc>", "<C-\\><C-n>")
 
 keymap("n", "<leader><space>", require("telescope.builtin").buffers,
     { desc = "[ ] Find existing buffers" })
+
 keymap("n", "<leader>/", function()
     -- You can pass additional configuration to telescope to change theme, layout, etc.
     require("telescope.builtin").current_buffer_fuzzy_find(require(
@@ -146,10 +148,29 @@ keymap("n", "<leader>fw",
     "<cmd>lua require('telescope.builtin').live_grep()<cr>", opts)
 
 nmap("<leader>ft", "<cmd>lua require('telescope.builtin').colorscheme()<cr>")
+
 nmap("<leader>fs",
     "<cmd>lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<cr>")
+
 nmap("<leader>fh", "<cmd>lua require('telescope.builtin').command_history()<cr>")
+
 nmap("<leader>c", "<cmd>lua require('telescope.builtin').commands()<cr>")
+
+-- keymap("n", "<leader>fwd", require("telescope.builtin").diagnostics,
+--     { desc = "[fd] Find Workspace Diagnostics" })
+
+keymap("n", "<leader>fd", function()
+    -- You can pass additional configuration to telescope to change theme, layout, etc.
+    require("telescope.builtin").diagnostics(
+        require("telescope.themes").get_dropdown {
+            winblend = 10,
+            previewer = false,
+        })
+end, { desc = "[fd] Find Diagnostics" })
+
+keymap("n", "<leader>T", function()
+    require("trouble").toggle({ mode = "document_diagnostics" })
+end, { desc = "[T] Toggle Trouble" })
 
 -- ctrl+f to open sessionizer
 if vim.loop.os_uname().sysname == "Darwin" then
@@ -167,3 +188,40 @@ keymap("n", "<leader>u", ":UndotreeToggle<CR>", opts)
 -- indeed the greatest remap ever
 -- when pasting with <leader>p, it doesnt swap the clipboard with the replaced text
 keymap("x", "<leader>p", "\"_dP", opts)
+
+M = {}
+
+function M.lsp_keymaps(bufnr)
+
+    buf_keymap(bufnr, "n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
+    buf_keymap(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
+    buf_keymap(bufnr, "n", "gI", "<cmd>lua vim.lsp.buf.implementation()<CR>",
+        opts)
+    buf_keymap(bufnr, "n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
+    buf_keymap(bufnr, "n", "gl", "<cmd>lua vim.diagnostic.open_float()<CR>",
+        opts)
+    buf_keymap(bufnr, "n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<CR>",
+        opts)
+    buf_keymap(bufnr, "n", "<M-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>",
+        opts)
+
+    -- vim.cmd([[ command! Format execute 'lua vim.lsp.buf.format({ async = true })' ]])
+
+    keymap("n", "<leader>s", require("telescope.builtin").lsp_document_symbols,
+        { desc = "[s] Document Symbols" })
+
+    keymap("n", "<leader>S", ":SymbolsOutline<CR>", opts)
+
+    -- update the window number here so that we can map escape to close even
+    -- when there are no actions, update the rest of the state later
+    -- M._state.winnr = winnr
+    -- vim.api.nvim_buf_set_keymap(
+    --   bufnr,
+    --   "n",
+    --   "<Esc>",
+    --   ":lua require'rust-tools.hover_actions'._close_hover()<CR>",
+    --   set_keymap_opt
+    -- )
+end
+
+return M

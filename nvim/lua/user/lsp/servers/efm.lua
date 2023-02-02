@@ -3,7 +3,13 @@ local efm = {
     -- TODO: setup TS/JS, Go and Python formatting
     init_options = { documentFormatting = true, codeAction = true },
     settings = {
-        rootMarkers = { ".git/", "package.json", "yarn.lock" },
+        rootMarkers = {
+            ".git/",
+            "package.json",
+            "yarn.lock",
+            "requirements.txt",
+            ".gitignore",
+        },
         log_level = 1,
         log_file = "~/.efm.log",
         languages = {

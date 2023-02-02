@@ -8,8 +8,6 @@
 -- require("user.lsp.null-ls")
 --
 -- LEGACY SETUP ABOVE
-
-
 local M = {}
 
 -- Learn the keybindings, see :help lsp-zero-keybindings
@@ -27,7 +25,6 @@ if not cmp_status_ok then
     return
 end
 
-
 -- Turn on lsp status information
 local fidget_status_ok, fidget = pcall(require, "fidget")
 if not fidget_status_ok then
@@ -35,7 +32,7 @@ if not fidget_status_ok then
     return
 end
 
-fidget.setup()
+local lsp_keymaps = require("user.keymaps").lsp_keymaps
 
 -- local lspkind_status_ok, lspkind = pcall(require, "lspkind")
 -- if not lspkind_status_ok then
@@ -43,49 +40,27 @@ fidget.setup()
 --     return
 -- end
 
-local keymap = require("user.utils").keymap
-local buf_keymap = require("user.utils").buf_keymap
+fidget.setup()
 
-lsp.preset('recommended')
+lsp.preset("recommended")
 
 lsp.ensure_installed({
-    -- Replace these with whatever servers you want to install
-    'tsserver',
-    'eslint',
-    'sumneko_lua',
-    'rust_analyzer',
+    "tsserver",
+    "eslint",
+    "sumneko_lua",
+    "rust_analyzer",
     "pyright",
     "yamlls",
     "taplo",
-
     "efm",
     "gopls",
 })
 
--- Fix Undefined global 'vim'
-lsp.configure('sumneko_lua', {
-    settings = {
-        Lua = {
-            -- format = {
-            --     enable = true,
-            --     defaultConfig = {
-            --         indent_style = "space",
-            --         indent_size = 4,
-            --     },
-            -- },
-            diagnostics = {
-                globals = { 'vim' }
-            },
-            -- Do not send telemetry data containing a randomized but unique identifier
-            telemetry = { enable = false },
-        }
-    }
-})
-
-
+local lua_opts = require("user.lsp.servers.sumneko_lua")
 local py_opts = require("user.lsp.servers.pyright")
 local efm_opts = require("user.lsp.servers.efm")
 
+lsp.configure("sumneko_lua", lua_opts)
 lsp.configure("pyright", py_opts)
 lsp.configure("efm", efm_opts)
 
@@ -120,38 +95,9 @@ lsp.setup_nvim_cmp({
 
 local function lsp_highlight_document(client)
     local status_ok, illuminate = pcall(require, "illuminate")
-    if not status_ok then
-        return
-    end
+    if not status_ok then return end
 
     illuminate.on_attach(client)
-end
-
-local function lsp_keymaps(bufnr)
-    local opts = { noremap = true, silent = true }
-
-    buf_keymap(bufnr, "n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
-    buf_keymap(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
-    buf_keymap(bufnr, "n", "gI", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
-    buf_keymap(bufnr, "n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
-    buf_keymap(bufnr, "n", "gl", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
-    buf_keymap(bufnr, "n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
-    buf_keymap(bufnr, "n", "<M-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
-
-    -- vim.cmd([[ command! Format execute 'lua vim.lsp.buf.format({ async = true })' ]])
-
-    keymap("n", "<leader>s", ":SymbolsOutline<CR>", opts)
-
-    -- update the window number here so that we can map escape to close even
-    -- when there are no actions, update the rest of the state later
-    -- M._state.winnr = winnr
-    -- vim.api.nvim_buf_set_keymap(
-    --   bufnr,
-    --   "n",
-    --   "<Esc>",
-    --   ":lua require'rust-tools.hover_actions'._close_hover()<CR>",
-    --   set_keymap_opt
-    -- )
 end
 
 local function on_attach(client, bufnr)
@@ -161,10 +107,7 @@ local function on_attach(client, bufnr)
     M.enable_format_on_save()
 end
 
-lsp.on_attach(function(client, bufnr)
-    on_attach(client, bufnr)
-end)
-
+lsp.on_attach(function(client, bufnr) on_attach(client, bufnr) end)
 
 function M.enable_format_on_save()
     vim.cmd([[
@@ -192,9 +135,7 @@ function M.toggle_format_on_save()
 end
 
 function M.remove_augroup(name)
-    if vim.fn.exists("#" .. name) == 1 then
-        vim.cmd("au! " .. name)
-    end
+    if vim.fn.exists("#" .. name) == 1 then vim.cmd("au! " .. name) end
 end
 
 lsp.skip_server_setup({ "rust_analyzer" })
@@ -202,7 +143,6 @@ lsp.skip_server_setup({ "rust_analyzer" })
 lsp.setup()
 
 print("running lsp")
-
 
 -- setup rust by using rust-tools
 
@@ -213,24 +153,11 @@ local lsp_rust = lsp.build_options("rust_analyzer", {
     -- capabilities = vim.lsp.protocol.make_client_capabilities(),
     settings = {
         ["rust-analyzer"] = {
-            lens = {
-                enable = true,
-            },
-            checkOnSave = {
-                command = "clippy",
-            },
-            cargo = {
-                autoReload = true
-            },
-            primeCaches = {
-                numThreads = 4,
-            },
-            diagnostics = {
-                enable = true,
-                experimental = {
-                    enable = true,
-                },
-            },
+            lens = { enable = true },
+            checkOnSave = { command = "clippy" },
+            cargo = { autoReload = true },
+            primeCaches = { numThreads = 4 },
+            diagnostics = { enable = true, experimental = { enable = true } },
 
         },
     },
@@ -248,10 +175,7 @@ rust_tools.setup(rust_opts)
 
 print("rust-tools setup complete")
 
-vim.diagnostic.config({
-    virtual_text = true,
-})
-
+vim.diagnostic.config({ virtual_text = true })
 
 -- vim.cmd([[
 --     command! LspToggleAutoFormat execute 'lua require("user.lsp").toggle_format_on_save()'

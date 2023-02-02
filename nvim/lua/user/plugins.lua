@@ -94,52 +94,68 @@ return packer.startup(function()
     use "github/copilot.vim"
 
     -- Misc utilities
+    use "rktjmp/lush.nvim"
+    use "mfussenegger/nvim-dap"
     use "windwp/nvim-autopairs"
     use "tpope/vim-surround"
     use {
         "numToStr/Comment.nvim",
         config = function() require("Comment").setup() end,
     }
-
+    use({ "mvllow/modes.nvim", tag = "v0.2.0" })
+    use "RRethy/vim-illuminate"
     use({
         "luukvbaal/statuscol.nvim",
         config = function() require("statuscol").setup() end,
     })
 
-    use "simrat39/symbols-outline.nvim"
+    -- NOTE: this plugin changes the colorscheme to a dark one similar to coal
+    -- use "folke/neodev.nvim"
+    -- use({
+    --     "folke/noice.nvim",
+    --     config = function()
+    --         require("noice").setup({
+    --             -- add any options here
+    --         })
+    --     end,
+    --     requires = {
+    --         -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+    --         "MunifTanjim/nui.nvim",
+    --         -- OPTIONAL:
+    --         --   `nvim-notify` is only needed, if you want to use the notification view.
+    --         --   If not available, we use `mini` as the fallback
+    --         -- "rcarriga/nvim-notify",
+    --     },
+    -- })
 
+    use "simrat39/symbols-outline.nvim"
     use "lukas-reineke/indent-blankline.nvim"
     use "andymass/vim-matchup"
     use "mbbill/undotree"
+    use "levouh/tint.nvim"
 
     -- Colorschemes
     use "folke/tokyonight.nvim"
     use "cocopon/iceberg.vim"
-    use "rakr/vim-two-firewatch"
     use "projekt0n/github-nvim-theme"
-    use "elvessousa/sobrio"
-    use "EdenEast/nightfox.nvim"
-    use "kvrohit/substrata.nvim"
     use "rose-pine/neovim"
     use "rebelot/kanagawa.nvim"
-    use "rmehri01/onenord.nvim"
-    use "RRethy/vim-illuminate"
-    use "jacoborus/tender.vim"
-    use "rafamadriz/neon"
-    use "MomePP/plastic-nvim"
-    use "sainnhe/everforest"
     use "nanotech/jellybeans.vim"
-    use "sainnhe/edge"
-    use "ChristianChiarulli/nvcode-color-schemes.vim"
     use "w0ng/vim-hybrid"
     use "metalelf0/jellybeans-nvim"
-    use "rktjmp/lush.nvim"
-    use "Shatur/neovim-ayu"
     use "cesarsl/neo-hybrid.nvim"
-    use "kvrohit/rasmus.nvim"
     use "tiagovla/tokyodark.nvim"
-    use "yazeed1s/minimal.nvim"
-    use "lewpoly/sherbet.nvim"
-    use "ramojus/meliora.nvim"
-    use({ "mvllow/modes.nvim", tag = "v0.2.0" })
+    use { "ntk148v/komau.vim" } -- Packer
+    use "aktersnurra/no-clown-fiesta.nvim"
+    use {
+        "mcchrish/zenbones.nvim",
+        -- Optionally install Lush. Allows for more configuration or extending the colorscheme
+        -- If you don't want to install lush, make sure to set g:zenbones_compat = 1
+        -- In Vim, compat mode is turned on as Lush only works in Neovim.
+        requires = "rktjmp/lush.nvim",
+
+    }
+    use "aditya-azad/candle-grey"
+    use "rakr/vim-two-firewatch"
+
 end)

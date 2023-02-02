@@ -27,35 +27,30 @@ function M.smart_quit()
     local bufnr = vim.api.nvim_get_current_buf()
     local modified = vim.api.nvim_buf_get_option(bufnr, "modified")
     if modified then
-        vim.ui.input({
-            prompt = "You have unsaved changes. Quit anyway? (y/n) ",
-        }, function(input)
-            if input == "y" then
-                vim.cmd "q!"
-            end
-        end)
+        vim.ui.input(
+            { prompt = "You have unsaved changes. Quit anyway? (y/n) " },
+            function(input) if input == "y" then vim.cmd "q!" end end)
     else
         vim.cmd "q!"
     end
 end
 
-function M.get_os()
-    return vim.loop.os_uname().sysname
+function M.must_require(modname)
+    local mod_ok, mod = pcall(require, modname)
+    if not mod_ok then error("module " .. modname .. " not found") end
+
+    return mod
 end
 
+function M.get_os() return vim.loop.os_uname().sysname end
+
 function M.is_macos()
-    if vim.loop.os_uname().sysname == "Darwin" then
-        return true
-    end
+    if vim.loop.os_uname().sysname == "Darwin" then return true end
 end
 
 -- check if value in table
 function M.contains(t, value)
-    for _, v in pairs(t) do
-        if v == value then
-            return true
-        end
-    end
+    for _, v in pairs(t) do if v == value then return true end end
     return false
 end
 

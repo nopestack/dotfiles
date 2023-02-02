@@ -37,7 +37,8 @@ local options = {
     rnu = true,
     list = true,
     -- vim.opt.listchars = { space = "⋅", eol = "↲", tab = "▸ ", trail = "·" }
-    listchars = { space = "⋅", tab = "▸ ", trail = "·" },
+    -- listchars = { space = "⋅", tab = "▸ ", trail = "·" },
+    listchars = { tab = "▸ ", trail = "·" },
     hidden = true,
     inccommand = "nosplit",
     wrap = true,
@@ -57,7 +58,7 @@ local options = {
     cmdheight = 2,
     pumheight = 10,
     showcmd = false,
-    colorcolumn = "80",
+    -- colorcolumn = "80",
     showtabline = 0,
     updatetime = 50,
     completeopt = "menuone,noinsert,noselect",
@@ -67,11 +68,9 @@ local options = {
     undofile = true,
 }
 
-for k, v in pairs(options) do
-    vim.opt[k] = v
-end
+for k, v in pairs(options) do vim.opt[k] = v end
 
-vim.opt.shortmess:append "c"
+vim.opt.shortmess:append("c")
 
 vim.g.transparency = true
 
@@ -84,6 +83,4 @@ vim.g.markdown_fenced_languages = {
     "json=javascript",
 }
 
-vim.cmd("filetype indent on")
-vim.cmd("filetype indent on")
 vim.cmd("filetype indent on")

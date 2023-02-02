@@ -1,12 +1,8 @@
 local status_ok, nvim_tree = pcall(require, "nvim-tree")
-if not status_ok then
-    return
-end
+if not status_ok then return end
 
 local config_status_ok, nvim_tree_config = pcall(require, "nvim-tree.config")
-if not config_status_ok then
-    return
-end
+if not config_status_ok then return end
 
 local icons = require "user.icons"
 
@@ -15,7 +11,6 @@ local tree_cb = nvim_tree_config.nvim_tree_callback
 nvim_tree.setup({
     -- number = true,
     --    nvim_tree_highlight_opened_files = true,
-    create_in_closed_folder = true,
     filters = {
         -- custom = { ".git" },
         exclude = { ".gitignore" },
@@ -37,23 +32,15 @@ nvim_tree.setup({
         root_folder_modifier = ":t",
         indent_markers = {
             enable = true,
-            icons = {
-                corner = "└ ",
-                edge = "│ ",
-                none = "  ",
-            },
+            icons = { corner = "└ ", edge = "│ ", none = "  " },
         },
         icons = {
             webdev_colors = true,
             git_placement = "before",
             padding = " ",
             symlink_arrow = " ➛ ",
-            show = {
-                file = true,
-                folder = true,
-                folder_arrow = true,
-                git = true,
-            },
+            show = { file = true, folder = true, folder_arrow = true,
+                git = true },
             glyphs = {
                 default = "",
                 symlink = "",
@@ -84,11 +71,7 @@ nvim_tree.setup({
         -- update_cwd = true,
         ignore_list = {},
     },
-    git = {
-        enable = true,
-        ignore = true,
-        timeout = 500,
-    },
+    git = { enable = true, ignore = true, timeout = 500 },
     view = {
         side = "right",
         -- side = "left",
