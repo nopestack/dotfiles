@@ -9,8 +9,7 @@ export ZSH="/Users/nopestack/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-# ZSH_THEME="robbyrussell"
-ZSH_THEME="lambda-gitster"
+ZSH_THEME="robbyrussell"
 
 export UPDATE_ZSH_DAYS=7
 DISABLE_AUTO_TITLE="true"
@@ -25,6 +24,7 @@ plugins=(
 )
 
 fpath+=~/.zfunc
+
 autoload -U compinit && compinit
 
 source $ZSH/oh-my-zsh.sh
@@ -36,16 +36,6 @@ source $ZSH/oh-my-zsh.sh
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
@@ -55,10 +45,9 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
-#
 # Preferred editor for local and remote sessions
  if [[ -n $SSH_CONNECTION ]]; then
-   export EDITOR='vim'
+   export EDITOR='nvim'
  else
    export EDITOR='nvim'
  fi
@@ -66,21 +55,16 @@ source $ZSH/oh-my-zsh.sh
 # Compilation flags
 export ARCHFLAGS="-arch x86_64"
 
-
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor regexp)
-
 
 # Aliases
 alias vim="$(which nvim)"
-alias vide="$(which neovide)"
 alias ls="$(which exa)"
-# alias lsa="$(which exa -lah)"
 alias tree="$(which exa) --tree"
 
 alias k="kubectl"
 alias dps="docker ps"
 alias gst="$(which git) status"
-
 alias dcompose=docker-compose
 
 # Exports
@@ -96,18 +80,13 @@ export GOBIN="$GOPATH/bin"
 
 # alias rm="$(which trash)"
 
-BASE16_SHELL=$HOME/.config/base16-shell/
-[ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
+# BASE16_SHELL=$HOME/.config/base16-shell/
+# [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
 
 . $HOME/.asdf/asdf.sh
-
 #. $HOME/.asdf/completions/asdf.bash
 
-WORKSPACE="$HOME/Workspace"
-
-# Disabled per iTerm
-# Source https://jdhao.github.io/2018/10/19/tmux_nvim_true_color/
-#export TERM=xterm-256color
+WORKSPACE="$HOME/work"
 
 YARN_BIN="$HOME/.yarn/bin"
 YARN_MODULES="$HOME/.config/yarn/global/node_modules/.bin"
@@ -129,24 +108,13 @@ export NVM_DIR="$HOME/.nvm"
 # helper to draw graphs with graphviz
 alias pygraph='find . -iname "*.py" | xargs pyan --dot --colored --no-defines --grouped | dot -Tpng -Granksep=1.5 | open -f -a /Applications/Preview.app'
 
-export PATH="$HOME/.poetry/bin:$PATH"
-
 export PATH="/Users/nopestack/.deno/bin:$PATH"
 
 [[ /usr/local/bin/kubectl ]] && source <(kubectl completion zsh)
 
 export PATH="/usr/local/sbin:$PATH"
-#
-#export PATH="/usr/local/opt/sqlite/bin:$PATH"
-export JAVA_HOME="/usr/local/Cellar/openjdk@11/11.0.10"
-export PATH="$PATH:/Users/nopestack/Library/Application Support/Coursier/bin"
-[ -f "/Users/nopestack/.ghcup/env" ] && source "/Users/nopestack/.ghcup/env" # ghcup-env
-export PATH="/var/folders/sk/tky7ly1s1l9cr5q13pdg5y1h0000gn/T/fnm_multishells/28149_1638569498914/bin":$PATH 
 
-# export NEOVIM_HOME="/Users/nopestack/Library/Application Support/neovim"
-export VOLTA_HOME="$HOME/.volta"
-export PATH="$VOLTA_HOME/bin:$PATH"
-# export PATH="$NEOVIM_HOME/bin:$PATH"
+export JAVA_HOME="/usr/local/Cellar/openjdk@11/11.0.10"
 
 bindkey -s ^f "tmux-sessionizer\n"
 
