@@ -178,39 +178,37 @@ if vim.loop.os_uname().sysname == "Darwin" then
 end
 
 -- Show code actions
-keymap("n", "ga", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
-keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
-keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
-keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
 keymap("n", "<leader>t", ":Telescope<CR>", opts)
 keymap("n", "<leader>u", ":UndotreeToggle<CR>", opts)
 
 -- indeed the greatest remap ever
 -- when pasting with <leader>p, it doesnt swap the clipboard with the replaced text
-keymap("x", "<leader>p", "\"_dP", opts)
+-- NOTE: not needed since nvim 0.8.x
+-- keymap("x", "<leader>p", "\"_dP", opts)
 
 M = {}
 
 function M.lsp_keymaps(bufnr)
 
-    buf_keymap(bufnr, "n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
-    buf_keymap(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
-    buf_keymap(bufnr, "n", "gI", "<cmd>lua vim.lsp.buf.implementation()<CR>",
-        opts)
-    buf_keymap(bufnr, "n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
-    buf_keymap(bufnr, "n", "gl", "<cmd>lua vim.diagnostic.open_float()<CR>",
-        opts)
-    buf_keymap(bufnr, "n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<CR>",
-        opts)
-    buf_keymap(bufnr, "n", "<M-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>",
-        opts)
+    local local_opts = { buffer = bufnr, remap = false, silent = true }
 
-    -- vim.cmd([[ command! Format execute 'lua vim.lsp.buf.format({ async = true })' ]])
+    keymap("n", "ga", "<cmd>lua vim.lsp.buf.code_action()<CR>", local_opts)
+    keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", local_opts)
+    keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", local_opts)
+    keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", local_opts)
+    keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", local_opts)
+    keymap("n", "gI", "<cmd>lua vim.lsp.buf.implementation()<CR>", local_opts)
+    keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", local_opts)
+    keymap("n", "gl", "<cmd>lua vim.diagnostic.open_float()<CR>", local_opts)
+    keymap("n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<CR>", local_opts)
+    keymap("n", "<M-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", local_opts)
 
     keymap("n", "<leader>s", require("telescope.builtin").lsp_document_symbols,
         { desc = "[s] Document Symbols" })
 
     keymap("n", "<leader>S", ":SymbolsOutline<CR>", opts)
+    --
+    -- vim.cmd([[ command! Format execute 'lua vim.lsp.buf.format({ async = true })' ]])
 
     -- update the window number here so that we can map escape to close even
     -- when there are no actions, update the rest of the state later

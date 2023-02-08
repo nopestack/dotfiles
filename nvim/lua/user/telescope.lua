@@ -21,6 +21,7 @@ telescope.setup {
         colorscheme = { theme = "dropdown" },
         command_history = { theme = "dropdown" },
         buffers = { theme = "dropdown", previewer = false },
+        builtin = { theme = "dropdown", previewer = false },
     },
 
     defaults = {

@@ -24,22 +24,22 @@ else
 end
 
 require("rose-pine").setup({
-    bold_vert_split = false,
-
-    --- @usage string hex value or named color from rosepinetheme.com/palette
-    groups = {
-        background = "base",
-        panel = "surface",
-        border = "highlight_med",
-        comment = "#999999",
-        link = "iris",
-        punctuation = "subtle",
-        error = "love",
-        hint = "iris",
-        info = "foam",
-        warn = "gold",
-        headings = "subtle",
-    },
+    -- bold_vert_split = false,
+    --
+    -- --- @usage string hex value or named color from rosepinetheme.com/palette
+    -- -- groups = {
+    -- --     background = "base",
+    -- --     panel = "surface",
+    -- --     border = "highlight_med",
+    -- --     comment = "#999999",
+    -- --     link = "iris",
+    -- --     punctuation = "subtle",
+    -- --     error = "love",
+    -- --     hint = "iris",
+    -- --     info = "foam",
+    -- --     warn = "gold",
+    -- --     headings = "subtle",
+    -- -- },
 })
 
 local function apply_color_overrides()
@@ -92,8 +92,11 @@ local function apply_colors(color)
         -- vim.api.nvim_set_hl(0, "Normal", { bg = "#1e1e1e" })
         -- vim.api.nvim_set_hl(0, "ColorColumn", { bg = "#1e1e1e" })
 
-    elseif color == "rose-pine" then
-        -- set_transparent_bg()
+    elseif color == "rose-pine" or "rosebones" then
+        set_transparent_bg()
+
+    elseif color == "no-clown-fiesta" then
+        set_transparent_bg()
 
     elseif color == "komau" then
         vim.api.nvim_set_hl(0, "Comment", { fg = "#cccccc" })
@@ -105,6 +108,8 @@ local function apply_colors(color)
 end
 
 apply_colors("no-clown-fiesta")
+-- apply_colors("rosebones")
+-- apply_colors("rose-pine")
 apply_color_overrides()
 
 -- vim.cmd([[

@@ -66,6 +66,8 @@ alias k="kubectl"
 alias dps="docker ps"
 alias gst="$(which git) status"
 alias dcompose=docker-compose
+alias dc=docker-compose
+alias \$=''
 
 # Exports
 export NCONF="$HOME/.config/nvim/"
@@ -73,21 +75,15 @@ export NEOVIM_BIN="$(which nvim)"
 
 # Go
 GOVER=1.18beta1
-#GOVER=1.17
 export GOROOT="$HOME/.asdf/installs/golang/$GOVER/go"
 export GOPATH="$HOME/.go"
 export GOBIN="$GOPATH/bin"
 
 # alias rm="$(which trash)"
 
-# BASE16_SHELL=$HOME/.config/base16-shell/
-# [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
-
 . $HOME/.asdf/asdf.sh
-#. $HOME/.asdf/completions/asdf.bash
 
 WORKSPACE="$HOME/work"
-
 YARN_BIN="$HOME/.yarn/bin"
 YARN_MODULES="$HOME/.config/yarn/global/node_modules/.bin"
 LOCAL_BIN="$HOME/.local/bin"
@@ -96,7 +92,6 @@ export PATH="$YARN_BIN:$YARN_MODULES:$LOCAL_BIN:$PATH:$GOBIN"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-#export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
 export FZF_DEFAULT_COMMAND='rg --files'
 
 export CFLAGS="-I$(brew --prefix openssl)/include"
