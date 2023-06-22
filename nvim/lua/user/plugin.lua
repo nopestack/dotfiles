@@ -12,7 +12,6 @@ end
 
 vim.opt.rtp:prepend(lazypath)
 
-
 local status_ok, lazy = pcall(require, "lazy")
 if not status_ok then
     vim.notify("could not require lazy", vim.log.levels.ERROR)

@@ -1,6 +1,6 @@
 local opts = {
-    width = 30,
-    --     highlight_hovered_item = true,
+    width = 40,
+    highlight_hovered_item = true,
     --     show_guides = true,
     --     auto_preview = false,
     --     position = 'right',
