@@ -21,7 +21,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions)
+plugins=(git zsh-autosuggestions F-Sy-H)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -45,9 +45,6 @@ function take {
     cd $1
 }
 
-# source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-# source ~/.zsh/fsh/F-Sy-H.plugin.zsh
-
 # force emacs mode on shell
 # TODO: figure how to make vim mode play nice with ^f
 bindkey -e
@@ -67,9 +64,6 @@ else
     # Intel
   export ARCHFLAGS="-arch x86_64"
 fi
-
-ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor regexp)
-
 # Aliases
 alias vim="$(which nvim)"
 alias ls="$(which exa)"
@@ -115,7 +109,6 @@ load_kubectl_env() {
     [[ /usr/local/bin/kubectl ]] && source <(kubectl completion zsh)
 }
 
-
 load_conda_env() {
     export CONDA_DEFAULT_ENV="base"
 
@@ -137,17 +130,9 @@ load_conda_env() {
     conda deactivate
 }
 
-load_rancher_env() {
-    ### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
-    export PATH="/Users/nopestack/.rd/bin:$PATH"
-    ### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
-}
-
 load_plugins_env() {
     load_kubectl_env
     echo "loaded kubectl"
     load_conda_env
     echo "loaded conda env"
-    load_rancher_env
-    echo "loaded rancher env"
 }
