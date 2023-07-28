@@ -136,13 +136,15 @@ local plugins = {
     "mcchrish/zenbones.nvim",
     'yogeshdhamija/chandrian-theme.nvim',
     'cranberry-clockworks/coal.nvim',
-    "RRethy/nvim-base16",
     'kdheepak/monochrome.nvim',
     'kvrohit/rasmus.nvim',
     { "catppuccin/nvim",   name = "catppuccin" },
     "tjdevries/colorbuddy.vim",
     'JoosepAlviste/palenightfall.nvim',
-
+    { "Alexis12119/nightly.nvim" },
+    'voidekh/kyotonight.vim',
+    'JoosepAlviste/palenightfall.nvim',
+    "cesarsl/neo-hybrid.nvim",
 }
 
 lazy.setup(plugins, opts)

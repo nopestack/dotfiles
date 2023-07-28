@@ -103,7 +103,7 @@ require('kanagawa').setup({
     --     palette = {}
     --     theme = { wave = {}, lotus = {}, dragon = {}, all = {} },
     -- },
-    theme        = "dragon", -- Load "wave" theme when 'background' option is not set
+    theme        = "wave", -- Load "wave" theme when 'background' option is not set
     background   = {
         --     -- map the value of 'background' option to a theme
         --     -- dark = "wave", -- try "dragon" !
@@ -205,6 +205,17 @@ require("catppuccin").setup({
     },
 })
 
+require("nightly").setup({
+    transparent = true,
+    styles = {
+        comments = { italic = true },
+        functions = { italic = false },
+        variables = { italic = false },
+        keywords = { italic = true },
+    },
+    highlights = {},
+})
+
 -- setup must be called before loading
 vim.cmd.colorscheme "catppuccin"
 
@@ -260,6 +271,10 @@ local function apply_colors(color)
         set_transparent_bg()
         set_readable_line_nr()
         return
+    elseif color == "forestbones" then
+        set_transparent_bg()
+        set_readable_line_nr()
+        return
     elseif color == "rasmus" then
         set_transparent_bg()
         set_readable_line_nr()
@@ -279,6 +294,7 @@ end
 -- apply_colors("catppuccin-mocha")
 -- apply_colors("neobones")
 apply_colors("kanagawa")
+-- apply_colors("tundra")
 -- apply_colors("rasmus")
 -- apply_colors("nordbones")
 -- apply_colors("substrata")
