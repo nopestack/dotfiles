@@ -9,6 +9,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="robbyrussell"
+# ZSH_THEME="geometry"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -40,6 +41,13 @@ source $ZSH/oh-my-zsh.sh
 # 	compinit -C;
 # fi;
 
+export VI_MODE_RESET_PROMPT_ON_MODE_CHANGE=true
+export VI_MODE_SET_CURSOR=true
+
+export KEYTIMEOUT=1
+
+# export GEOMETRY_PROMPT_PLUGINS_PRIMARY=(geometry_virtualenv)
+
 function take {
     mkdir -p $1
     cd $1
@@ -48,6 +56,7 @@ function take {
 # force emacs mode on shell
 # TODO: figure how to make vim mode play nice with ^f
 bindkey -e
+
 
 # Preferred editor for local and remote sessions
  if [[ -n $SSH_CONNECTION ]]; then
@@ -76,6 +85,7 @@ alias cx="$(which exa) $1 && cd $1"
 alias pclean="$(which podman) container rm --all -v"
 alias nerd="$(which nerdctl)"
 alias tf="$(which terraform)"
+alias python="$(which python3)"
 
 # [f]ind [w]ith fzf
 alias fw="fzf --preview 'bat --color \"always\" {}'"

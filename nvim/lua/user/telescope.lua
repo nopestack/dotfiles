@@ -11,6 +11,7 @@ pcall(require("telescope").load_extension, "possession")
 
 local actions = require("telescope.actions")
 telescope.load_extension("media_files")
+telescope.load_extension('projects')
 
 local action_layout = require("telescope.actions.layout")
 
@@ -18,9 +19,12 @@ local icons = require("user.icons")
 
 telescope.setup {
     pickers = {
-        find_files = { hidden = true },
+        -- find_files = { hidden = true },
         -- live_grep = { theme = "dropdown" },
         --live_grep = { previewer = false },
+        find_files = { previewer = false, hidden = true },
+        -- find_files = find_file_opts,
+        -- find_files = { theme = "ivy", hidden = true },
         -- find_files = { theme = "dropdown", hidden = true },
         -- commands = { theme = "dropdown" },
         -- keymaps = { theme = "dropdown" },
@@ -29,6 +33,7 @@ telescope.setup {
         -- colorscheme = { theme = "dropdown" },
         -- command_history = { theme = "dropdown" },
         -- buffers = { theme = "dropdown", previewer = false },
+        -- buffers = { theme = "ivy", previewer = false },
         -- buffers = { theme = "dropdown" },
         -- builtin = { theme = "dropdown", previewer = false },
         builtin = { previewer = false },
@@ -50,7 +55,7 @@ telescope.setup {
                 -- ["<M-p>"] = action_layout.toggle_preview
             },
         },
-        -- prompt_prefix = icons.ui.ChevronRight .. " ",
+        prompt_prefix = icons.ui.ChevronRight .. " ",
         -- selection_caret = " ",
         -- path_display = { "smart" },
         file_ignore_patterns = {

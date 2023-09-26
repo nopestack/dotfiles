@@ -10,6 +10,7 @@ return {
             other_hints_prefix = "",
             show_parameter_hints = true,
             highlight = "Comment",
+            lifetime_elision_hints = "always",
         },
         hover_actions = {
             auto_focus = true,

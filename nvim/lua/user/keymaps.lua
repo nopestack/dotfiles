@@ -122,9 +122,13 @@ keymap("n", "<leader>fw",
 nmap("<leader>ft", "<cmd>lua require('telescope.builtin').colorscheme()<cr>")
 nmap("<leader>fh", "<cmd>lua require('telescope.builtin').command_history()<cr>")
 nmap("<leader>c", "<cmd>lua require('telescope.builtin').commands()<cr>")
+
 -- ctrl+f to open sessionizer
 if vim.loop.os_uname().sysname == "Darwin" then
-    keymap("n", "<C-f>", "<cmd>!tmux neww tmux-sessionizer<cr>", opts)
+    if not vim.g.neovide then
+        keymap("n", "<C-f>", "<cmd>!tmux neww tmux-sessionizer<cr>", opts)
+    end
+    -- keymap("n", "<C-f>", "<cmd>!tmux neww tmux-sessionizer<cr>", opts)
 end
 
 -- Show code actions
@@ -132,6 +136,7 @@ nmap("<leader>T", ":Telescope<CR>", "Toggle [T]elescope")
 nmap("<leader>u", ":UndotreeToggle<CR>", "Toggle [u]ndotree")
 
 -- indeed the greatest remap ever
+-- NOTE: You can use the default shift+P in visual mode to prevent writing to the unnamed register rather than mapping <leader>p
 -- when pasting with <leader>p, it doesnt swap the clipboard with the replaced text
 -- NOTE: not needed since nvim 0.8.x
 -- keymap("x", "<leader>p", "\"_dP", opts)
@@ -166,10 +171,13 @@ function M.lsp_keymaps(bufnr)
     nmap("<leader>fs",
         "<cmd>lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<cr>")
 
-    keymap("n", "<leader>s", require("telescope.builtin").lsp_document_symbols,
-        { desc = "[s] Document Symbols" })
+    -- keymap("n", "<leader>s", require("telescope.builtin").lsp_document_symbols,
+    --     { desc = "[s] Document Symbols" })
 
-    keymap("n", "<leader>S", ":SymbolsOutline<CR>", opts)
+    keymap("n", "<leader>s", ":SymbolsOutline<CR>",
+        { desc = "[s]ymbols Outline", silent = true })
+
+    -- keymap("n", "<leader>S", ":SymbolsOutline<CR>", opts)
 
     keymap("n", "<leader>fd", function()
         -- You can pass additional configuration to telescope to change theme, layout, etc.

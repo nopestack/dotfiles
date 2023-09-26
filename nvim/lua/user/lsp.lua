@@ -148,6 +148,12 @@ local lsp_rust = lsp.build_options("rust_analyzer", {
             primeCaches = { numThreads = 4 },
             diagnostics = { enable = true, experimental = { enable = true } },
             procMacro = { enable = true },
+            inlayHints = {
+                lifetimeElisionHints = {
+                    enable = "always",
+                    useParameterNames = true,
+                }
+            },
         },
     },
 })

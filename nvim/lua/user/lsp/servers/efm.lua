@@ -1,3 +1,11 @@
+local prettier = {
+    formatCommand = 'prettierd "${INPUT}"',
+    formatStdin = true,
+    env = {
+        string.format('PRETTIERD_DEFAULT_CONFIG=%s', vim.fn.expand('~/.config/nvim/utils/linter-config/.prettierrc.json')),
+    },
+}
+
 local efm = {
     -- filetypes = { "lua", "python" },
     filetypes = { "lua" },
@@ -16,6 +24,7 @@ local efm = {
         languages = {
             lua = { { formatCommand = "lua-format -i", formatStdin = true } },
             python = { { formatCommand = "black --quiet -", formatStdin = true } },
+            prettier = { prettier },
         },
     },
 }

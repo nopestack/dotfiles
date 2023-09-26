@@ -96,20 +96,20 @@ require('kanagawa').setup({
     -- statementStyle = { bold = true },
     -- typeStyle = {},
     transparent  = true, -- do not set background color
-    -- dimInactive = false,   -- dim inactive window `:h hl-NormalNC`
+    dimInactive  = true, -- dim inactive window `:h hl-NormalNC`
     -- terminalColors = true, -- define vim.g.terminal_color_{0,17}
     -- colors = {
     --     -- add/modify theme and palette colors
     --     palette = {}
     --     theme = { wave = {}, lotus = {}, dragon = {}, all = {} },
     -- },
-    theme        = "wave", -- Load "wave" theme when 'background' option is not set
-    background   = {
-        --     -- map the value of 'background' option to a theme
-        --     -- dark = "wave", -- try "dragon" !
-        dark = "dragon", -- try "dragon" !
-        --     light = "lotus"
-    },
+    theme        = "dragon", -- Load "wave" theme when 'background' option is not set
+    -- background   = {
+    --     --     -- map the value of 'background' option to a theme
+    --     --     -- dark = "wave", -- try "dragon" !
+    --     -- dark = "dragon", -- try "dragon" !
+    --     --     light = "lotus"
+    -- },
 })
 
 require('nvim-tundra').setup({
@@ -217,7 +217,49 @@ require("nightly").setup({
 })
 
 -- setup must be called before loading
-vim.cmd.colorscheme "catppuccin"
+-- vim.cmd.colorscheme "catppuccin"
+
+require 'nordic'.setup {
+    -- This callback can be used to override the colors used in the palette.
+    bold_keywords = false,
+    -- Enable italic comments.
+    italic_comments = true,
+    -- Enable general editor background transparency.
+    transparent_bg = true,
+    -- Enable brighter float border.
+    bright_border = true,
+    -- Reduce the overall amount of blue in the theme (diverges from base Nord).
+    reduced_blue = true,
+    -- Swap the dark background with the normal one.
+    swap_backgrounds = false,
+    -- Cursorline options.  Also includes visual/selection.
+    cursorline = {
+        -- Bold font in cursorline.
+        bold = false,
+        -- Bold cursorline number.
+        bold_number = true,
+        -- Avialable styles: 'dark', 'light'.
+        theme = 'dark',
+        -- Blending the cursorline bg with the buffer bg.
+        blend = 0.7,
+    },
+    noice = {
+        -- Available styles: `classic`, `flat`.
+        style = 'flat',
+    },
+    telescope = {
+        -- Available styles: `classic`, `flat`.
+        style = 'flat',
+    },
+    leap = {
+        -- Dims the backdrop when using leap.
+        dim_backdrop = false,
+    },
+    ts_context = {
+        -- Enables dark background for treesitter-context window
+        dark_background = true,
+    }
+}
 
 local function apply_colors(color)
     color = color or "rose-pine"
@@ -242,6 +284,7 @@ local function apply_colors(color)
         set_transparent_bg()
         set_readable_line_nr()
     elseif color == "kanagawa" then
+        set_readable_line_nr()
         return
     elseif color == "rosebones" then
         set_transparent_bg()
@@ -291,9 +334,11 @@ end
 
 -- apply_colors("no-clown-fiesta")
 -- apply_colors("rasmus")
--- apply_colors("catppuccin-mocha")
+-- apply_colors("catppuccin-macchiato")
 -- apply_colors("neobones")
-apply_colors("kanagawa")
+-- apply_colors("kanagawa")
+apply_colors("kanagawa-dragon")
+-- apply_colors("nordic")
 -- apply_colors("tundra")
 -- apply_colors("rasmus")
 -- apply_colors("nordbones")

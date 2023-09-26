@@ -74,7 +74,7 @@ local plugins = {
     },
     'f-person/git-blame.nvim',
 
-    "j-hui/fidget.nvim",
+    { "j-hui/fidget.nvim", branch = "legacy" },
     "simrat39/rust-tools.nvim",
     "Saecki/crates.nvim",
 
@@ -114,12 +114,14 @@ local plugins = {
             require("statuscol").setup()
         end,
     },
+    { 'akinsho/toggleterm.nvim', version = "*",      config = true },
 
     "simrat39/symbols-outline.nvim",
     "lukas-reineke/indent-blankline.nvim",
     "andymass/vim-matchup",
     "mbbill/undotree",
     "levouh/tint.nvim",
+    "ahmedkhalf/project.nvim",
 
     -- Colorschemes
     "folke/tokyonight.nvim",
@@ -129,7 +131,6 @@ local plugins = {
     "tiagovla/tokyodark.nvim",
     "aktersnurra/no-clown-fiesta.nvim",
     'sam4llis/nvim-tundra',
-    'andersevenrud/nordic.nvim',
     'kvrohit/substrata.nvim',
     "adisen99/apprentice.nvim",
     "lewpoly/sherbet.nvim",
@@ -138,13 +139,14 @@ local plugins = {
     'cranberry-clockworks/coal.nvim',
     'kdheepak/monochrome.nvim',
     'kvrohit/rasmus.nvim',
-    { "catppuccin/nvim",   name = "catppuccin" },
+    { "catppuccin/nvim",         name = "catppuccin" },
     "tjdevries/colorbuddy.vim",
     'JoosepAlviste/palenightfall.nvim',
     { "Alexis12119/nightly.nvim" },
     'voidekh/kyotonight.vim',
     'JoosepAlviste/palenightfall.nvim',
     "cesarsl/neo-hybrid.nvim",
+    'AlexvZyl/nordic.nvim'
 }
 
 lazy.setup(plugins, opts)
