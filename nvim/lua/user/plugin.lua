@@ -122,6 +122,18 @@ local plugins = {
     "mbbill/undotree",
     "levouh/tint.nvim",
     "ahmedkhalf/project.nvim",
+    {
+        "utilyre/barbecue.nvim",
+        name = "barbecue",
+        version = "*",
+        dependencies = {
+            "SmiteshP/nvim-navic",
+            "nvim-tree/nvim-web-devicons", -- optional dependency
+        },
+        opts = {
+            -- configurations go here
+        },
+    },
 
     -- Colorschemes
     "folke/tokyonight.nvim",
@@ -146,7 +158,11 @@ local plugins = {
     'voidekh/kyotonight.vim',
     'JoosepAlviste/palenightfall.nvim',
     "cesarsl/neo-hybrid.nvim",
-    'AlexvZyl/nordic.nvim'
+    'AlexvZyl/nordic.nvim',
+    'Yagua/nebulous.nvim',
+    { "ellisonleao/gruvbox.nvim",   priority = 1000, config = true, opts = ... },
+    -- Install without configuration
+    { 'projekt0n/github-nvim-theme' }
 }
 
 lazy.setup(plugins, opts)

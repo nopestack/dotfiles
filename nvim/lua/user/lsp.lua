@@ -57,6 +57,14 @@ lsp.configure("sumneko_lua", lua_opts)
 lsp.configure("pyright", py_opts)
 lsp.configure("efm", efm_opts)
 
+lsp.configure('gdscript', {
+    force_setup = true, -- because the LSP is global. Read more on lsp-zero docs about this.
+    single_file_support = false,
+    -- cmd = { 'ncat', '127.0.0.1', '6008' }, -- the important trick for Windows!
+    root_dir = require('lspconfig.util').root_pattern('project.godot', '.git'),
+    filetypes = { 'gd', 'gdscript', 'gdscript3' }
+})
+
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
 
 local cmp_mappings = lsp.defaults.cmp_mappings({

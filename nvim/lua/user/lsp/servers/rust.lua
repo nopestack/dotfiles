@@ -1,5 +1,6 @@
 return {
     tools = {
+        reload_workspace_from_cargo_toml = true,
         runnables = {
             use_telescope = true,
         },

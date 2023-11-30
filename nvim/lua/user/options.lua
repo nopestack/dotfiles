@@ -68,7 +68,8 @@ local options = {
     undofile = true,
     fdc = "1",
     -- make rmagatti/auto-session play nice with other configs
-    sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+    sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions",
+    gcr = "n-c-sm:block,i-ci:ver25-Cursor,r-v-cr-o:hor40",
 }
 
 -- disable netrw at the very start of your init.lua (strongly advised)
