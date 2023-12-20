@@ -7,8 +7,7 @@ local prettier = {
 }
 
 local efm = {
-    -- filetypes = { "lua", "python" },
-    filetypes = { "lua" },
+    filetypes = { "lua", "python" },
     -- TODO: setup TS/JS, Go and Python formatting
     init_options = { documentFormatting = true, codeAction = true },
     settings = {

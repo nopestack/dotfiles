@@ -192,6 +192,10 @@ function M.lsp_keymaps(bufnr)
             require("trouble").toggle({ mode = "document_diagnostics" })
         end,
         { desc = "Toggle [t]rouble" })
+
+    vim.cmd([[:amenu 1.100 mousemenu.Goto\ Definition <cmd>Telescope lsp_definitions<cr>]])
+    vim.cmd([[:amenu 1.110 mousemenu.References <cmd>Telescope lsp_references<cr>]])
+    vim.keymap.set("n", "<RightMouse>", "<cmd>:popup mousemenu<CR>")
 end
 
 return M

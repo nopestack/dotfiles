@@ -135,7 +135,11 @@ lsp.skip_server_setup({ "rust_analyzer" })
 
 lsp.format_on_save({
     servers = {
+        ['tsserver'] = { 'javascript', 'typescript' },
+        ['usort'] = { 'python' },
+        ['black'] = { 'python' },
         ['lua_ls'] = { 'lua' },
+        ['taplo'] = { 'toml' },
         ['rust_analyzer'] = { 'rust' },
     }
 })
@@ -181,11 +185,6 @@ end
 
 rust_tools.setup(rust_opts)
 
-
 vim.diagnostic.config({ virtual_text = true })
-
--- vim.cmd([[
---     command! LspToggleAutoFormat execute 'lua require("user.lsp").toggle_format_on_save()'
--- ]])
 
 return M
