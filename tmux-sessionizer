@@ -7,7 +7,7 @@ preview () {
     bat --color "always" "$1"
 } 
 
-session=$(find ~/work ~/personal -mindepth 1 -maxdepth 2 -type d | fzf)
+session=$(find ~/Documents/work ~/Documents/personal -mindepth 1 -maxdepth 2 -type d | fzf)
 
 session_name=$(basename "$session" | tr . _)
 

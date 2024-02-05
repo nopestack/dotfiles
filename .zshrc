@@ -86,13 +86,16 @@ alias pclean="$(which podman) container rm --all -v"
 alias nerd="$(which nerdctl)"
 alias tf="$(which terraform)"
 alias python="$(which python3)"
+alias sqlite="$(which sqlite3)"
+alias pdb="$(which python3) -m pdb"
+alias hf="$(which huggingface-cli)"
 
 # [f]ind [w]ith fzf
 alias fw="fzf --preview 'bat --color \"always\" {}'"
 alias cargofix="cargo clippy --fix --allow-dirty --allow-staged"
 alias cargofmt="cargo fmt"
-alias docker="podman"
 alias dps="docker ps"
+alias dpsa="docker ps -a"
 alias \$=''
 alias rm="$(which trash)"
 alias k="kubectl"
@@ -115,34 +118,32 @@ if [ "$TERM_PROGRAM" = tmux ]; then
    bindkey -s ^f "tmux-sessionizer\n"
 fi
 
+export PIP_REQUIRE_VIRTUALENV=true
+
 load_kubectl_env() {
     [[ /usr/local/bin/kubectl ]] && source <(kubectl completion zsh)
 }
 
-load_conda_env() {
-    export CONDA_DEFAULT_ENV="base"
-
-    # >>> conda initialize >>>
-    # !! Contents within this block are managed by 'conda init' !!
-    __conda_setup="$('/opt/homebrew/Caskroom/miniconda/base/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-    if [ $? -eq 0 ]; then
-        eval "$__conda_setup"
-    else
-        if [ -f "/opt/homebrew/Caskroom/miniconda/base/etc/profile.d/conda.sh" ]; then
-            . "/opt/homebrew/Caskroom/miniconda/base/etc/profile.d/conda.sh"
-        else
-            export PATH="/opt/homebrew/Caskroom/miniconda/base/bin:$PATH"
-        fi
-    fi
-    unset __conda_setup
-    # <<< conda initialize <<<
-    
-    conda deactivate
-}
-
 load_plugins_env() {
     load_kubectl_env
-    echo "loaded kubectl"
-    load_conda_env
-    echo "loaded conda env"
+    echo "kubectl loaded"
 }
+
+export MODULAR_HOME="$HOME/.modular"
+export PATH="$HOME/.modular/pkg/packages.modular.com_mojo/bin:$PATH"
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/opt/homebrew/Caskroom/miniconda/base/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/opt/homebrew/Caskroom/miniconda/base/etc/profile.d/conda.sh" ]; then
+        . "/opt/homebrew/Caskroom/miniconda/base/etc/profile.d/conda.sh"
+    else
+        export PATH="/opt/homebrew/Caskroom/miniconda/base/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+

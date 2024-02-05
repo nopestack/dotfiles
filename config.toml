@@ -1,0 +1,27 @@
+# Helix Config
+
+theme = "onedark"
+
+[editor]
+line-number = "relative"
+# mouse = false
+bufferline = "always"
+cursorline = true
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.file-picker]
+hidden = false
+
+
+[editor.statusline]
+left = ["mode", "file-name"]
+center = ["diagnostics", "spinner"]
+right = ["position", "file-encoding", "file-line-ending", "file-type"]
+separator = "│"
+mode.normal = "NORMAL"
+mode.insert = "INSERT"
+mode.select = "SELECT"
