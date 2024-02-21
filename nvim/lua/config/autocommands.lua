@@ -1,11 +1,10 @@
-
 -- Show diagnostic popup on cursor hold
 -- Show diagnostic popup on cursor hold
 -- TODO: figure out how to make this look prettier
-vim.cmd([[
-    set updatetime=300
-    autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
-]])
+-- vim.cmd([[
+--     set updatetime=300
+--     autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
+-- ]])
 
 -- figure out what this does
 vim.cmd([[
@@ -25,13 +24,13 @@ vim.api.nvim_exec(
 )
 
 -- make it play nice with autosession
-vim.api.nvim_create_autocmd({ 'BufEnter' }, {
-    pattern = 'NvimTree*',
+vim.api.nvim_create_autocmd({ "BufEnter" }, {
+    pattern = "NvimTree*",
     callback = function()
-        local view = require('nvim-tree.view')
+        local view = require("nvim-tree.view")
         local is_visible = view.is_visible()
 
-        local api = require('nvim-tree.api')
+        local api = require("nvim-tree.api")
         if not is_visible then
             api.tree.open()
         end
@@ -42,7 +41,7 @@ vim.api.nvim_create_autocmd({ 'BufEnter' }, {
 vim.api.nvim_create_autocmd("BufEnter", {
     nested = true,
     callback = function()
-        local api = require('nvim-tree.api')
+        local api = require("nvim-tree.api")
 
         -- Only 1 window with nvim-tree left: we probably closed a file buffer
         if #vim.api.nvim_list_wins() == 1 and api.tree.is_tree_buf() then
@@ -56,5 +55,5 @@ vim.api.nvim_create_autocmd("BufEnter", {
                 vim.cmd("wincmd p")
             end, 0)
         end
-    end
+    end,
 })

@@ -13,7 +13,7 @@ return {
 	config = function()
 		require("mason").setup({
 			ui = {
-				border = "rounded",
+				border = "single",
 				icons = {
 					package_installed = "✓",
 					package_pending = "➜",
@@ -24,7 +24,18 @@ return {
 		require("mason-lspconfig").setup({
 			ensure_installed = vim.tbl_keys(require("plugins.lsp.servers")),
 		})
+
 		require("lspconfig.ui.windows").default_options.border = "single"
+
+		local border = "single"
+
+		-- to set border for floating windows on hover
+		local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
+		function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
+			opts = opts or {}
+			opts.border = opts.border or border
+			return orig_util_open_floating_preview(contents, syntax, opts, ...)
+		end
 
 		require("neodev").setup()
 
@@ -74,7 +85,7 @@ return {
 			float = {
 				source = "always",
 				style = "minimal",
-				border = "rounded",
+				border = "single",
 				header = "",
 				prefix = "",
 			},
