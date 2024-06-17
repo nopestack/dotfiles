@@ -11,7 +11,9 @@ return {
 		"RRethy/vim-illuminate",
 	},
 	config = function()
-		require("mason").setup({
+		local mason = require("mason")
+
+		mason.setup({
 			ui = {
 				border = "single",
 				icons = {
@@ -21,16 +23,22 @@ return {
 				},
 			},
 		})
-		require("mason-lspconfig").setup({
-			ensure_installed = vim.tbl_keys(require("plugins.lsp.servers")),
+
+		local lspconfig = require("lspconfig")
+		local mason_lspconfig = require("mason-lspconfig")
+		local lsp_servers = require("plugins.lsp.servers")
+
+		mason_lspconfig.setup({
+			ensure_installed = vim.tbl_keys(lsp_servers),
 		})
 
-		require("lspconfig.ui.windows").default_options.border = "single"
+		require("lspconfig.ui.windows").default_options.border = "solid"
 
-		local border = "single"
+		local border = "solid"
 
 		-- to set border for floating windows on hover
 		local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
+
 		function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
 			opts = opts or {}
 			opts.border = opts.border or border
@@ -54,7 +62,7 @@ return {
 		local function on_attach(client, bufnr)
 			lsp_keymaps(bufnr)
 			lsp_highlight_document(client)
-			-- vim.g.rustaceanvim.server.on_attach(client, bufnr)
+			vim.lsp.inlay_hint.enable(bufnr, true)
 
 			utils.enable_format_on_save()
 		end
@@ -62,15 +70,13 @@ return {
 		local capabilities = vim.lsp.protocol.make_client_capabilities()
 		capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
-		local mason_lspconfig = require("mason-lspconfig")
-
 		mason_lspconfig.setup_handlers({
 			function(server_name)
-				require("lspconfig")[server_name].setup({
+				lspconfig[server_name].setup({
 					capabilities = capabilities,
 					on_attach = on_attach,
-					settings = require("plugins.lsp.servers")[server_name],
-					filetypes = (require("plugins.lsp.servers")[server_name] or {}).filetypes,
+					settings = lsp_servers[server_name],
+					filetypes = (lsp_servers[server_name] or {}).filetypes,
 				})
 			end,
 		})
@@ -80,12 +86,11 @@ return {
 			underline = true,
 			virtual_text = true,
 			signs = true,
-			update_in_insert = false,
 			severity_sort = true,
 			float = {
-				source = "always",
+				source = true,
 				style = "minimal",
-				border = "single",
+				border = border,
 				header = "",
 				prefix = "",
 			},

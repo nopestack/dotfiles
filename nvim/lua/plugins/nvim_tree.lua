@@ -1,4 +1,3 @@
---nvim_tree.setup(opts)
 return {
 	{
 		"nvim-tree/nvim-tree.lua",
@@ -75,8 +74,8 @@ return {
 				update_focused_file = { enable = true, ignore_list = {} },
 				git = { enable = true, ignore = true, timeout = 500 },
 				view = {
-					number = true,
-					relativenumber = true,
+					-- number = true,
+					-- relativenumber = true,
 					float = {
 						enable = true,
 						open_win_config = function()
@@ -106,6 +105,61 @@ return {
 				},
 			}
 			nvim_tree.setup(opts)
+
+			vim.cmd([[nnoremap \ :NvimTreeToggle<cr>]])
+
+			-- dynamically resize nvim-tree when resizing the window
+			local tree_api = require("nvim-tree")
+			local tree_view = require("nvim-tree.view")
+
+			vim.api.nvim_create_augroup("NvimTreeResize", {
+				clear = true,
+			})
+
+			vim.api.nvim_create_autocmd({ "VimResized" }, {
+				group = "NvimTreeResize",
+				callback = function()
+					if tree_view.is_visible() then
+						tree_view.close()
+						tree_api.open()
+					end
+				end,
+			})
+
+			-- make it play nice with autosession
+			vim.api.nvim_create_autocmd({ "BufEnter" }, {
+				pattern = "NvimTree*",
+				callback = function()
+					local view = require("nvim-tree.view")
+					local is_visible = view.is_visible()
+
+					local api = require("nvim-tree.api")
+					if not is_visible then
+						api.tree.open()
+					end
+				end,
+			})
+
+			-- avoid weird buffer clossing issues
+			vim.api.nvim_create_autocmd("BufEnter", {
+				nested = true,
+				callback = function()
+					local api = require("nvim-tree.api")
+
+					-- Only 1 window with nvim-tree left: we probably closed a file buffer
+					if #vim.api.nvim_list_wins() == 1 and api.tree.is_tree_buf() then
+						-- Required to let the close event complete. An error is thrown without this.
+						vim.defer_fn(function()
+							-- close nvim-tree: will go to the last hidden buffer used before closing
+							api.tree.toggle({ find_file = true, focus = true })
+							-- re-open nivm-tree
+							api.tree.toggle({ find_file = true, focus = true })
+							-- nvim-tree is still the active window. Go to the previous window.
+							vim.cmd("wincmd p")
+						end, 0)
+					end
+				end,
+			})
 		end,
 	},
 }

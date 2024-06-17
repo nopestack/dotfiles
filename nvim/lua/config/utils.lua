@@ -8,11 +8,24 @@ local cmd = vim.cmd
 
 -- vim.cmd [[au BufNewFile,BufRead *.sol setfiletype solidity]]
 
+local default_opts = { noremap = true, silent = true }
+
 -- local keymap = vim.api.nvim_set_keymap
 local keymap = vim.keymap.set
 
 M.keymap = keymap
 M.buf_keymap = vim.api.nvim_buf_set_keymap
+
+M.nmap = function(lhs, rhs, desc)
+    local opts = default_opts
+    opts["desc"] = desc
+    keymap("n", lhs, rhs, opts)
+end
+
+M.meta_key = "M"
+if vim.g.neovide then
+    M.meta_key = "D"
+end
 
 function M.create_augroup(autocmds, name)
     cmd("augroup " .. name)
@@ -27,30 +40,42 @@ function M.smart_quit()
     local bufnr = vim.api.nvim_get_current_buf()
     local modified = vim.api.nvim_buf_get_option(bufnr, "modified")
     if modified then
-        vim.ui.input(
-            { prompt = "You have unsaved changes. Quit anyway? (y/n) " },
-            function(input) if input == "y" then vim.cmd "q!" end end)
+        vim.ui.input({ prompt = "You have unsaved changes. Quit anyway? (y/n) " }, function(input)
+            if input == "y" then
+                vim.cmd("q!")
+            end
+        end)
     else
-        vim.cmd "q!"
+        vim.cmd("q!")
     end
 end
 
 function M.must_require(modname)
     local mod_ok, mod = pcall(require, modname)
-    if not mod_ok then error("module " .. modname .. " not found") end
+    if not mod_ok then
+        error("module " .. modname .. " not found")
+    end
 
     return mod
 end
 
-function M.get_os() return vim.loop.os_uname().sysname end
+function M.get_os()
+    return vim.loop.os_uname().sysname
+end
 
 function M.is_macos()
-    if vim.loop.os_uname().sysname == "Darwin" then return true end
+    if vim.loop.os_uname().sysname == "Darwin" then
+        return true
+    end
 end
 
 -- check if value in table
 function M.contains(t, value)
-    for _, v in pairs(t) do if v == value then return true end end
+    for _, v in pairs(t) do
+        if v == value then
+            return true
+        end
+    end
     return false
 end
 
@@ -83,7 +108,9 @@ function M.toggle_format_on_save()
 end
 
 function M.remove_augroup(name)
-    if vim.fn.exists("#" .. name) == 1 then vim.cmd("au! " .. name) end
+    if vim.fn.exists("#" .. name) == 1 then
+        vim.cmd("au! " .. name)
+    end
 end
 
 return M

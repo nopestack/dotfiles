@@ -1,0 +1,24 @@
+
+[font]
+# normal = { family = "Fira Mono", style = "Regular" }
+# normal = { family = "Fira Code", style = "Regular" }
+# normal = { family = "JetBrainsMono Nerd Font", style = "Regular" }
+normal = { family = "FiraMono Nerd Font", style = "Regular" }
+size = 15.4
+
+[window]
+opacity = 0.9
+blur = true
+dynamic_title = false
+title = "Terminal"
+option_as_alt = "Both"
+
+[keyboard]
+bindings = [
+    { key = "Q", mods = "Command", action = "None" },
+    { key = "W", mods = "Command", action = "None" },
+    { key = "w", mods = "Command", action = "None" },
+    { key = "q", mods = "Command", action = "None" },
+    { key = "f", mods = "Command", action = "None" },
+    { key = "a", mods = "Command", action = "None" },
+]

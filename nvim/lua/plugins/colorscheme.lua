@@ -1,15 +1,57 @@
 return {
-    {
-        "rebelot/kanagawa.nvim",
-        config = function()
-            local apply_colors = require("config.ui").apply_colors
+	{
+		"rebelot/kanagawa.nvim",
+		config = function()
+			local apply_colors = require("config.ui").apply_colors
 
-            apply_colors("kanagawa-dragon")
+			require("kanagawa").setup({})
+			apply_colors("kanagawa-dragon")
+		end,
+	},
+	{
+		"folke/tokyonight.nvim",
+		enabled = true,
+		lazy = false,
+		priority = 1000,
+		config = function()
+			local apply_colors = require("config.ui").apply_colors
 
-            require("kanagawa").setup({})
-        end,
-    },
-    "levouh/tint.nvim",
+			require("tokyonight").setup({
+				style = "storm", -- The theme comes in three styles, `storm`, `moon`, a darker variant `night` and `day`
+				light_style = "day", -- The theme is used when the background is set to light
+				transparent = true, -- Enable this to disable setting the background color
+				terminal_colors = true,
+			})
+
+			-- apply_colors("tokyonight")
+		end,
+	},
+
+	{
+		"aktersnurra/no-clown-fiesta.nvim",
+		lazy = false,
+		config = function()
+			local apply_colors = require("config.ui").apply_colors
+
+			require("no-clown-fiesta").setup({
+				transparent = false, -- Enable this to disable the bg color
+				styles = {
+					-- You can set any of the style values specified for `:h nvim_set_hl`
+					comments = {},
+					functions = {},
+					keywords = {},
+					lsp = { underline = true },
+					match_paren = {},
+					type = { bold = true },
+					variables = {},
+				},
+			})
+
+			-- apply_colors("no-clown-fiesta")
+		end,
+	},
+
+	"levouh/tint.nvim",
 }
 
 -- TODO: revisit

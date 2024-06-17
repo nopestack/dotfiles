@@ -1,19 +1,15 @@
 local opts = { noremap = true, silent = true }
 
 local utils = require("config.utils")
+local keymap = utils.keymap
+local nmap = utils.nmap
 
-local keymap = vim.keymap.set
-
-local nmap = function(lhs, rhs, desc)
-    local opts = opts
-    opts["desc"] = desc
-    keymap("n", lhs, rhs, opts)
-end
-
-local meta_key = "M"
-if vim.g.neovide then
-    meta_key = "D"
-end
+-- local keymap = vim.keymap.set
+-- local nmap = function(lhs, rhs, desc)
+-- 	local opts = opts
+-- 	opts["desc"] = desc
+-- 	keymap("n", lhs, rhs, opts)
+-- end
 
 --          Mode  | Norm | Ins | Cmd | Vis | Sel | Opr | Term | Lang | ~
 -- Command        +------+-----+-----+-----+-----+-----+------+------+ ~
@@ -64,11 +60,11 @@ nmap("<Esc>", "<C-\\><C-n>")
 keymap("n", "<leader><space>", require("telescope.builtin").buffers, { desc = "[ ] Find existing buffers" })
 
 keymap("n", "<leader>/", function()
-    -- You can pass additional configuration to telescope to change theme, layout, etc.
-    require("telescope.builtin").current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
-        winblend = 10,
-        previewer = false,
-    }))
+	-- You can pass additional configuration to telescope to change theme, layout, etc.
+	require("telescope.builtin").current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
+		winblend = 10,
+		previewer = false,
+	}))
 end, { desc = "[/] Fuzzily search in current buffer]" })
 
 -- clear search
@@ -99,7 +95,8 @@ nmap("<A-S-Tab>", ":bprev<CR>")
 nmap("<C-w>", ":bd<CR>")
 
 -- Open NvimTree
-keymap("n", "<C-b>", ":NvimTreeToggle<CR>", opts)
+-- keymap("n", "<C-b>", ":NvimTreeToggle<CR>", opts)
+-- keymap("n", "<C-b>", ":Neotree reveal<CR>", opts)
 -- keymap("n", "<" .. meta_key .. "-b>", ":NvimTreeToggle<CR>", opts)
 
 -- Remap for dealing with word wrap
@@ -120,16 +117,16 @@ nmap("<leader>dl", "<cmd>lua require('dap').run_last()<cr>")
 
 -- ctrl+f to open sessionizer
 if vim.loop.os_uname().sysname == "Darwin" then
-    if not vim.g.neovide then
-        keymap("n", "<C-f>", "<cmd>!tmux neww tmux-sessionizer<cr>", opts)
-    end
+	if not vim.g.neovide then
+		keymap("n", "<C-f>", "<cmd>!tmux neww tmux-sessionizer<cr>", opts)
+	end
 end
 
 -- nmap("<leader>tr", utils.must_require("dapui").toggle, "[t]oggle debugge[r]")
 
 -- Show code actions
 nmap("<leader>T", ":Telescope<CR>", "Toggle [T]elescope")
-nmap("<leader>u", ":UndotreeToggle<CR>", "Toggle [u]ndotree")
+-- nmap("<leader>u", ":UndotreeToggle<CR>", "Toggle [u]ndotree")
 
 -- indeed the greatest remap ever
 -- NOTE: You can use the default shift+P in visual mode to prevent writing to the unnamed register rather than mapping <leader>p
@@ -151,36 +148,36 @@ nmap("<leader>u", ":UndotreeToggle<CR>", "Toggle [u]ndotree")
 M = {}
 
 function M.lsp_keymaps(bufnr)
-    local local_opts = { buffer = bufnr, remap = false, silent = true }
+	local local_opts = { buffer = bufnr, remap = false, silent = true }
 
-    keymap("n", "ga", "<cmd>lua vim.lsp.buf.code_action()<CR>", local_opts)
-    keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", local_opts)
-    keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", local_opts)
-    keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", local_opts)
-    keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", local_opts)
-    keymap("n", "gI", "<cmd>lua vim.lsp.buf.implementation()<CR>", local_opts)
-    keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", local_opts)
-    keymap("n", "gl", "<cmd>lua vim.diagnostic.open_float()<CR>", local_opts)
-    keymap("n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<CR>", local_opts)
-    keymap("n", "<M-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", local_opts)
+	keymap("n", "ga", "<cmd>lua vim.lsp.buf.code_action()<CR>", local_opts)
+	keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", local_opts)
+	keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", local_opts)
+	keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", local_opts)
+	keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", local_opts)
+	keymap("n", "gI", "<cmd>lua vim.lsp.buf.implementation()<CR>", local_opts)
+	keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", local_opts)
+	keymap("n", "gl", "<cmd>lua vim.diagnostic.open_float()<CR>", local_opts)
+	keymap("n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<CR>", local_opts)
+	keymap("n", "<M-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", local_opts)
 
-    nmap("<leader>fs", "<cmd>lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<cr>")
+	nmap("<leader>fs", "<cmd>lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<cr>")
 
-    keymap("n", "<leader>fd", function()
-        -- You can pass additional configuration to telescope to change theme, layout, etc.
-        require("telescope.builtin").diagnostics(require("telescope.themes").get_dropdown({
-            winblend = 10,
-            previewer = false,
-        }))
-    end, { desc = "Show Diagnostics" })
+	keymap("n", "<leader>fd", function()
+		-- You can pass additional configuration to telescope to change theme, layout, etc.
+		require("telescope.builtin").diagnostics(require("telescope.themes").get_dropdown({
+			winblend = 10,
+			previewer = false,
+		}))
+	end, { desc = "Show Diagnostics" })
 
-    keymap("n", "<leader>tb", function()
-        require("trouble").toggle({ mode = "document_diagnostics" })
-    end, { desc = "[t]oggle Trou[b]le" })
+	keymap("n", "<leader>tb", function()
+		require("trouble").toggle({ mode = "document_diagnostics" })
+	end, { desc = "[t]oggle Trou[b]le" })
 
-    vim.cmd([[:amenu 1.100 mousemenu.Goto\ Definition <cmd>Telescope lsp_definitions<cr>]])
-    vim.cmd([[:amenu 1.110 mousemenu.References <cmd>Telescope lsp_references<cr>]])
-    vim.keymap.set("n", "<RightMouse>", "<cmd>:popup mousemenu<CR>")
+	vim.cmd([[:amenu 1.100 mousemenu.Goto\ Definition <cmd>Telescope lsp_definitions<cr>]])
+	vim.cmd([[:amenu 1.110 mousemenu.References <cmd>Telescope lsp_references<cr>]])
+	vim.keymap.set("n", "<RightMouse>", "<cmd>:popup mousemenu<CR>")
 end
 
 return M

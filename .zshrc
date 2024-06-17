@@ -33,7 +33,7 @@ source $ZSH/oh-my-zsh.sh
 # setopt autocd
 #
 # # autoload -U compinit && compinit
-# autoload -Uz compinit 
+# autoload -Uz compinit
 # if [[ -n ${ZDOTDIR}/.zcompdump(#qN.mh+24) ]]; then
 # 	compinit;
 #     touch ~/.zcompdump
@@ -57,21 +57,20 @@ function take {
 # TODO: figure how to make vim mode play nice with ^f
 bindkey -e
 
-
 # Preferred editor for local and remote sessions
- if [[ -n $SSH_CONNECTION ]]; then
-   export EDITOR='nvim'
- else
-   export EDITOR='nvim'
- fi
+if [[ -n $SSH_CONNECTION ]]; then
+    export EDITOR='nvim'
+else
+    export EDITOR='nvim'
+fi
 
 # Compilation flags
 if uname -a | grep -q "arm64"; then
     # Apple Silicon
-  export ARCHFLAGS="-arch arm64"
+    export ARCHFLAGS="-arch arm64"
 else
     # Intel
-  export ARCHFLAGS="-arch x86_64"
+    export ARCHFLAGS="-arch x86_64"
 fi
 # Aliases
 alias vim="$(which nvim)"
@@ -115,7 +114,7 @@ export PATH="$SBIN:$LOCAL_BIN:$PATH"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 if [ "$TERM_PROGRAM" = tmux ]; then
-   bindkey -s ^f "tmux-sessionizer\n"
+    bindkey -s ^f "tmux-sessionizer\n"
 fi
 
 export PIP_REQUIRE_VIRTUALENV=true
@@ -134,7 +133,7 @@ export PATH="$HOME/.modular/pkg/packages.modular.com_mojo/bin:$PATH"
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/opt/homebrew/Caskroom/miniconda/base/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+__conda_setup="$('/opt/homebrew/Caskroom/miniconda/base/bin/conda' 'shell.zsh' 'hook' 2>/dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
@@ -147,3 +146,5 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /opt/homebrew/bin/terraform terraform

@@ -1,6 +1,5 @@
-# Helix Config
 
-theme = "onedark"
+theme = "kanagawa"
 
 [editor]
 line-number = "relative"
@@ -20,8 +19,19 @@ hidden = false
 [editor.statusline]
 left = ["mode", "file-name"]
 center = ["diagnostics", "spinner"]
-right = ["position", "file-encoding", "file-line-ending", "file-type"]
+right = ["file-encoding", "file-line-ending", "file-type"]
 separator = "│"
 mode.normal = "NORMAL"
 mode.insert = "INSERT"
 mode.select = "SELECT"
+
+[keys.insert]
+up = "no_op"
+down = "no_op"
+left = "no_op"
+right = "no_op"
+pageup = "no_op"
+pagedown = "no_op"
+home = "no_op"
+end = "no_op"
+

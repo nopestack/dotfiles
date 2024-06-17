@@ -44,8 +44,10 @@ local function set_transparent_bg()
 end
 
 local function set_readable_line_nr()
-    vim.api.nvim_set_hl(0, "LineNr", { fg = "#777777", bg = "none" })
-    vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#cccccc", bg = "none" })
+    -- vim.api.nvim_set_hl(0, "LineNr", { fg = "#777777" })
+    vim.api.nvim_set_hl(0, "LineNr", { fg = "#777777" })
+    -- vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#cccccc" })
+    vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#cccccc" })
 end
 
 function M.apply_colors(color)
@@ -105,7 +107,7 @@ function M.apply_colors(color)
         set_transparent_bg()
         set_readable_line_nr()
         return
-    elseif color == "forestbones" then
+    elseif color == "tokyonight" then
         set_transparent_bg()
         set_readable_line_nr()
         return
