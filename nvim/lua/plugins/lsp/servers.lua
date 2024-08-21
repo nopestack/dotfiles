@@ -4,8 +4,16 @@ return {
         filetypes = { "rust" },
         settings = {
             ["rust-analyzer"] = {
+                cargo = {
+                    autoreload = true,
+                },
                 checkOnSave = {
                     command = "clippy",
+                },
+                inlayHints = {
+                    lifetimeElisionHints = {
+                        enable = true,
+                    },
                 },
             },
         },
@@ -47,10 +55,40 @@ return {
     tsserver = {},
     gopls = {},
     pyright = {},
-    -- golangci_lint_ls = {},
     solidity_ls_nomicfoundation = {},
+    ["helm-ls"] = {
+        yamlls = {
+            path = "yaml-language-server",
+        },
+    },
     yamlls = {
-        cmd = { "yaml-language-server", "--stdio" },
-        filetypes = { "yaml" },
+        -- enabled = true,
+        -- enabledForFilesGlob = "*.{yaml,yml}",
+        -- diagnosticsLimit = 50,
+        -- showDiagnosticsDirectly = false,
+        -- path = "yaml-language-server",
+        config = {
+            format = false,
+            schemas = require("schemastore").yaml.schemas(),
+            -- schemas = {
+            -- 	kubernetes = "templates/**",
+            -- 	["http://json.schemastore.org/github-workflow"] = ".github/workflows/*",
+            -- 	["http://json.schemastore.org/github-action"] = ".github/action.{yml,yaml}",
+            -- 	["http://json.schemastore.org/ansible-stable-2.9"] = "roles/tasks/**/*.{yml,yaml}",
+            -- 	["http://json.schemastore.org/prettierrc"] = ".prettierrc.{yml,yaml}",
+            -- 	["http://json.schemastore.org/kustomization"] = "kustomization.{yml,yaml}",
+            -- 	["http://json.schemastore.org/chart"] = "Chart.{yml,yaml}",
+            -- 	["http://json.schemastore.org/circleciconfig"] = ".circleci/**/*.{yml,yaml}",
+            -- },
+            completion = true,
+            hover = true,
+            -- any other config from https://github.com/redhat-developer/yaml-language-server#language-server-settings
+        },
+    },
+    zls = {
+        settings = {
+            enable_build_on_save = true,
+            build_on_save_step = "check",
+        },
     },
 }

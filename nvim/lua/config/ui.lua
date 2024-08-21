@@ -73,8 +73,12 @@ function M.apply_colors(color)
         set_transparent_bg()
         set_readable_line_nr()
     elseif color == "kanagawa" then
-        set_readable_line_nr()
+        -- set_readable_line_nr()
         return
+    elseif color == "ayu" then
+        -- set_transparent_bg()
+        set_readable_line_nr()
+    elseif color == "no-clown-fiesta" then
     elseif color == "rosebones" then
         set_transparent_bg()
         set_readable_line_nr()
