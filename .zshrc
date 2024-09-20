@@ -74,7 +74,7 @@ else
 fi
 # Aliases
 alias vim="$(which nvim)"
-alias ls="$(which exa)"
+#alias ls="$(which exa)"
 alias lsa="$(which exa) -lah"
 alias tree="$(which exa) --tree"
 alias ga="$(which git) add"
@@ -96,7 +96,7 @@ alias cargofmt="cargo fmt"
 alias dps="docker ps"
 alias dpsa="docker ps -a"
 alias \$=''
-alias rm="$(which trash)"
+# alias rm="$(which trash)"
 alias k="kubectl"
 
 # autocd into previous directory

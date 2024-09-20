@@ -31,7 +31,7 @@ return {
 					}
 				end,
 			})
-			apply_colors("kanagawa")
+			-- apply_colors("kanagawa")
 		end,
 	},
 	{
@@ -145,7 +145,7 @@ return {
 				},
 			})
 
-			-- apply_colors("no-clown-fiesta")
+			apply_colors("no-clown-fiesta")
 		end,
 	},
 
