@@ -7,7 +7,6 @@ config.enable_wayland = false
 
 config.enable_tab_bar = false
 config.window_background_opacity = 0.95
--- config.font = wezterm.font("Fira Code")
 config.font = wezterm.font("JetBrains Mono")
 config.font_size = 12.0
 
@@ -32,7 +31,7 @@ config.window_padding = {
 -- config.window_decorations = "RESIZE"
 
 -- config.cursor_blink_ease_in = "EaseOut"
-config.cursor_blink_rate = 50
+config.cursor_blink_rate = 500
 -- config.cursor_blink_rate = 460
 -- config.cursor_blink_rate = 100
 config.visual_bell = {
