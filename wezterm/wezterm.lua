@@ -3,6 +3,7 @@ local config = wezterm.config_builder()
 local keys = require("keybinds")
 
 config.front_end = "WebGpu"
+config.enable_wayland = false
 
 config.enable_tab_bar = false
 config.window_background_opacity = 0.95
