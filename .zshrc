@@ -128,21 +128,7 @@ load_plugins_env() {
     echo "kubectl loaded"
 }
 
-export MODULAR_HOME="$HOME/.modular"
-export PATH="$HOME/.modular/pkg/packages.modular.com_mojo/bin:$PATH"
-
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /opt/homebrew/bin/terraform terraform
 
-# >>> mamba initialize >>>
-# !! Contents within this block are managed by 'mamba init' !!
-export MAMBA_EXE='/opt/homebrew/bin/micromamba'
-export MAMBA_ROOT_PREFIX='/Users/nopestack/.micromamba'
-__mamba_setup="$("$MAMBA_EXE" shell hook --shell zsh --root-prefix "$MAMBA_ROOT_PREFIX" 2>/dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__mamba_setup"
-else
-    alias micromamba="$MAMBA_EXE" # Fallback on help from mamba activate
-fi
-unset __mamba_setup
-# <<< mamba initialize <<<
+source "$HOME/.rye/env"

@@ -24,7 +24,7 @@ return {
 
         local lldb = {
             name = "Launch lldb",
-            type = "lldb", -- matches the adapter
+            type = "lldb",      -- matches the adapter
             request = "launch", -- could also attach to a currently running process
             program = function()
                 return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
