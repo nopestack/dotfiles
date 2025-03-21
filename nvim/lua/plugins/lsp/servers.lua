@@ -56,11 +56,11 @@ return {
     gopls = {},
     pyright = {},
     solidity_ls_nomicfoundation = {},
-    ["helm-ls"] = {
-        yamlls = {
-            path = "yaml-language-server",
-        },
-    },
+    -- ["helm-ls"] = {
+    --     yamlls = {
+    --         path = "yaml-language-server",
+    --     },
+    -- },
     yamlls = {
         -- enabled = true,
         -- enabledForFilesGlob = "*.{yaml,yml}",
@@ -82,7 +82,6 @@ return {
             -- },
             completion = true,
             hover = true,
-            -- any other config from https://github.com/redhat-developer/yaml-language-server#language-server-settings
         },
     },
     zls = {
